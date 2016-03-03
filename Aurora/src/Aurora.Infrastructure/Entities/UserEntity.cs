@@ -9,12 +9,17 @@ namespace Aurora.Infrastructure.Entities
         
         public bool IsLocked { get; private set; }
 
-        public void Lock()
+        void ILockable.Lock()
         {
             this.IsLocked = true;
         }
 
-        public void Delete()
+        void ILockable.Unlock()
+        {
+            this.IsLocked = false;
+        }
+
+        void ISoftDeletable.Delete()
         {
             this.IsActive = false;
         }
