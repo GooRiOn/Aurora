@@ -6,15 +6,25 @@
   "projectUrl": "",
   "licenseUrl": "",
 
+  "dependencies": {
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.SqlServer": "7.0.0-beta8",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+  },
+
+  "commands": {
+    "ef": "EntityFramework.Commands"
+  },
+
   "frameworks": {
-    "net451": { },
-    "dotnet5.4": {
+    "dnx451": { },
+    "dnxcore50": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
+        "Microsoft.CSharp": "4.0.1-beta-23409",
+        "System.Collections": "4.0.11-beta-23409",
+        "System.Linq": "4.0.1-beta-23409",
+        "System.Runtime": "4.0.21-beta-23409",
+        "System.Threading": "4.0.11-beta-23409"
       }
     }
   }
