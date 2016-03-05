@@ -1,7 +1,7 @@
 ﻿namespace Aurora.Infrastructure.Entities.Interfaces
 {
-    public interface IInternalEntity<TKey>
+    public interface IInternalEntity
     {
-        TKey Id { get; set; }
+        
     }
 }

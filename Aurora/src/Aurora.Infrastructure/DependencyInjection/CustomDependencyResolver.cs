@@ -8,9 +8,14 @@ namespace Aurora.Infrastructure.DependencyInjection
     {
         private readonly IContainer _container;
 
-        public CustomDependencyResolver(Lazy<IContainer> container)
+        public CustomDependencyResolver(IContainer container)
         {
-            _container = container.Value;
+            _container = container;
+        }
+
+        public TResolved Resolve<TResolved>()
+        {
+            return _container.Resolve<TResolved>();
         }
 
         public TResolved Resolve<TResolved, TOverride>(string parameterName, TOverride @override)

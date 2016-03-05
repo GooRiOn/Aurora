@@ -1,18 +1,20 @@
 ﻿using System.Threading.Tasks;
+using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Domain.Services.Interfaces;
 using Aurora.Infrastructure.Entities.Interfaces;
+using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.Services
 {
-    public abstract class EntityService<TEntity,TRepo, TKey> : IEntityService<TEntity,TRepo,TKey> 
-        where TEntity : class, IInternalEntity<TKey> where TRepo : IGenericRepository<TEntity, TKey>
+    public abstract class EntityService<TEntity,TRepo, TKey> : IEntityService<TEntity,TKey> 
+        where TEntity : class, IKeyedInternalEntity<TKey> where TRepo : IGenericRepository<TEntity, TKey>
     {
-        public TRepo Repository { get; }
+        protected TRepo Repository { get; }
 
-        protected EntityService(TRepo repository)
+        protected EntityService(IRepositoryFactory<TRepo> repositoryFactory, IUnitOfWork unitOfWork)
         {
-            Repository = repository;
+            Repository = repositoryFactory.Get(unitOfWork);
         } 
 
         public TEntity Add(TEntity entity)

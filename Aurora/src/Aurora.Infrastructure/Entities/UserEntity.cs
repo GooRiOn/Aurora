@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Aurora.Infrastructure.Entities
 {
-    public class UserEntity : IdentityUser, IInternalEntity<string>, ISoftDeletable, ILockable
+    public class UserEntity : IdentityUser, IKeyedInternalEntity<string>, ISoftDeletable, ILockable
     {
         public bool IsActive { get; private set; }
         

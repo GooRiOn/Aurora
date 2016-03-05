@@ -10,8 +10,6 @@ namespace Aurora.Web.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new Domain.DependencyInjection.Registration());
-
-            builder.RegisterInstance<ICustomDependencyResolver>(new CustomDependencyResolver(new Lazy<IContainer>(() => builder.Build())));
         }
     }
 }
