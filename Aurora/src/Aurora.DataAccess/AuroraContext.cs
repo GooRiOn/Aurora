@@ -10,6 +10,11 @@ namespace Aurora.DataAccess
 {
     public class AuroraContext : IdentityDbContext<UserEntity>
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(@"ServerDESKTOP-JQOI1KG;Database=Aurora;");
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<InternalEntity>().Property<DateTime>("CreatedDate");

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using Aurora.Infrastructure.DependencyInjection;
+using Aurora.Infrastructure.DependencyInjection.Initerfaces;
 using Aurora.Web.DependencyInjection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -7,7 +9,6 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
 
 namespace Aurora.Web
 {
@@ -37,7 +38,7 @@ namespace Aurora.Web
         public IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
@@ -50,6 +51,15 @@ namespace Aurora.Web
 
             builder.Populate(services);
 
+            var container = builder.Build();
+            
+            var customDependencyBuilder = new ContainerBuilder();
+
+            customDependencyBuilder.RegisterInstance<ICustomDependencyResolver>(new CustomDependencyResolver(container));
+            customDependencyBuilder.Update(container);
+
+
+            return container.Resolve<IServiceProvider>();
             // Add application services.
         }
 

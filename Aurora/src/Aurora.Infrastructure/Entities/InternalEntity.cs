@@ -2,9 +2,8 @@
 
 namespace Aurora.Infrastructure.Entities
 {
-    public abstract class InternalEntity : IInternalEntity<int>, ISoftDeletable
+    public abstract class InternalEntity : IInternalEntity, ISoftDeletable
     {
-        public int Id { get; set; }
         public bool IsActive { get; private set; }
 
         void ISoftDeletable.Delete()

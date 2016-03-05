@@ -7,7 +7,7 @@ using Microsoft.Data.Entity;
 
 namespace Aurora.DataAccess.Repositories
 {
-    public abstract class GenericRepository<TEntity,TKey> : IGenericRepository<TEntity,TKey> where TEntity : class, IInternalEntity<TKey>
+    public abstract class GenericRepository<TEntity,TKey> : IGenericRepository<TEntity,TKey> where TEntity : class, IKeyedInternalEntity<TKey>
     {
         public IQueryable<TEntity> Query => _context.Set<TEntity>();
 
@@ -41,7 +41,7 @@ namespace Aurora.DataAccess.Repositories
 
         public virtual async Task<TEntity> GetByIdAsync(TKey id)
         {
-            return await Query.SingleOrDefaultAsync(entiity => entiity.Id.Equals(id));
+            return await Query.SingleOrDefaultAsync(entity => entity.Id.Equals(id));
         }
     }
 }
