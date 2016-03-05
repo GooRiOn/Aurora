@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using System.Collections.Generic;
+using Aurora.Web.DependencyInjection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
 
 namespace Aurora.Web
 {
@@ -38,6 +43,12 @@ namespace Aurora.Web
             services.AddApplicationInsightsTelemetry(Configuration);
             
             services.AddMvc();
+
+            var builder = new ContainerBuilder();
+
+            builder.RegisterModule(new Registration());
+
+            builder.Populate(services);
 
             // Add application services.
         }

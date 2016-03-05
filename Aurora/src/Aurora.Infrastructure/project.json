@@ -7,6 +7,7 @@
   "licenseUrl": "",
 
   "dependencies": {
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.SqlServer": "7.0.0-beta8",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
