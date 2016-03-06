@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using Aurora.Domain.Interfaces;
-using Aurora.Domain.Services.Interfaces;
-using Aurora.Infrastructure.Interfaces;
+﻿using Aurora.Services.Services.Interfaces;
 using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
@@ -9,22 +6,17 @@ namespace Aurora.Web.Controllers
     [Route("api/users")]
     public class UsersController : Controller
     {
-        private readonly IServiceFactory<IUserService> _userServiceFactory;
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly IUserService _userService;
 
-        public UsersController(IServiceFactory<IUserService> userServiceFactory, IUnitOfWorkFactory unitOfWorkFactory)
+        public UsersController(IUserService userService)
         {
-            _userServiceFactory = userServiceFactory;
-            _unitOfWorkFactory = unitOfWorkFactory;
+            _userService = userService;
         }
 
         [HttpGet("test")]
-        public async Task Test()
+        public  void Test()
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
-            {
-                var userService = _userServiceFactory.Get(unitOfWork);
-            }
+           var number = _userService.Test();
         }
     }
 }

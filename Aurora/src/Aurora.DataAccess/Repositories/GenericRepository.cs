@@ -7,7 +7,7 @@ using Microsoft.Data.Entity;
 
 namespace Aurora.DataAccess.Repositories
 {
-    public abstract class GenericRepository<TEntity,TKey> : IGenericRepository<TEntity,TKey> where TEntity : class, IKeyedInternalEntity<TKey>
+    public abstract class GenericRepository<TEntity,TKey> : IGenericRepository<TEntity,TKey> where TEntity : class, IInternalEntity<TKey>
     {
         public IQueryable<TEntity> Query => _context.Set<TEntity>();
 

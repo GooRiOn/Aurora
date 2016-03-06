@@ -2,7 +2,7 @@
 
 namespace Aurora.DataAccess.Repositories.Interfaces
 {
-    public interface IUserRepository : IGenericRepository<UserEntity,string>
+    public interface IUserRepository : IGenericRepository<UserEntity, string>
     {
          
     }

@@ -2,9 +2,9 @@
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Infrastructure.Entities.Interfaces;
 
-namespace Aurora.Domain.Services.Interfaces
+namespace Aurora.Domain.DomainServices.Interfaces
 {
-    public interface IEntityService<TEntity, in TKey> where TEntity : class, IKeyedInternalEntity<TKey>
+    public interface IEntityService<TEntity, in TKey> where TEntity : class, IInternalEntity<TKey>
     {
         TEntity Add(TEntity entity);
         void Update(TEntity entity);

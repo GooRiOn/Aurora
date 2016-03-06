@@ -6,11 +6,12 @@
   },
 
   "dependencies": {
-    "Aurora.Domain": "1.0.0-*",
     "Aurora.Infrastructure": "1.0.0-*",
+    "Aurora.Services": "1.0.0-*",
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.Core": "7.0.0-rc1-final",
     "Microsoft.ApplicationInsights.AspNet": "1.0.0-rc1",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",

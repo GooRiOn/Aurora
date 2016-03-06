@@ -10,9 +10,9 @@ namespace Aurora.DataAccess.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AuroraContext>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<AuroraContext>().AsSelf();
             builder.RegisterGeneric(typeof (RepositoryFactory<>)).As(typeof (IRepositoryFactory<>));
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
         }
