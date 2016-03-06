@@ -2,7 +2,7 @@
 
 namespace Aurora.Domain.Interfaces
 {
-    public interface IServiceFactory<out TService>
+    public interface IDomainServiceFactory<out TService>
     {
         TService Get(IUnitOfWork unitOfWork);
     }

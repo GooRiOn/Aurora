@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Aurora.DataAccess.Interfaces;
 using Aurora.Infrastructure.Interfaces;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Storage;
 
 
 namespace Aurora.DataAccess
@@ -9,6 +11,7 @@ namespace Aurora.DataAccess
     public class UnitOfWork : IUnitOfWork, IContextGetter
     {
         private readonly AuroraContext _context;
+        //private readonly IRelationalTransaction _transaction;
 
         private bool _isCommited;
         private bool _isDisposed;
@@ -16,6 +19,7 @@ namespace Aurora.DataAccess
         public UnitOfWork(AuroraContext context)
         {
             _context = context;
+            //var _transaction = context.Database.BeginTransaction();
         }
 
         public int Commit()

@@ -12,13 +12,14 @@ namespace Aurora.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"ServerDESKTOP-JQOI1KG;Database=Aurora;");
+            options.UseSqlServer(@"Data Source=DESKTOP-JQOI1KG;database=Aurora;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<InternalEntity>().Property<DateTime>("CreatedDate");
             builder.Entity<InternalEntity>().Property<DateTime>("UpdatedDate");
+            base.OnModelCreating(builder);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

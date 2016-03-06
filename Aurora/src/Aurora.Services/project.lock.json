@@ -15,6 +15,19 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -181,6 +194,24 @@
         },
         "runtime": {
           "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -838,6 +869,24 @@
           "System.Threading": "4.0.11-beta-23409"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+          "Microsoft.CSharp": "4.0.1-beta-23409",
+          "System.Collections": "4.0.11-beta-23409",
+          "System.Linq": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23409",
+          "System.Threading": "4.0.11-beta-23409"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
@@ -990,6 +1039,22 @@
         },
         "runtime": {
           "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8",
+          "System.Data.SqlClient": "4.0.0-beta-23409",
+          "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
+          "System.Threading.Thread": "4.0.0-beta-23409",
+          "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -2405,6 +2470,19 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -2571,6 +2649,24 @@
         },
         "runtime": {
           "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -3223,6 +3319,19 @@
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -3389,6 +3498,24 @@
         },
         "runtime": {
           "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -4046,6 +4173,24 @@
           "System.Threading": "4.0.11-beta-23409"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+          "Microsoft.CSharp": "4.0.1-beta-23409",
+          "System.Collections": "4.0.11-beta-23409",
+          "System.Linq": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23409",
+          "System.Threading": "4.0.11-beta-23409"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
@@ -4198,6 +4343,22 @@
         },
         "runtime": {
           "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8",
+          "System.Data.SqlClient": "4.0.0-beta-23409",
+          "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
+          "System.Threading.Thread": "4.0.0-beta-23409",
+          "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -4853,28 +5014,6 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
-      "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Reflection": "4.0.10",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Handles": "4.0.0",
-          "System.Runtime.InteropServices": "4.0.20",
-          "System.Text.Encoding": "4.0.10",
-          "System.Threading": "4.0.10"
-        },
-        "compile": {
-          "ref/dotnet/_._": {}
-        },
-        "runtime": {
-          "runtimes/win/lib/dotnet5.4/System.Text.Encoding.CodePages.dll": {}
-        }
-      },
       "runtime.win7.System.Console/4.0.0-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -5111,6 +5250,28 @@
         },
         "runtime": {
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.X509Certificates.dll": {}
+        }
+      },
+      "runtime.win7.System.Text.Encoding.CodePages/4.0.1-beta-23409": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Reflection": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Handles": "4.0.0",
+          "System.Runtime.InteropServices": "4.0.20",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7/lib/dotnet/System.Text.Encoding.CodePages.dll": {}
         }
       },
       "runtime.win7.System.Threading/4.0.11-beta-23409": {
@@ -6166,6 +6327,24 @@
           "System.Threading": "4.0.11-beta-23409"
         }
       },
+      "Aurora.Domain/1.0.0": {
+        "type": "project",
+        "framework": "DNXCore,Version=v5.0",
+        "dependencies": {
+          "Aurora.DataAccess": "1.0.0",
+          "Aurora.Infrastructure": "1.0.0",
+          "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+          "Microsoft.CSharp": "4.0.1-beta-23409",
+          "System.Collections": "4.0.11-beta-23409",
+          "System.Linq": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23409",
+          "System.Threading": "4.0.11-beta-23409"
+        }
+      },
       "Aurora.Infrastructure/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
@@ -6318,6 +6497,22 @@
         },
         "runtime": {
           "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta8": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta8",
+          "System.Data.SqlClient": "4.0.0-beta-23409",
+          "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
+          "System.Threading.Thread": "4.0.0-beta-23409",
+          "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -6973,28 +7168,6 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
-      "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.IO": "4.0.10",
-          "System.Reflection": "4.0.10",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Runtime.Handles": "4.0.0",
-          "System.Runtime.InteropServices": "4.0.20",
-          "System.Text.Encoding": "4.0.10",
-          "System.Threading": "4.0.10"
-        },
-        "compile": {
-          "ref/dotnet/_._": {}
-        },
-        "runtime": {
-          "runtimes/win/lib/dotnet5.4/System.Text.Encoding.CodePages.dll": {}
-        }
-      },
       "runtime.win7.System.Console/4.0.0-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -7231,6 +7404,28 @@
         },
         "runtime": {
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.X509Certificates.dll": {}
+        }
+      },
+      "runtime.win7.System.Text.Encoding.CodePages/4.0.1-beta-23409": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Reflection": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.Handles": "4.0.0",
+          "System.Runtime.InteropServices": "4.0.20",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7/lib/dotnet/System.Text.Encoding.CodePages.dll": {}
         }
       },
       "runtime.win7.System.Threading/4.0.11-beta-23409": {
@@ -8274,6 +8469,10 @@
       "type": "project",
       "path": "../Aurora.DataAccess/project.json"
     },
+    "Aurora.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Aurora.Domain/project.json"
+    },
     "Aurora.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../Aurora.Infrastructure/project.json"
@@ -8403,6 +8602,22 @@
         "lib/net451/EntityFramework.Relational.Design.dll",
         "lib/net451/EntityFramework.Relational.Design.xml",
         "lib/netcore50/_._"
+      ]
+    },
+    "EntityFramework.SqlServer/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "9eZeWm2KingHYBOBxT/9xVMP1OjuRgGMphZ3pKoBkxZMGylzzs4gewJlMDuq21byWBALr1btUgaAkfyn6FyZNA==",
+      "files": [
+        "EntityFramework.SqlServer.7.0.0-beta8.nupkg",
+        "EntityFramework.SqlServer.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.SqlServer.nuspec",
+        "lib/dnxcore50/EntityFramework.SqlServer.dll",
+        "lib/dnxcore50/EntityFramework.SqlServer.xml",
+        "lib/dotnet/EntityFramework.SqlServer.dll",
+        "lib/dotnet/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml"
       ]
     },
     "Ix-Async/1.2.5": {
@@ -9022,22 +9237,6 @@
         "runtimes/aot/lib/netcore50/_._"
       ]
     },
-    "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "cloEierDqXUaDLwuR4B8YJZmpP/xWNs5xzlvykr6zTlbZ9XG5eZKR/j6K0hnTLJfDfGahvUfyBSlBbptr7kZAg==",
-      "files": [
-        "ref/dotnet/_._",
-        "runtime.win.System.Text.Encoding.CodePages.4.0.1-beta-23516.nupkg",
-        "runtime.win.System.Text.Encoding.CodePages.4.0.1-beta-23516.nupkg.sha512",
-        "runtime.win.System.Text.Encoding.CodePages.nuspec",
-        "runtimes/win/lib/dotnet5.4/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/netcore50/System.Text.Encoding.CodePages.dll",
-        "runtimes/win/lib/win8/_._",
-        "runtimes/win/lib/wp8/_._",
-        "runtimes/win/lib/wpa81/_._"
-      ]
-    },
     "runtime.win7.System.Console/4.0.0-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -9203,6 +9402,31 @@
         "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.X509Certificates.dll",
         "runtimes/win7/lib/net/_._",
         "runtimes/win7/lib/netcore50/System.Security.Cryptography.X509Certificates.dll"
+      ]
+    },
+    "runtime.win7.System.Text.Encoding.CodePages/4.0.1-beta-23409": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "FA0S5xeKtllXiTxPfwLqGCMWXU3kU0fkRV7iiXjgmDPDiFkRjeWIjAxr8IHCjM69Z84Pu8mGhQ719CczBVAr+Q==",
+      "files": [
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/wpa81/_._",
+        "ref/dotnet/_._",
+        "runtime.win7.System.Text.Encoding.CodePages.4.0.1-beta-23409.nupkg",
+        "runtime.win7.System.Text.Encoding.CodePages.4.0.1-beta-23409.nupkg.sha512",
+        "runtime.win7.System.Text.Encoding.CodePages.nuspec",
+        "runtimes/win7/lib/dotnet/de/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/es/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/fr/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/it/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/ja/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/ko/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/ru/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/System.Text.Encoding.CodePages.dll",
+        "runtimes/win7/lib/dotnet/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/zh-hans/System.Text.Encoding.CodePages.xml",
+        "runtimes/win7/lib/dotnet/zh-hant/System.Text.Encoding.CodePages.xml"
       ]
     },
     "runtime.win7.System.Threading/4.0.11-beta-23409": {
@@ -12179,12 +12403,11 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Aurora.DataAccess >= 1.0.0-*",
+      "Aurora.Domain >= 1.0.0-*",
       "Aurora.Infrastructure >= 1.0.0-*",
       "Autofac.Extensions.DependencyInjection >= 4.0.0-rc1-177",
       "EntityFramework.Commands >= 7.0.0-rc1-final",
-      "EntityFramework.MicrosoftSqlServer >= 7.0.0-rc1-final",
-      "EntityFramework.Core >= 7.0.0-rc1-final",
+      "EntityFramework.SqlServer >= 7.0.0-beta8",
       "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-rc1-final"
     ],
     "DNX,Version=v4.5.1": [],

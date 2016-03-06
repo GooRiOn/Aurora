@@ -4,7 +4,7 @@ using Aurora.Infrastructure.Entities.Interfaces;
 
 namespace Aurora.DataAccess.Repositories.Interfaces
 {
-    public interface IGenericRepository<TEntity, in TKey> where TEntity : class, IKeyedInternalEntity<TKey>
+    public interface IGenericRepository<TEntity, in TKey> where TEntity : class, IInternalEntity<TKey>
     {
         IQueryable<TEntity> Query { get; }
         TEntity Add(TEntity entity);

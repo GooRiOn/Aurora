@@ -4,11 +4,11 @@ using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain
 {
-    public class ServiceFactory<TService> : IServiceFactory<TService>
+    public class DomainDomainServiceFactory<TService> : IDomainServiceFactory<TService>
     {
         private readonly ICustomDependencyResolver _resolver;
 
-        public ServiceFactory(ICustomDependencyResolver resolver)
+        public DomainDomainServiceFactory(ICustomDependencyResolver resolver)
         {
             _resolver = resolver;
         }

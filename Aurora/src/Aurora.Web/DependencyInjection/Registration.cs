@@ -1,7 +1,4 @@
-﻿using System;
-using Aurora.Infrastructure.DependencyInjection;
-using Aurora.Infrastructure.DependencyInjection.Initerfaces;
-using Autofac;
+﻿using Autofac;
 
 namespace Aurora.Web.DependencyInjection
 {
@@ -9,7 +6,7 @@ namespace Aurora.Web.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule(new Domain.DependencyInjection.Registration());
+            builder.RegisterModule(new Services.DependencyInjection.Registration());
         }
     }
 }

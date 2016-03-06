@@ -1,9 +1,11 @@
-﻿using Aurora.Infrastructure.Entities.Interfaces;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Aurora.Infrastructure.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Aurora.Infrastructure.Entities
 {
-    public class UserEntity : IdentityUser, IKeyedInternalEntity<string>, ISoftDeletable, ILockable
+    [Table("User",Schema = "usr")]
+    public class UserEntity : IdentityUser, IInternalEntity<string>, ISoftDeletable, ILockable
     {
         public bool IsActive { get; private set; }
         

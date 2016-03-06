@@ -1,6 +1,6 @@
-﻿using Aurora.Domain.Interfaces;
-using Aurora.Domain.Services;
-using Aurora.Domain.Services.Interfaces;
+﻿using Aurora.Domain.DomainServices;
+using Aurora.Domain.DomainServices.Interfaces;
+using Aurora.Domain.Interfaces;
 using Autofac;
 
 namespace Aurora.Domain.DependencyInjection
@@ -11,8 +11,8 @@ namespace Aurora.Domain.DependencyInjection
         {
             builder.RegisterModule(new DataAccess.DependencyInjection.Registration());
 
-            builder.RegisterGeneric(typeof (ServiceFactory<>)).As(typeof (IServiceFactory<>));
-            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterGeneric(typeof (DomainDomainServiceFactory<>)).As(typeof (IDomainServiceFactory<>));
+            builder.RegisterType<UserDomainService>().As<IUserDomainService>();
         }
     }
 }
