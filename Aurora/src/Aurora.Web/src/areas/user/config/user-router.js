@@ -1,15 +1,16 @@
 define(["require", "exports"], function (require, exports) {
-    var ChildRouter = (function () {
-        function ChildRouter() {
+    var UserRouter = (function () {
+        function UserRouter() {
+            this.heading = 'User';
         }
-        ChildRouter.prototype.configureRouter = function (config, router) {
+        UserRouter.prototype.configureRouter = function (config, router) {
             config.map([
-                { route: 'register', name: 'register', moduleId: '../view-models/register', nav: true, title: 'Register' },
+                { route: ['', 'register'], name: 'register', moduleId: '../view-models/register', nav: true, title: 'Register' },
             ]);
             this.router = router;
         };
-        return ChildRouter;
+        return UserRouter;
     })();
-    exports.ChildRouter = ChildRouter;
+    exports.UserRouter = UserRouter;
 });
 //# sourceMappingURL=user-router.js.map

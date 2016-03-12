@@ -11,7 +11,7 @@ namespace Aurora.DataAccess
     public class UnitOfWork : IUnitOfWork, IContextGetter
     {
         private readonly AuroraContext _context;
-        //private readonly IRelationalTransaction _transaction;
+        private readonly IRelationalTransaction _transaction;
 
         private bool _isCommited;
         private bool _isDisposed;
@@ -19,7 +19,7 @@ namespace Aurora.DataAccess
         public UnitOfWork(AuroraContext context)
         {
             _context = context;
-            //var _transaction = context.Database.BeginTransaction();
+            _transaction = context.Database.BeginTransaction();
         }
 
         public int Commit()
@@ -41,9 +41,11 @@ namespace Aurora.DataAccess
                 throw new NotSupportedException("Cannot commit commited UOW");
             if (_isDisposed)
                 throw new NotSupportedException("Cannot commit disposed UOW");
-            await _context.SaveChangesAsync();
 
-            var result = await _context.SaveChangesAsync();
+             var result = await _context.SaveChangesAsync();
+
+            _transaction.Commit();
+
             _isCommited = true;
 
             return result;
@@ -55,6 +57,7 @@ namespace Aurora.DataAccess
             {
                 _context.Dispose();
                 _isDisposed = true;
+                _transaction.Dispose();
             }
         }
 

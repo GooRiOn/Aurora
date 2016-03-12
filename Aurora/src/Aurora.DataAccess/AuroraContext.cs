@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aurora.Infrastructure.Entities;
+using Aurora.Infrastructure.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
@@ -15,12 +16,13 @@ namespace Aurora.DataAccess
             options.UseSqlServer(@"Data Source=DESKTOP-JQOI1KG;database=Aurora;Integrated Security=True");
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<InternalEntity>().Property<DateTime>("CreatedDate");
-            builder.Entity<InternalEntity>().Property<DateTime>("UpdatedDate");
-            base.OnModelCreating(builder);
-        }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    builder.Entity<InternalEntity>().Property<DateTime>("CreatedDate");
+        //    builder.Entity<InternalEntity>().Property<DateTime>("UpdatedDate");
+        //    builder.Ignore<InternalEntity>();
+        //    base.OnModelCreating(builder);
+        //}
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
