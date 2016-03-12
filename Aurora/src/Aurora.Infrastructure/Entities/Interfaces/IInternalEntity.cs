@@ -1,4 +1,6 @@
-﻿namespace Aurora.Infrastructure.Entities.Interfaces
+﻿using System;
+
+namespace Aurora.Infrastructure.Entities.Interfaces
 {
     public interface IInternalEntity<TKey>
     {

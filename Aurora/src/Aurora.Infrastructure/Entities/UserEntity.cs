@@ -1,12 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Aurora.Infrastructure.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Aurora.Infrastructure.Entities
 {
-    [Table("User",Schema = "usr")]
+    [Table("Users",Schema = "usr")]
     public class UserEntity : IdentityUser, IInternalEntity<string>, ISoftDeletable, ILockable
     {
+        public UserEntity()
+        {
+            this.IsActive = true;
+            this.IsLocked = false;
+        }
+
         public bool IsActive { get; private set; }
         
         public bool IsLocked { get; private set; }
@@ -25,6 +32,5 @@ namespace Aurora.Infrastructure.Entities
         {
             this.IsActive = false;
         }
-
     }
 }
