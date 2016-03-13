@@ -1,17 +1,11 @@
 <template bindable="router">
-    <nav>
+    <nav class="white">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">${router.title}</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li repeat.for="route of router.navigation" class="${route.isActive ? 'active' : ''}"><a href.bind="route.href">${route.title}</a></li>
+            <a href="#!" class="brand-logo"><img src="images/logo.png" /></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn-large" href="#/user/register">Register</a></li>
+                <li><a class="waves-effect waves-light btn-large">Login</a></li>
             </ul>
-
-            <ul class="side-nav" id="mobile-demo">
-                <li repeat.for="route of router.navigation"><a href.bind="route.href">${route.title}</a></li>
-            </ul>
-
         </div>
     </nav>
 </template>  

@@ -1,0 +1,17 @@
+body {
+    color: #272D4E;
+    background-color: #272D4E;
+}
+
+img{
+    display: block;
+    margin: 0 auto;
+}
+
+form {
+    border-radius: 10px;
+}
+
+.form-position {
+    margin-top: 100px;
+}
