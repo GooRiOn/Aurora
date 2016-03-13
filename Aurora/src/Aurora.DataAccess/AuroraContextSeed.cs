@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Aurora.DataAccess.Identity;
 using Aurora.Infrastructure.Entities;
@@ -14,13 +15,16 @@ namespace Aurora.DataAccess
             await context.Database.EnsureCreatedAsync();
             //*************SEED***************//
 
-            await roleManager.CreateAsync(new IdentityRole { Name = RoleNames.Admin });
+            if (!context.Users.Any())
+            {
+                await roleManager.CreateAsync(new IdentityRole { Name = RoleNames.Admin });
 
-            var adminUser = await CreateUser(new UserEntity {UserName = "admin", Email = "admin@aurora.com"}, userManager);
-            var adminRole = await roleManager.FindByNameAsync(RoleNames.Admin);
+                var adminUser = await CreateUser(new UserEntity { UserName = "admin", Email = "admin@aurora.com" }, userManager);
+                var adminRole = await roleManager.FindByNameAsync(RoleNames.Admin);
 
-            context.UserRoles.Add(new IdentityUserRole<string> {UserId = adminUser.Id, RoleId = adminRole.Id});
-            await context.SaveChangesAsync();
+                context.UserRoles.Add(new IdentityUserRole<string> { UserId = adminUser.Id, RoleId = adminRole.Id });
+                await context.SaveChangesAsync();
+            }
         }
 
         private async Task<UserEntity> CreateUser(UserEntity user, UserManager<UserEntity> userManager)
