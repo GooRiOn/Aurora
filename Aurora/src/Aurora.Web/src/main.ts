@@ -1,4 +1,5 @@
-import 'bootstrap';
+import "jquery";
+import "Dogfalo/materialize";
 import {Aurelia} from 'aurelia-framework';
 
 export function configure(aurelia: Aurelia) {

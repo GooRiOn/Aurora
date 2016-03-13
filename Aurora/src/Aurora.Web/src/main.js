@@ -1,4 +1,4 @@
-define(["require", "exports", 'bootstrap'], function (require, exports) {
+define(["require", "exports", "jquery", "Dogfalo/materialize"], function (require, exports) {
     function configure(aurelia) {
         aurelia.use
             .standardConfiguration()
