@@ -1,5 +1,5 @@
 ﻿using Aurora.DataAccess.Repositories.Interfaces;
-using Aurora.Infrastructure.Entities;
+using Aurora.DataAccess.Entities;
 
 namespace Aurora.DataAccess.Repositories
 {

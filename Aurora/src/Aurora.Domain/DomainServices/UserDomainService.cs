@@ -1,8 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Domain.DomainServices.Interfaces;
-using Aurora.Infrastructure.Entities;
+using Aurora.DataAccess.Entities;
 using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.DomainServices
@@ -13,11 +14,6 @@ namespace Aurora.Domain.DomainServices
             : base(repositoryFactory, unitOfWork)
         {
 
-        }
-
-        public int Test()
-        {
-            return Repository.Query.Count();
         }
     }
 }

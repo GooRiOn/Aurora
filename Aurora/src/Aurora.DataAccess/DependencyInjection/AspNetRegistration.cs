@@ -1,4 +1,4 @@
-﻿using Aurora.Infrastructure.Entities;
+﻿using Aurora.DataAccess.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +13,8 @@ namespace Aurora.DataAccess.DependencyInjection
             {
                 options.Password.RequireNonLetterOrDigit = false;
                 options.Password.RequireUppercase = false;
+
+                options.Cookies.ApplicationCookie.AutomaticChallenge = true;
 
             }).AddEntityFrameworkStores<AuroraContext>().AddDefaultTokenProviders();
         }

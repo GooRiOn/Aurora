@@ -2,7 +2,7 @@
 using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Domain.DomainServices.Interfaces;
-using Aurora.Infrastructure.Entities.Interfaces;
+using Aurora.DataAccess.Entities.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.DomainServices

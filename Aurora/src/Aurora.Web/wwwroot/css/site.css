@@ -1,6 +1,6 @@
 body {
     color: #272D4E;
-    background-color: #272D4E;
+    background-image: url('../images/bg-10-full.jpg');
 }
 
 img{
@@ -10,8 +10,14 @@ img{
 
 form {
     border-radius: 10px;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .form-position {
     margin-top: 100px;
+}
+
+.nav-dark {
+    background-color: rgba(0, 0, 0, 0.7);
 }

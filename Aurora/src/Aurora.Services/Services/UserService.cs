@@ -15,14 +15,5 @@ namespace Aurora.Services.Services
             _unitOfWorkFactory = unitOfWorkFactory;
             _userDomainServiceFactory = userDomainServiceFactory;
         }
-
-        public int Test()
-        {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
-            {
-                var userService = _userDomainServiceFactory.Get(unitOfWork);
-                return userService.Test();
-            }
-        }
     }
 }

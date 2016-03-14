@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aurora.Infrastructure.Entities.Interfaces
+namespace Aurora.DataAccess.Entities.Interfaces
 {
     public interface IAuditable
     {

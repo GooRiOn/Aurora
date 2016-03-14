@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Aurora.DataAccess.Repositories.Interfaces;
-using Aurora.Infrastructure.Entities.Interfaces;
+using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.Data.Entity;
 
 namespace Aurora.DataAccess.Repositories

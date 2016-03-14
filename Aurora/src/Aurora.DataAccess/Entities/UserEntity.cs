@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Aurora.Infrastructure.Entities.Interfaces;
+using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Aurora.Infrastructure.Entities
+namespace Aurora.DataAccess.Entities
 {
     [Table("Users",Schema = "usr")]
     public class UserEntity : IdentityUser, IInternalEntity<string>, ISoftDeletable, ILockable

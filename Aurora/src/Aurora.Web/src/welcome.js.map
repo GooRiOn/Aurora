@@ -1,1 +1,1 @@
-{"version":3,"file":"welcome.js","sourceRoot":"","sources":["welcome.ts"],"names":["Welcome","Welcome.constructor"],"mappings":";IAEA;QAAAA;QAEAC,CAACA;QAADD,cAACA;IAADA,CAACA,AAFD,IAEC;IAFY,eAAO,UAEnB,CAAA"}
+{"version":3,"file":"welcome.js","sourceRoot":"","sources":["welcome.ts"],"names":["Welcome","Welcome.constructor","Welcome.attached"],"mappings":";IAAA;QAAAA;QAMAC,CAACA;QAJGD,0BAAQA,GAARA;QAGAE,CAACA;QACLF,cAACA;IAADA,CAACA,AAND,IAMC;IANY,eAAO,UAMnB,CAAA"}

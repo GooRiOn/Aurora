@@ -16,7 +16,6 @@ namespace Aurora.Web.Controllers
         [HttpGet("test")]
         public  void Test()
         {
-           var number = _userService.Test();
         }
     }
 }

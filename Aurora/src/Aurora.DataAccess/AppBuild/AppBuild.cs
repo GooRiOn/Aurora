@@ -1,5 +1,5 @@
 ﻿using System;
-using Aurora.Infrastructure.Entities;
+using Aurora.DataAccess.Entities;
 using Autofac;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Identity;

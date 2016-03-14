@@ -11,6 +11,7 @@ namespace Aurora.Services.DependencyInjection
             builder.RegisterModule(new Domain.DependencyInjection.Registration());
 
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<UserAuthService>().As<IUserAuthService>();
         }
     }
 }

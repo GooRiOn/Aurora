@@ -12,6 +12,8 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Aurora.Web
 {
@@ -33,7 +35,7 @@ namespace Aurora.Web
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-
+            
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -47,7 +49,10 @@ namespace Aurora.Web
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             AspNetRegistration.Register(services);
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            }); ;
 
             var builder = new ContainerBuilder();
 
@@ -93,6 +98,8 @@ namespace Aurora.Web
             app.UseStaticFiles();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Aurora.DataAccess.Identity;
-using Aurora.Infrastructure.Entities;
+using Aurora.DataAccess.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Aurora.Infrastructure.Entities.Interfaces;
+using Aurora.DataAccess.Entities.Interfaces;
 
-namespace Aurora.Infrastructure.Entities
+namespace Aurora.DataAccess.Entities
 {
     public abstract class InternalEntity : IInternalEntity<int>, ISoftDeletable, IAuditable
     {
