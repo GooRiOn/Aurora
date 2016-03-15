@@ -6,7 +6,7 @@ namespace Aurora.Web.DependencyInjection
     {
         public static void Register(IServiceCollection services)
         {
-            Services.DependencyInjection.AspNetRegistration.Register(services);
+            DomainProxy.DependencyInjection.AspNetRegistration.Register(services);
         }
     }
 }

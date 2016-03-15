@@ -6,8 +6,7 @@
   },
 
   "dependencies": {
-    "Aurora.Infrastructure": "1.0.0-*",
-    "Aurora.Services": "1.0.0-*",
+    "Aurora.Infrastructure": "1.0.0-*",  
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
@@ -29,7 +28,8 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
+    "Aurora.DomainProxy": "1.0.0-*"
   },
 
   "commands": {

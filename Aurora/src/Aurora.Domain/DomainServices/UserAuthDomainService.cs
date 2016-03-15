@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
-using Aurora.Domain.Mappings.ModelToEntity;
 using Aurora.DataAccess.Entities;
-using Aurora.Infrastructure.Models;
+using Aurora.Domain.DomainObjects;
+using Aurora.Domain.Mappings;
 using Microsoft.AspNet.Identity;
 
 namespace Aurora.Domain.DomainServices
@@ -18,13 +18,13 @@ namespace Aurora.Domain.DomainServices
             _signInManager = signInManager;
         }
 
-        public async Task<IdentityResult> CreateUserAsync(UserCreateModel userCreateModel)
+        public async Task<IdentityResult> CreateUserAsync(UserCreateDomainObject userCreateDomainObject)
         {
-            var userEntity = userCreateModel.AsEntity();
-            return await _userManager.CreateAsync(userEntity, userCreateModel.Password);
+            var userEntity = userCreateDomainObject.AsEntity();
+            return await _userManager.CreateAsync(userEntity, userCreateDomainObject.Password);
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginModel userLoginModel)
+        public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginModel)
         {
             return await _signInManager.PasswordSignInAsync(userLoginModel.UserName,userLoginModel.Password, userLoginModel.RememberMe, lockoutOnFailure: false);
         }

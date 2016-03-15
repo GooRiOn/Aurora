@@ -1,0 +1,36 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Aurora.DomainProxy Class Library",
+  "authors": [ "dpawl" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Aurora.Infrastructure": "1.0.0-*",
+    "AutoMapper": "4.2.1",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+    "Aurora.Domain": "1.0.0-*"
+  },
+
+  "commands": {
+    "ef": "EntityFramework.Commands"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23409",
+        "System.Collections": "4.0.11-beta-23409",
+        "System.Linq": "4.0.1-beta-23409",
+        "System.Runtime": "4.0.21-beta-23409",
+        "System.Threading": "4.0.11-beta-23409"
+      }
+    }
+  }
+}

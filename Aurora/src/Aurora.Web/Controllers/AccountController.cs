@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Aurora.Infrastructure.Models;
-using Aurora.Services.Services.Interfaces;
+using Aurora.DomainProxy.Dtos;
+using Aurora.DomainProxy.Proxies.Interfaces;
 using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
@@ -8,21 +8,21 @@ namespace Aurora.Web.Controllers
     [Route("api/accounts")]
     public class AccountController : Controller
     {
-        private readonly IUserAuthService _userAuthService;
+        private readonly IUserAuthDomainServiceProxy _userAuthDomainServiceProxy;
 
-        public AccountController(IUserAuthService userAuthService)
+        public AccountController(IUserAuthDomainServiceProxy userAuthDomainServiceProxy)
         {
-            _userAuthService = userAuthService;
+            _userAuthDomainServiceProxy = userAuthDomainServiceProxy;
         }
 
         [HttpPost("register")]
-        public async Task RegisterUserAsync([FromBody] UserCreateModel userCreateModel)
+        public async Task RegisterUserAsync([FromBody] UserCreateDto userCreateDto)
         {
-            var registerResult = await _userAuthService.CreateUserAsync(userCreateModel);
+            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userCreateDto);
 
             if (registerResult.Succeeded)
             {
-                 var signInResult = await _userAuthService.PasswordSignInAsync(userCreateModel);
+                 var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userCreateDto);
             }
         }
     }

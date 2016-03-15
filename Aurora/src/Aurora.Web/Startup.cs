@@ -1,8 +1,9 @@
 ﻿using System;
 using Aurora.DataAccess;
+using Aurora.Domain.AppBuild;
+using Aurora.DomainProxy.AppBuild;
 using Aurora.Infrastructure.DependencyInjection;
 using Aurora.Infrastructure.DependencyInjection.Initerfaces;
-using Aurora.Services.AppBuild;
 using Aurora.Web.DependencyInjection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -78,7 +79,7 @@ namespace Aurora.Web
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
-            app.OnServicesBuild(Container);
+            app.OnDomainProxyBuild(Container);
 
             if (env.IsDevelopment())
             {

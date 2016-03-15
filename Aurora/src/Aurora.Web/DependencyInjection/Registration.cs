@@ -6,7 +6,7 @@ namespace Aurora.Web.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule(new Services.DependencyInjection.Registration());
+            builder.RegisterModule(new DomainProxy.DependencyInjection.Registration());
         }
     }
 }
