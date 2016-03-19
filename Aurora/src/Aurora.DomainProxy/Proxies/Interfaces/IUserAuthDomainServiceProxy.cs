@@ -9,5 +9,6 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task<IdentityResult> CreateUserAsync(UserCreateDto userCreateDto);
         Task<SignInResult> PasswordSignInAsync(UserLoginDto userLoginDto);
         Task SignOutAsync();
+        Task<string> GetUserAuthToken(string userName);
     }
 }

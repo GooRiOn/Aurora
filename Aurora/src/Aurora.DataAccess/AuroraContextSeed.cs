@@ -12,13 +12,13 @@ namespace Aurora.DataAccess
     {
         public async Task Seed(AuroraContext context, UserManager<UserEntity> userManager, RoleManager<IdentityRole> roleManager)
         {
-            await context.Database.EnsureCreatedAsync();
+            var wasDatabseCreationEnsured = await context.Database.EnsureCreatedAsync();
             //*************SEED***************//
 
-            if (!context.Users.Any())
+            if (wasDatabseCreationEnsured)
             {
                 await roleManager.CreateAsync(new IdentityRole { Name = RoleNames.Admin });
-
+               
                 var adminUser = await CreateUser(new UserEntity { UserName = "admin", Email = "admin@aurora.com" }, userManager);
                 var adminRole = await roleManager.FindByNameAsync(RoleNames.Admin);
 

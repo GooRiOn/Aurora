@@ -2,8 +2,10 @@
 using Aurora.DataAccess;
 using Aurora.Domain.AppBuild;
 using Aurora.DomainProxy.AppBuild;
+using Aurora.Infrastructure.Auth;
 using Aurora.Infrastructure.DependencyInjection;
 using Aurora.Infrastructure.DependencyInjection.Initerfaces;
+using Aurora.Web.Auth;
 using Aurora.Web.DependencyInjection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -47,9 +49,9 @@ namespace Aurora.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             AspNetRegistration.Register(services);
+
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -69,18 +71,18 @@ namespace Aurora.Web
             Container = container;
 
             return container.Resolve<IServiceProvider>();
-            // Add application services.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TokenAuthOptions tokenAuthOptions)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
             app.OnDomainProxyBuild(Container);
-
+            app.RegisterBearerAuthentication(tokenAuthOptions);
+            
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();

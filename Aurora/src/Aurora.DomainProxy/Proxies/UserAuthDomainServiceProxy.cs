@@ -51,5 +51,14 @@ namespace Aurora.DomainProxy.Proxies
                 await userAuthDoainService.SignOutAsync();
             };
         }
+
+        public async Task<string> GetUserAuthToken(string userName)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userAuthDoainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                return await userAuthDoainService.GetUserAuthToken(userName);
+            };
+        }
     }
 }
