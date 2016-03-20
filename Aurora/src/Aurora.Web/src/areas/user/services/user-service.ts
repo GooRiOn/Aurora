@@ -1,25 +1,32 @@
-﻿import Data = require("../../../data-service");
-import Auth = require("../../../auth-service");
-import UserModels = require("../models/user-models");
+﻿import models = require("../models/user-models");
+import app = require("../../../data-service");
+import data = require("../../../data");
+import auth = require("../../../auth-service");
 import {HttpClient} from "aurelia-fetch-client";
 import {inject} from 'aurelia-framework';
 
 
 export interface IUserService
 {
-    register(registerModel: UserModels.UserRegisterModel) : Promise<any>
+    register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>;
+    login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>;
 }
 
-@inject(HttpClient, Auth.AuthService)
-export class UserService extends Data.DataService implements IUserService 
+@inject(HttpClient, auth.AuthService)
+export class UserService extends app.DataService implements IUserService 
 {
-    constructor(http: HttpClient, authService: Auth.AuthService)
+    constructor(http: HttpClient, authService: auth.AuthService)
     {
         super(http, authService);
     }
 
-    register(registerModel: UserModels.UserRegisterModel): Promise<any>
+    register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>
     {
-        return super.post('accounts/register', registerModel, false);
+        return super.post('Accounts/Register', userRegisterDto, false);
+    }
+
+    login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>
+    {
+        return super.post('Accounts/Login', userLoginDto, false);
     }
 }

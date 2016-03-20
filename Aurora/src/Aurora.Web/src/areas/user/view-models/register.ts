@@ -1,25 +1,42 @@
-﻿import {inject} from 'aurelia-framework';
-import UserServices = require("../services/user-service");
-import UserModels = require("../models/user-models");
+﻿import userServices = require("../services/user-service");
+import models = require("../models/user-models");
+import data = require("../../../data");
+import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
 
-
-@inject(UserServices.UserService)
+@inject(userServices.UserService, Router)
 export class RegisterViewModel
 {
-    userService: UserServices.IUserService;
-    userRegisterModel: UserModels.UserRegisterModel;
+    userService: userServices.IUserService;
+    userRegisterDto: models.UserRegisterDto;
 
-    constructor(userService: UserServices.UserService)
+    constructor(userService: userServices.UserService, private router: Router)
     {
         this.userService = userService;
-        this.userRegisterModel = new UserModels.UserRegisterModel();
+        this.userRegisterDto = new models.UserRegisterDto();
     }
 
     register()
     {
-        this.userService.register(this.userRegisterModel).then(response =>
+        if (this.userRegisterDto.password !== this.userRegisterDto.confirmPassword)
         {
-            var test = response;
+            Materialize.toast('Password and confirm password dont match', 4000, 'btn orange');
+            return;
+        }
+
+        this.userService.register(this.userRegisterDto).then((result :data.IResult) =>
+        {
+            if (result.state === data.ResultStateEnum.Succeed)
+            {
+                this.router.navigate('#/user/login');
+                Materialize.toast('Registration completed. Login now !', 4000, 'btn');
+            }
+            else
+            {
+                for (let error of result.errors)
+                    Materialize.toast(error, 4000, 'btn orange');
+            }
+                
         });
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography;
-using Aurora.Infrastructure.Auth;
 using Microsoft.AspNet.Authentication.JwtBearer;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Builder;

@@ -3,6 +3,10 @@ define(["require", "exports"], function (require, exports) {
         function AuthService() {
             this.accessToken = '';
         }
+        AuthService.prototype.setUser = function (userName) {
+            var user = { userName: userName, userRoles: [] };
+            this.user = user;
+        };
         AuthService.prototype.setAccessToken = function (accessToken, isSessionStored) {
             if (isSessionStored) {
                 sessionStorage.setItem('accessToken', accessToken);
@@ -28,7 +32,7 @@ define(["require", "exports"], function (require, exports) {
             this.setAccessToken('', true);
         };
         AuthService.prototype.isUserAdmin = function () {
-            if (!this.user || !this.user.isLoggedIn)
+            if (!this.user)
                 return false;
             return this.user.userRoles.some(function (r) { return r === 'Admin'; });
         };

@@ -9,6 +9,6 @@ namespace Aurora.Domain.DomainServices.Interfaces
         Task<IdentityResult> CreateUserAsync(UserCreateDomainObject userCreateDomainObject);
         Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginDomainObject);
         Task SignOutAsync();
-        Task<string> GetUserAuthToken(string userName);
+        Task<string> GetUserIdAsync(string userName);
     }
 }

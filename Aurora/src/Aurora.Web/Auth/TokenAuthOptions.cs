@@ -1,6 +1,6 @@
 ﻿using System.IdentityModel.Tokens;
 
-namespace Aurora.Infrastructure.Auth
+namespace Aurora.Web.Auth
 {
     public class TokenAuthOptions
     {

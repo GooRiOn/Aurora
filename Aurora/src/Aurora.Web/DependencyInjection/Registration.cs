@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿using Aurora.Web.Auth;
+using Aurora.Web.Auth.Interfaces;
+using Autofac;
 
 namespace Aurora.Web.DependencyInjection
 {
@@ -7,6 +9,7 @@ namespace Aurora.Web.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new DomainProxy.DependencyInjection.Registration());
+            builder.RegisterType<OAuthService>().As<IOAuthService>();
         }
     }
 }

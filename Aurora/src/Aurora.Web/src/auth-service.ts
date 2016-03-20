@@ -1,7 +1,8 @@
-﻿export interface IAuth {
+﻿export interface IAuthService {
     user: IUser;
     isSessionStored: boolean;
     accessToken: string;
+    setUser(userName: string): void;
     setAccessToken(accessToken: string, isSessionStored: boolean): void;
     getAccessToken(): string;
     clearAccessToken(): void
@@ -9,18 +10,25 @@
 }
 
 export interface IUser {
-    username: string;
+    userName: string;
     userRoles: any[];
-    isLoggedIn: boolean;
 }
 
-export class AuthService implements IAuth {
+export class AuthService implements IAuthService {
 
     user: IUser;
+    accessToken: string;
+    isSessionStored: boolean;
 
     constructor()
     {
         this.accessToken = '';
+    }
+
+    setUser(userName: string) : void
+    {
+        var user: IUser = { userName: userName, userRoles: [] };
+        this.user = user;
     }
 
     setAccessToken(accessToken: string, isSessionStored: boolean): void
@@ -56,12 +64,9 @@ export class AuthService implements IAuth {
         this.setAccessToken('', true);
     }
 
-    isUserAdmin(): boolean {
-
-        if (!this.user || !this.user.isLoggedIn) return false
-        return this.user.userRoles.some(r => r === 'Admin')
+    isUserAdmin(): boolean
+    {
+        if (!this.user) return false;
+        return this.user.userRoles.some(r => r === 'Admin');
     }
-
-    accessToken: string;
-    isSessionStored: boolean;
 }

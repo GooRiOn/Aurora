@@ -12,21 +12,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "../../../data-service", "../../../auth-service", "aurelia-fetch-client", 'aurelia-framework'], function (require, exports, Data, Auth, aurelia_fetch_client_1, aurelia_framework_1) {
+define(["require", "exports", "../../../data-service", "../../../auth-service", "aurelia-fetch-client", 'aurelia-framework'], function (require, exports, app, auth, aurelia_fetch_client_1, aurelia_framework_1) {
     var UserService = (function (_super) {
         __extends(UserService, _super);
         function UserService(http, authService) {
             _super.call(this, http, authService);
         }
-        UserService.prototype.register = function (registerModel) {
-            return _super.prototype.post.call(this, 'accounts/register', registerModel, false);
+        UserService.prototype.register = function (userRegisterDto) {
+            return _super.prototype.post.call(this, 'Accounts/Register', userRegisterDto, false);
+        };
+        UserService.prototype.login = function (userLoginDto) {
+            return _super.prototype.post.call(this, 'Accounts/Login', userLoginDto, false);
         };
         UserService = __decorate([
-            aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, Auth.AuthService), 
-            __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, Auth.AuthService])
+            aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
+            __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])
         ], UserService);
         return UserService;
-    })(Data.DataService);
+    })(app.DataService);
     exports.UserService = UserService;
 });
 //# sourceMappingURL=user-service.js.map

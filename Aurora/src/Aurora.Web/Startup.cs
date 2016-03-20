@@ -2,7 +2,6 @@
 using Aurora.DataAccess;
 using Aurora.Domain.AppBuild;
 using Aurora.DomainProxy.AppBuild;
-using Aurora.Infrastructure.Auth;
 using Aurora.Infrastructure.DependencyInjection;
 using Aurora.Infrastructure.DependencyInjection.Initerfaces;
 using Aurora.Web.Auth;

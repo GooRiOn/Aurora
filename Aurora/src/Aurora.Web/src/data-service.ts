@@ -1,12 +1,11 @@
-﻿import Auth = require("auth-service");
+﻿import auth = require("auth-service");
 import {HttpClient,json} from "aurelia-fetch-client";
 import {inject} from 'aurelia-framework';
-
 
 export interface IDataService
 {
     http: HttpClient;
-    authService: Auth.AuthService;
+    authService: auth.AuthService;
     get<TResponse>(url: string, isAccessTokenRequired: boolean) : Promise<TResponse>;
     post<TResponse>(url: string, data: any, isAccessTokenRequired: boolean) : Promise<TResponse>;
 
@@ -15,9 +14,9 @@ export interface IDataService
 export class DataService implements IDataService
 {
     http: HttpClient;
-    authService: Auth.AuthService;
+    authService: auth.AuthService;
 
-    constructor(http: HttpClient, authService: Auth.AuthService)
+    constructor(http: HttpClient, authService: auth.AuthService)
     {
         this.authService = authService;
         this.http = http;
@@ -57,3 +56,5 @@ export class DataService implements IDataService
         return this.http.fetch(url, requestConfig).then<TResponse>(response => response.json());
     }
 }
+
+
