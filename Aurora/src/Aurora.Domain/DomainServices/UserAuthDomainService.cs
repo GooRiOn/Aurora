@@ -1,21 +1,27 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
 using Aurora.Domain.DomainObjects;
 using Aurora.Domain.Mappings;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Data.Entity;
 
 namespace Aurora.Domain.DomainServices
 {
     public sealed class UserAuthDomainService : IUserAuthDomainService
     {
         private readonly UserManager<UserEntity> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager; 
         private readonly SignInManager<UserEntity> _signInManager;
 
-        public UserAuthDomainService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+        public UserAuthDomainService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IdentityResult> CreateUserAsync(UserCreateDomainObject userCreateDomainObject)
@@ -26,7 +32,16 @@ namespace Aurora.Domain.DomainServices
 
         public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginModel)
         {
-            return await _signInManager.PasswordSignInAsync(userLoginModel.UserName,userLoginModel.Password, userLoginModel.RememberMe, lockoutOnFailure: false);
+            try
+            {
+                await SignOutAsync();
+                return await _signInManager.PasswordSignInAsync(userLoginModel.UserName, userLoginModel.Password, userLoginModel.RememberMe,false);
+            }
+            catch (Exception e)
+            {
+                
+            }
+            return null;
         }
 
         public async Task SignOutAsync()
@@ -38,6 +53,14 @@ namespace Aurora.Domain.DomainServices
         {
             var user = await _userManager.FindByNameAsync(userName);
             return user.Id;
+        }
+
+        public async Task<UserSelfInfoDomainObject> GetUserSelfInfoAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var userRoles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == userId)).Select(r => r.Name).ToArrayAsync();
+
+            return new UserSelfInfoDomainObject {UserName = user.UserName, Roles = userRoles};
         }
     }
 }

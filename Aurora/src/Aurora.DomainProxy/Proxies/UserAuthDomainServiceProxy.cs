@@ -25,10 +25,10 @@ namespace Aurora.DomainProxy.Proxies
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
-                var userAuthDoainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
                 var userCreateDomainObject = userCreateDto.AsDomainObject();
 
-                return await userAuthDoainService.CreateUserAsync(userCreateDomainObject);
+                return await userAuthDomainService.CreateUserAsync(userCreateDomainObject);
             }
         }
 
@@ -36,10 +36,10 @@ namespace Aurora.DomainProxy.Proxies
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
-                var userAuthDoainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
                 var userLoginDomainObject = userLoginModel.AsDomainObject();
 
-                return await userAuthDoainService.PasswordSignInAsync(userLoginDomainObject);
+                return await userAuthDomainService.PasswordSignInAsync(userLoginDomainObject);
             }
         }
 
@@ -47,8 +47,8 @@ namespace Aurora.DomainProxy.Proxies
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
-                var userAuthDoainService = _userAuthDomainServiceFactory.Get(unitOfWork);
-                await userAuthDoainService.SignOutAsync();
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                await userAuthDomainService.SignOutAsync();
             };
         }
 
@@ -56,9 +56,19 @@ namespace Aurora.DomainProxy.Proxies
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
-                var userAuthDoainService = _userAuthDomainServiceFactory.Get(unitOfWork);
-                return await userAuthDoainService.GetUserIdAsync(userName);
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                return await userAuthDomainService.GetUserIdAsync(userName);
             };
+        }
+
+        public async Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                var result = await userAuthDomainService.GetUserSelfInfoAsync(userId);
+                return result.AsDto();
+            }
         }
     }
 }

@@ -100,7 +100,6 @@ namespace Aurora.Web
             app.UseStaticFiles();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseIdentity();
 
             app.UseMvc(routes =>

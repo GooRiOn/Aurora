@@ -30,16 +30,27 @@ export class LoginViewModel
                 let token = result.content;
 
                 this.authService.setAccessToken(token, !this.userLoginDto.rememberMe);
-                this.authService.setUser(this.userLoginDto.userName);
 
-                Materialize.toast(`welcome ${this.userLoginDto.userName}`, 4000, 'btn');
-                this.router.navigate('#/');
+                this.getUserSelfInfo().then(() =>
+                {
+                    Materialize.toast(`welcome ${this.authService.user.userName}`, 4000, 'btn');
+                    this.router.navigate('#/');
+                });
             }
             else
             {
                 for (let error of result.errors)
                     Materialize.toast(error, 4000, 'btn orange');
             }
+        });
+    }
+
+    getUserSelfInfo()
+    {
+        return this.userService.getUserSelfInfo().then((result: data.IContentResult<auth.IUser>) =>
+        {
+            let user: auth.IUser = { userName: result.content.userName, roles: result.content.roles };
+            this.authService.setUser(user);
         });
     }
 

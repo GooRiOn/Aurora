@@ -10,6 +10,8 @@ export interface IUserService
 {
     register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>;
     login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>;
+    getUserSelfInfo(): Promise<data.IContentResult<auth.IUser>>;
+    logout(): Promise<data.IResult>;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -28,5 +30,15 @@ export class UserService extends app.DataService implements IUserService
     login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>
     {
         return super.post('Accounts/Login', userLoginDto, false);
+    }
+
+    getUserSelfInfo() : Promise<data.IContentResult<auth.IUser>>
+    {
+        return super.get('Accounts/SelfInfo', true);
+    }
+
+    logout(): Promise<data.IResult>
+    {
+        return super.post('Accounts/SignOut', null, true);
     }
 }

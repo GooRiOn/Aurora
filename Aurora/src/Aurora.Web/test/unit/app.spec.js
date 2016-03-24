@@ -1,4 +1,4 @@
-define(["require", "exports", '../../src/app'], function (require, exports, app_1) {
+define(["require", "exports"], function (require, exports) {
     var RouterStub = (function () {
         function RouterStub() {
         }
@@ -14,7 +14,6 @@ define(["require", "exports", '../../src/app'], function (require, exports, app_
         var sut, mockedRouter;
         beforeEach(function () {
             mockedRouter = new RouterStub();
-            sut = new app_1.App();
             sut.configureRouter(mockedRouter, mockedRouter);
         });
         it('contains a router property', function () {

@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurora.DataAccess;
 using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
@@ -12,8 +10,8 @@ using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
 {
-    [Route("api/Accounts"),Authorize("Bearer")]
-    public class AccountController : Controller
+    [Route("api/Accounts")]
+    public class AccountController : BaseController
     {
         private readonly IUserAuthDomainServiceProxy _userAuthDomainServiceProxy;
         private readonly IOAuthService _oAuthService;
@@ -54,6 +52,22 @@ namespace Aurora.Web.Controllers
             var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, userId);
 
             return new Result<string> {Content = userToken};
+        }
+
+        [HttpGet("SelfInfo")]
+        public async Task<IResult<UserSelfInfoDto>> GetUserSelfInfo()
+        {
+            var userId = GetUserId();
+            var result = await _userAuthDomainServiceProxy.GetUserSelfInfoAsync(userId);
+
+            return new Result<UserSelfInfoDto> {Content = result};
+        }
+
+        [HttpPost("SignOut")]
+        public async Task<IResult> SignOutAsync()
+        {
+            await _userAuthDomainServiceProxy.SignOutAsync();
+            return new Result();
         }
     }
 }

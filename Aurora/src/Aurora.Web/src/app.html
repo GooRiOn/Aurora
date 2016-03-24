@@ -1,10 +1,24 @@
 <template>
-    <require from="nav-bar.html"></require>
-    
-  
-  <nav-bar router.bind="router"></nav-bar>
+   <nav class="nav-dark">
+       <div class="nav-wrapper">
+           <a href="#/" class="brand-logo" style="margin-top: -22px;"><img src="images/logo.png" if.bind="!authService.user"/></a>
+           <ul class="right hide-on-med-and-down">
+               <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/register">Register</a></li>
+               <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/login">Login</a></li>
+               <li if.bind="authService.user">Welcome ${authService.user.userName}</li>
+               <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/" click.trigger="logout()">Logout</a></li>
+           </ul>
+       </div>
+   </nav>
 
-  <div class="page-host">
+
+    <ul id="nav-mobile" class="side-nav fixed" style="overflow: auto; left: 0px; background-color: rgba(0, 0, 0, 0.7);" if.bind="authService.user">
+        <li class="logo">
+            <img src="images/logo.png" />
+        </li>
+        <li class="bold "><a href="about.html" class="waves-effect waves-teal">About</a></li>
+    </ul>
+    <div class="page-host container">
     <router-view></router-view>
   </div>
 </template>

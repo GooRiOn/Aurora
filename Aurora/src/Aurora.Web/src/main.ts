@@ -1,6 +1,8 @@
 import "jquery";
 import "Dogfalo/materialize";
 import {Aurelia} from 'aurelia-framework';
+import userAuth = require('areas/user/view-models/login');
+
 
 export function configure(aurelia: Aurelia) {
   aurelia.use
@@ -13,5 +15,10 @@ export function configure(aurelia: Aurelia) {
   //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   //aurelia.use.plugin('aurelia-html-import-template-loader')
 
-  aurelia.start().then(() => aurelia.setRoot());
+  aurelia.start().then(() =>
+  {
+      aurelia.setRoot();
+      var userLoginVM = <userAuth.LoginViewModel> aurelia.container.get(userAuth.LoginViewModel);
+      userLoginVM.getUserSelfInfo();
+  });
 }

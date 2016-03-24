@@ -12,8 +12,7 @@ namespace Aurora.Web.Auth
     {
         private const string _audience = "Aurora";
         private const string _issuer = "self";
-        private const string _rsaKeyPath = @"~\Auth\AuroraRsaKey.xml";
-
+   
         public static void RegisterBearerPolicy(this IServiceCollection services)
         {
             services.AddAuthorization(auth =>
@@ -35,7 +34,7 @@ namespace Aurora.Web.Auth
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature)
             };
 
-            services.AddInstance<TokenAuthOptions>(tokenOptions);
+            services.AddInstance(tokenOptions);
         }
 
         public static void RegisterBearerAuthentication(this IApplicationBuilder app, TokenAuthOptions tokenAuthOptions)

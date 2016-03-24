@@ -21,9 +21,10 @@ define(["require", "exports", "../../../auth-service", "../services/user-service
                 if (result.state === data.ResultStateEnum.Succeed) {
                     var token = result.content;
                     _this.authService.setAccessToken(token, !_this.userLoginDto.rememberMe);
-                    _this.authService.setUser(_this.userLoginDto.userName);
-                    Materialize.toast("welcome " + _this.userLoginDto.userName, 4000, 'btn');
-                    _this.router.navigate('#/');
+                    _this.getUserSelfInfo().then(function () {
+                        Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
+                        _this.router.navigate('#/');
+                    });
                 }
                 else {
                     for (var _i = 0, _a = result.errors; _i < _a.length; _i++) {
@@ -31,6 +32,13 @@ define(["require", "exports", "../../../auth-service", "../services/user-service
                         Materialize.toast(error, 4000, 'btn orange');
                     }
                 }
+            });
+        };
+        LoginViewModel.prototype.getUserSelfInfo = function () {
+            var _this = this;
+            return this.userService.getUserSelfInfo().then(function (result) {
+                var user = { userName: result.content.userName, roles: result.content.roles };
+                _this.authService.setUser(user);
             });
         };
         LoginViewModel.prototype.changeRememberMeState = function () {

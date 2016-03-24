@@ -3,8 +3,7 @@ define(["require", "exports"], function (require, exports) {
         function AuthService() {
             this.accessToken = '';
         }
-        AuthService.prototype.setUser = function (userName) {
-            var user = { userName: userName, userRoles: [] };
+        AuthService.prototype.setUser = function (user) {
             this.user = user;
         };
         AuthService.prototype.setAccessToken = function (accessToken, isSessionStored) {
@@ -17,13 +16,12 @@ define(["require", "exports"], function (require, exports) {
                 sessionStorage.clear();
             }
             this.accessToken = accessToken;
-            this.isSessionStored = isSessionStored;
         };
         AuthService.prototype.getAccessToken = function () {
-            if (this.isSessionStored)
-                return sessionStorage.getItem('accessToken');
-            else
-                return localStorage.getItem('accessToken');
+            var accessToken = sessionStorage.getItem('accessToken');
+            if (accessToken)
+                return accessToken;
+            return localStorage.getItem('accessToken');
         };
         AuthService.prototype.clearAccessToken = function () {
             localStorage.clear();
@@ -34,7 +32,7 @@ define(["require", "exports"], function (require, exports) {
         AuthService.prototype.isUserAdmin = function () {
             if (!this.user)
                 return false;
-            return this.user.userRoles.some(function (r) { return r === 'Admin'; });
+            return this.user.roles.some(function (r) { return r === 'admin'; });
         };
         return AuthService;
     })();

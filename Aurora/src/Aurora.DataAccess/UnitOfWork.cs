@@ -10,6 +10,8 @@ namespace Aurora.DataAccess
 {
     public class UnitOfWork : IUnitOfWork, IContextGetter
     {
+        AuroraContext IContextGetter.Context => _context;
+
         private readonly AuroraContext _context;
         private readonly IRelationalTransaction _transaction;
 
@@ -30,6 +32,9 @@ namespace Aurora.DataAccess
                 throw new NotSupportedException("Cannot commit disposed UOW");
 
             var result = _context.SaveChanges();
+
+            _transaction.Commit();
+
             _isCommited = true;
 
             return result;
@@ -61,6 +66,6 @@ namespace Aurora.DataAccess
             }
         }
 
-        AuroraContext IContextGetter.Context => _context;
+        
     }
 }

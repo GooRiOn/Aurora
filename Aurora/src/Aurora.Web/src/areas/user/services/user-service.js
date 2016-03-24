@@ -24,6 +24,12 @@ define(["require", "exports", "../../../data-service", "../../../auth-service", 
         UserService.prototype.login = function (userLoginDto) {
             return _super.prototype.post.call(this, 'Accounts/Login', userLoginDto, false);
         };
+        UserService.prototype.getUserSelfInfo = function () {
+            return _super.prototype.get.call(this, 'Accounts/SelfInfo', true);
+        };
+        UserService.prototype.logout = function () {
+            return _super.prototype.post.call(this, 'Accounts/SignOut', null, true);
+        };
         UserService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])

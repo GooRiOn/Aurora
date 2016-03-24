@@ -10,5 +10,6 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task<SignInResult> PasswordSignInAsync(UserLoginDto userLoginDto);
         Task SignOutAsync();
         Task<string> GetUserIdAsync(string userName);
+        Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId);
     }
 }

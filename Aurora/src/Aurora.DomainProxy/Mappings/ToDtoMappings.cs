@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Aurora.Domain.DomainObjects;
+using Aurora.DomainProxy.Dtos;
+using AutoMapper;
 
 namespace Aurora.DomainProxy.Mappings
 {
@@ -10,10 +12,15 @@ namespace Aurora.DomainProxy.Mappings
         {
             var config = new MapperConfiguration(cfg =>
             {
-
+                cfg.CreateMap<UserSelfInfoDomainObject, UserSelfInfoDto>();
             });
 
             _mapper = config.CreateMapper();
+        }
+
+        public static UserSelfInfoDto AsDto(this UserSelfInfoDomainObject that)
+        {
+            return _mapper.Map<UserSelfInfoDto>(that);
         }
     }
 }
