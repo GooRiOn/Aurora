@@ -32,7 +32,7 @@ define(["require", "exports"], function (require, exports) {
         AuthService.prototype.isUserAdmin = function () {
             if (!this.user)
                 return false;
-            return this.user.roles.some(function (r) { return r === 'admin'; });
+            return this.user.roles.some(function (r) { return r === 'Admin'; });
         };
         return AuthService;
     })();

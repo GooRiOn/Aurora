@@ -1,6 +1,6 @@
 body {
     color: #272D4E;
-    background-image: url('../images/bg-2-full.jpg');
+    background-image: url('https://zohodiscussions.com/discussions/getCustomFile.do?fileId=14737000006075071&forumGroupId=14737000000003003');
 }
 
 img{
@@ -256,4 +256,32 @@ div.au-stagger {
     -webkit-transform: scale3D(0, 0, 1);
             transform: scale3D(0, 0, 1);
   } 
+}
+
+.side-nav-elem {
+    font-weight: bolder;
+    color: white !important;
+}
+
+table {
+    background-color: white;
+}
+
+.page-content {
+    margin-top: 100px !important;
+}
+
+.content-group {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.view-header {
+    background-color: #26a69a;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    padding: 15px;
 }

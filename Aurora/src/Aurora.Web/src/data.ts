@@ -8,10 +8,7 @@ export interface IResult {
     errors: string[];
 }
 
-export interface IContentResult<TContent> extends IResult {
-    content: TContent;
-}
-
-export interface IPagedResult<TContent> extends IContentResult<TContent> {
-    content: TContent;
+export interface IPagedResult<TContent> {
+    content: TContent[];
+    totalPaes: number;
 }

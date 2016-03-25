@@ -14,9 +14,14 @@
 
     <ul id="nav-mobile" class="side-nav fixed" style="overflow: auto; left: 0px; background-color: rgba(0, 0, 0, 0.7);" if.bind="authService.user">
         <li class="logo">
-            <img src="images/logo.png" />
+            <img src="images/logo.png"/>
         </li>
-        <li class="bold "><a href="about.html" class="waves-effect waves-teal">About</a></li>
+        <li>
+            <hr/>
+        </li>
+        <li class="bold" if.bind="authService.isUserAdmin()">
+            <a href="#/admin/users-manage" class="waves-effect waves-teal side-nav-elem">Users Manage</a>
+        </li>
     </ul>
     <div class="page-host container">
     <router-view></router-view>

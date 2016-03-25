@@ -14,6 +14,10 @@ namespace Aurora.DataAccess.Entities
             this.IsLocked = false;
         }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public bool IsActive { get; private set; }
         
         public bool IsLocked { get; private set; }

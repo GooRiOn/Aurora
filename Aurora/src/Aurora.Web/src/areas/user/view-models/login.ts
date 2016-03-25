@@ -1,7 +1,6 @@
 ﻿import auth = require("../../../auth-service")
 import userServices = require("../services/user-service");
 import models = require("../models/user-models");
-import data = require("../../../data");
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 
@@ -23,33 +22,23 @@ export class LoginViewModel
 
     login()
     {
-        this.userService.login(this.userLoginDto).then((result: data.IContentResult<string>) => {
+        this.userService.login(this.userLoginDto).then((result:string) => {
 
-            if (result.state === data.ResultStateEnum.Succeed)
+            this.authService.setAccessToken(result, !this.userLoginDto.rememberMe);
+
+            this.getUserSelfInfo().then(() =>
             {
-                let token = result.content;
-
-                this.authService.setAccessToken(token, !this.userLoginDto.rememberMe);
-
-                this.getUserSelfInfo().then(() =>
-                {
-                    Materialize.toast(`welcome ${this.authService.user.userName}`, 4000, 'btn');
-                    this.router.navigate('#/');
-                });
-            }
-            else
-            {
-                for (let error of result.errors)
-                    Materialize.toast(error, 4000, 'btn orange');
-            }
+                Materialize.toast(`welcome ${this.authService.user.userName}`, 4000, 'btn');
+                this.router.navigate('#/');
+            });
         });
     }
 
     getUserSelfInfo()
     {
-        return this.userService.getUserSelfInfo().then((result: data.IContentResult<auth.IUser>) =>
+        return this.userService.getUserSelfInfo().then((result: auth.IUser) =>
         {
-            let user: auth.IUser = { userName: result.content.userName, roles: result.content.roles };
+            let user: auth.IUser = { userName: result.userName, roles: result.roles };
             this.authService.setUser(user);
         });
     }

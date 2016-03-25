@@ -1,18 +1,16 @@
-﻿namespace Aurora.Infrastructure.Data.Interfaces
+﻿using System.Collections.Generic;
+
+namespace Aurora.Infrastructure.Data.Interfaces
 {
     public interface IResult
     {
         string[] Errors { get; set; }
         ResultStateEnum State { get; set; }
     }
-
-    public interface IResult<TContent> : IResult
+    
+    public interface IPagedResult<TContent>
     {
-        TContent Content { get; set; }
-    }
-
-    public interface IPagedResult<TContent> : IResult<TContent>
-    {
+        IEnumerable<TContent> Content { get; set; }
         int TotalPages { get; set; }
     }
 }

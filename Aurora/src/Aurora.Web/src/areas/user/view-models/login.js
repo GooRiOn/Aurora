@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "../../../auth-service", "../services/user-service", "../models/user-models", "../../../data", 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, models, data, aurelia_framework_1, aurelia_router_1) {
+define(["require", "exports", "../../../auth-service", "../services/user-service", "../models/user-models", 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, models, aurelia_framework_1, aurelia_router_1) {
     var LoginViewModel = (function () {
         function LoginViewModel(userService, authService, router) {
             this.router = router;
@@ -18,26 +18,17 @@ define(["require", "exports", "../../../auth-service", "../services/user-service
         LoginViewModel.prototype.login = function () {
             var _this = this;
             this.userService.login(this.userLoginDto).then(function (result) {
-                if (result.state === data.ResultStateEnum.Succeed) {
-                    var token = result.content;
-                    _this.authService.setAccessToken(token, !_this.userLoginDto.rememberMe);
-                    _this.getUserSelfInfo().then(function () {
-                        Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
-                        _this.router.navigate('#/');
-                    });
-                }
-                else {
-                    for (var _i = 0, _a = result.errors; _i < _a.length; _i++) {
-                        var error = _a[_i];
-                        Materialize.toast(error, 4000, 'btn orange');
-                    }
-                }
+                _this.authService.setAccessToken(result, !_this.userLoginDto.rememberMe);
+                _this.getUserSelfInfo().then(function () {
+                    Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
+                    _this.router.navigate('#/');
+                });
             });
         };
         LoginViewModel.prototype.getUserSelfInfo = function () {
             var _this = this;
             return this.userService.getUserSelfInfo().then(function (result) {
-                var user = { userName: result.content.userName, roles: result.content.roles };
+                var user = { userName: result.userName, roles: result.roles };
                 _this.authService.setUser(user);
             });
         };

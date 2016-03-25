@@ -1,4 +1,5 @@
-﻿using Aurora.Infrastructure.Data.Interfaces;
+﻿using System.Collections.Generic;
+using Aurora.Infrastructure.Data.Interfaces;
 
 namespace Aurora.Infrastructure.Data
 {
@@ -12,15 +13,10 @@ namespace Aurora.Infrastructure.Data
              State = ResultStateEnum.Succeed;
          }
     }
-
-    public class Result<TContent> : Result, IResult<TContent>
+    public class PagedResult<TContent> : IPagedResult<TContent>
     {
-         public TContent Content { get; set; }
-    }
-
-    public class PagedResult<TContent> : Result<TContent>, IPagedResult<TContent>
-    {
-         public int TotalPages { get; set; }
+        public IEnumerable<TContent> Content { get; set; }
+        public int TotalPages { get; set; }
     }
 
 }

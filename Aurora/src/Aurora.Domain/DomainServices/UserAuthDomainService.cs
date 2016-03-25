@@ -32,16 +32,8 @@ namespace Aurora.Domain.DomainServices
 
         public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginModel)
         {
-            try
-            {
-                await SignOutAsync();
-                return await _signInManager.PasswordSignInAsync(userLoginModel.UserName, userLoginModel.Password, userLoginModel.RememberMe,false);
-            }
-            catch (Exception e)
-            {
-                
-            }
-            return null;
+            await SignOutAsync();
+            return await _signInManager.PasswordSignInAsync(userLoginModel.UserName, userLoginModel.Password, userLoginModel.RememberMe,false);
         }
 
         public async Task SignOutAsync()
@@ -61,6 +53,13 @@ namespace Aurora.Domain.DomainServices
             var userRoles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == userId)).Select(r => r.Name).ToArrayAsync();
 
             return new UserSelfInfoDomainObject {UserName = user.UserName, Roles = userRoles};
+        }
+
+        public async Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            return await _userManager.ResetPasswordAsync(user, token, newPassword);
         }
     }
 }

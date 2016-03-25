@@ -54,7 +54,7 @@ namespace Aurora.Web
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            }); ;
+            });
 
             var builder = new ContainerBuilder();
 

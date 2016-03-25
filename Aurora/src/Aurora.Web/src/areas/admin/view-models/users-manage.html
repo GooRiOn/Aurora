@@ -1,0 +1,61 @@
+﻿<template>
+    <div class="page-content">
+        <div class="content-group z-depth-4">
+            <div class="row">
+                <div class="col s12">
+                    <div class="view-header">
+                        <span>Users manage</span>
+                    </div>
+                </div>
+            </div>
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Lock/Unlock</th>
+                    <th>Reset password</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr repeat.for="user of users">
+                    <td>${user.userName}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>
+                        <div class="chip teal accent-3" if.bind="!user.isLocked">Unlocked</div>
+                        <div class="chip pink accent-3" if.bind="user.isLocked">Locked</div>
+                    </td>
+                    <td>
+                        <a class="btn-floating btn-large waves-effect waves-light ${user.isLocked? 'teal accent-3' : 'red'}" click.trigger="changeUserLockout(user)">
+                            <i class="material-icons" if.bind="!user.isLocked">lock_outline</i>
+                            <i class="material-icons" if.bind="user.isLocked">lock_open</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn-floating btn-large waves-effect waves-light blue" click.trigger="resetUserPassword(user)"><i class="material-icons">mode_edit</i></a>
+                    </td>
+                    <td>
+                        <a class="btn-floating btn-large waves-effect waves-light red" click.trigger="deleteUser(user)"><i class="material-icons">delete</i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="admin-user-reset-password" class="modal bottom-sheet">
+        <div class="modal-content">
+            <input id="login-password" value.bind="userNewPassword" type="password">
+            <label for="login-password">New Password</label>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" click.trigger="resetUserPassword()">Reset</a>
+        </div>
+    </div>
+</template>

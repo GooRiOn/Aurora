@@ -13,7 +13,7 @@ namespace Aurora.DataAccess.DependencyInjection
             {
                 options.Password.RequireNonLetterOrDigit = false;
                 options.Password.RequireUppercase = false;
-                options.Cookies.ApplicationCookie.AutomaticChallenge = true;
+                options.Cookies.ApplicationCookie.AutomaticChallenge = false;
 
             }).AddEntityFrameworkStores<AuroraContext>().AddDefaultTokenProviders();
         }

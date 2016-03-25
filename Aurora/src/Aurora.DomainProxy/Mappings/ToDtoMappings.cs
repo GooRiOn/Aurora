@@ -13,6 +13,7 @@ namespace Aurora.DomainProxy.Mappings
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<UserSelfInfoDomainObject, UserSelfInfoDto>();
+                cfg.CreateMap<UserDomainObject, UserDto>();
             });
 
             _mapper = config.CreateMapper();
@@ -21,6 +22,11 @@ namespace Aurora.DomainProxy.Mappings
         public static UserSelfInfoDto AsDto(this UserSelfInfoDomainObject that)
         {
             return _mapper.Map<UserSelfInfoDto>(that);
+        }
+
+        public static UserDto AsDto(this UserDomainObject that)
+        {
+            return _mapper.Map<UserDto>(that);
         }
     }
 }

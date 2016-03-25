@@ -1,14 +1,16 @@
-﻿using System.Threading.Tasks;
-using Aurora.DataAccess;
-using Aurora.DataAccess.Entities;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
+using Aurora.DomainProxy.Dtos;
+using Aurora.DomainProxy.Mappings;
 using Aurora.DomainProxy.Proxies.Interfaces;
+using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.DomainProxy.Proxies
 {
-    public class UserDomainServiceProxy : IUserDomainServiceProxy
+    public class UserDomainServiceProxy : BaseProxy, IUserDomainServiceProxy
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IDomainServiceFactory<IUserDomainService> _userDomainServiceFactory; 
@@ -19,14 +21,45 @@ namespace Aurora.DomainProxy.Proxies
             _userDomainServiceFactory = userDomainServiceFactory;
         }
 
-        public async Task<int> AddUser()
+        public async Task<IPagedResult<UserDto>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                var pagedResult = await userDomainService.GetUsersPageAsync(pageNumber, pageSize);
 
-                userDomainService.Add(new UserEntity());
-                return await unitOfWork.CommitAsync();
+                var dtos = pagedResult.Content.Select(c => c.AsDto());
+                return GetPagedResult(dtos, pagedResult.TotalPages);
+            }
+        }
+
+        public async Task<IResult> LockUser(string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                await userDomainService.LockUser(userId);
+                return await CreateResultAsync(unitOfWork);
+            }
+        }
+
+        public async Task<IResult> UnlockUser(string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                await userDomainService.UnlockUser(userId);
+                return await CreateResultAsync(unitOfWork);
+            }
+        }
+
+        public async Task<IResult> DeleteUser(string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                await userDomainService.DeleteUser(userId);
+                return await CreateResultAsync(unitOfWork);
             }
         }
     }

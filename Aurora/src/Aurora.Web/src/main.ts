@@ -1,5 +1,6 @@
 import "jquery";
 import "Dogfalo/materialize";
+import "array-extensions";
 import {Aurelia} from 'aurelia-framework';
 import userAuth = require('areas/user/view-models/login');
 

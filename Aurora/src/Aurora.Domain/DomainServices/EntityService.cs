@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Domain.DomainServices.Interfaces;
@@ -35,6 +36,11 @@ namespace Aurora.Domain.DomainServices
         public async Task<TEntity> GetByIdAsync(TKey id)
         {
             return await Repository.GetByIdAsync(id);
+        }
+
+        protected int GetPagedResultTotalPages(int collection, int pageSize)
+        {
+            return (int) Math.Ceiling((decimal) collection/pageSize);
         }
     }
 }

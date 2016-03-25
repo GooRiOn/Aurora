@@ -9,8 +9,8 @@ import {inject} from 'aurelia-framework';
 export interface IUserService
 {
     register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>;
-    login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>;
-    getUserSelfInfo(): Promise<data.IContentResult<auth.IUser>>;
+    login(userLoginDto: models.UserLoginDto): Promise<string>;
+    getUserSelfInfo(): Promise<auth.IUser>;
     logout(): Promise<data.IResult>;
 }
 
@@ -27,12 +27,12 @@ export class UserService extends app.DataService implements IUserService
         return super.post('Accounts/Register', userRegisterDto, false);
     }
 
-    login(userLoginDto: models.UserLoginDto): Promise<data.IContentResult<string>>
+    login(userLoginDto: models.UserLoginDto): Promise<string>
     {
         return super.post('Accounts/Login', userLoginDto, false);
     }
 
-    getUserSelfInfo() : Promise<data.IContentResult<auth.IUser>>
+    getUserSelfInfo() : Promise<auth.IUser>
     {
         return super.get('Accounts/SelfInfo', true);
     }

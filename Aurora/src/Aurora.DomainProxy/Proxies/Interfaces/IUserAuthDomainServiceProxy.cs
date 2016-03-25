@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Aurora.DomainProxy.Dtos;
+using Aurora.Infrastructure.Data.Interfaces;
 using Microsoft.AspNet.Identity;
 
 namespace Aurora.DomainProxy.Proxies.Interfaces
@@ -11,5 +12,6 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task SignOutAsync();
         Task<string> GetUserIdAsync(string userName);
         Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId);
+        Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword);
     }
 }

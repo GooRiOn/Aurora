@@ -1,4 +1,4 @@
-define(["require", "exports", 'areas/user/view-models/login', "jquery", "Dogfalo/materialize"], function (require, exports, userAuth) {
+define(["require", "exports", 'areas/user/view-models/login', "jquery", "Dogfalo/materialize", "array-extensions"], function (require, exports, userAuth) {
     function configure(aurelia) {
         aurelia.use
             .standardConfiguration()

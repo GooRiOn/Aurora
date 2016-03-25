@@ -7,6 +7,7 @@ using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Web.Auth.Interfaces;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity.Design;
 
 namespace Aurora.Web.Controllers
 {
@@ -39,31 +40,31 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Login"), AllowAnonymous]
-        public async Task<IResult> LoginUserAsync([FromBody] UserLoginDto userLoginDto)
+        public async Task<string> LoginUserAsync([FromBody] UserLoginDto userLoginDto)
         {
             var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userLoginDto);
 
             if (!signInResult.Succeeded)
             {
-                return new Result<string> {State = ResultStateEnum.Failed};
+                throw new OperationException("Sign in failed");
             }
            
             var userId = await _userAuthDomainServiceProxy.GetUserIdAsync(userLoginDto.UserName);
             var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, userId);
 
-            return new Result<string> {Content = userToken};
+            return userToken;
         }
 
         [HttpGet("SelfInfo")]
-        public async Task<IResult<UserSelfInfoDto>> GetUserSelfInfo()
+        public async Task<UserSelfInfoDto> GetUserSelfInfo()
         {
             var userId = GetUserId();
             var result = await _userAuthDomainServiceProxy.GetUserSelfInfoAsync(userId);
 
-            return new Result<UserSelfInfoDto> {Content = result};
+            return result;
         }
 
-        [HttpPost("SignOut")]
+        [HttpPost("SignOut"),AllowAnonymous]
         public async Task<IResult> SignOutAsync()
         {
             await _userAuthDomainServiceProxy.SignOutAsync();

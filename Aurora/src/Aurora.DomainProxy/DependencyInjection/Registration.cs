@@ -11,6 +11,7 @@ namespace Aurora.DomainProxy.DependencyInjection
             builder.RegisterModule(new Domain.DependencyInjection.Registration());
 
             builder.RegisterType<UserAuthDomainServiceProxy>().As<IUserAuthDomainServiceProxy>();
+            builder.RegisterType<UserDomainServiceProxy>().As<IUserDomainServiceProxy>();
         }
     }
 }

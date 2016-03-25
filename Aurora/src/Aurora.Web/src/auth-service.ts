@@ -65,6 +65,6 @@ export class AuthService implements IAuthService {
     isUserAdmin(): boolean
     {
         if (!this.user) return false;
-        return this.user.roles.some(r => r === 'admin');
+        return this.user.roles.some(r => r === 'Admin');
     }
 }

@@ -849,6 +849,8 @@ declare module protractor {
     }
 
     interface ElementArrayFinder extends webdriver.promise.IThenable<ElementFinder[]> {
+
+        
         /**
          * Returns the elements as an array of WebElements.
          */

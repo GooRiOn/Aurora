@@ -1157,6 +1157,9 @@ declare module webdriver {
         }
 
         interface IThenable<T> {
+
+            openModal(): void;
+            closeModal(): void;
             /**
              * Cancels the computation of this promise's value, rejecting the promise in the
              * process. This method is a no-op if the promise has alreayd been resolved.
@@ -1276,6 +1279,9 @@ declare module webdriver {
         * @template T
         */
         class Thenable<T> implements IThenable<T> {
+        
+            openModal(): void;
+            closeModal(): void;
             /**
              * Cancels the computation of this promise's value, rejecting the promise in the
              * process. This method is a no-op if the promise has alreayd been resolved.
@@ -1442,6 +1448,9 @@ declare module webdriver {
             constructor(); // For angular-protractor/angular-protractor-tests.ts
 
             //region Methods
+
+            openModal(): void;
+            closeModal(): void;
 
             /**
              * Cancels the computation of this promise's value, rejecting the promise in the
@@ -4966,6 +4975,9 @@ declare module webdriver {
      * @final
      */
     class WebElementPromise extends WebElement implements webdriver.promise.IThenable<WebElement> {
+
+        openModal(): void;
+        closeModal(): void;
         /**
          * Cancels the computation of this promise's value, rejecting the promise in the
          * process. This method is a no-op if the promise has alreayd been resolved.
