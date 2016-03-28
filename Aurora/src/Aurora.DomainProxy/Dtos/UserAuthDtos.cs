@@ -12,18 +12,19 @@ namespace Aurora.DomainProxy.Dtos
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        
         public bool RememberMe { get; set; }
     }
 
-    public class UserCreateDto : UserLoginDto
+    public class UserRegisterDto : UserLoginDto
     {
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }

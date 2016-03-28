@@ -7,7 +7,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
 {
     public interface IUserAuthDomainServiceProxy
     {
-        Task<IdentityResult> CreateUserAsync(UserCreateDto userCreateDto);
+        Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto);
         Task<SignInResult> PasswordSignInAsync(UserLoginDto userLoginDto);
         Task SignOutAsync();
         Task<string> GetUserIdAsync(string userName);

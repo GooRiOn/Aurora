@@ -12,7 +12,7 @@ namespace Aurora.DomainProxy.Mappings
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UserCreateDto, UserCreateDomainObject>();
+                cfg.CreateMap<UserRegisterDto, UserCreateDomainObject>();
                 cfg.CreateMap<UserLoginDto, UserLoginDomainObject>();
                 cfg.CreateMap<UserDto, UserDomainObject>();
             });
@@ -25,7 +25,7 @@ namespace Aurora.DomainProxy.Mappings
             return _mapper.Map<UserLoginDomainObject>(dto);
         }
 
-        public static UserCreateDomainObject AsDomainObject(this UserCreateDto dto)
+        public static UserCreateDomainObject AsDomainObject(this UserRegisterDto dto)
         {
             return _mapper.Map<UserCreateDomainObject>(dto);
         }

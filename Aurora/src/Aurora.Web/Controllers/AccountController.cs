@@ -24,16 +24,16 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Register"), AllowAnonymous]
-        public async Task<IResult> RegisterUserAsync([FromBody] UserCreateDto userCreateDto)
+        public async Task<IResult> RegisterUserAsync([FromBody] UserRegisterDto userRegisterDto)
         {
-            if(!ModelState.IsReadOnly)
+            if(!ModelState.IsValid)
                 return new Result
                 {
                     State = ResultStateEnum.Failed,
                     Errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray()
                 };
 
-            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userCreateDto);
+            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegisterDto);
 
             if (!registerResult.Succeeded)
             {

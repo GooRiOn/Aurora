@@ -22,12 +22,12 @@ namespace Aurora.DomainProxy.Proxies
         }
 
 
-        public async Task<IdentityResult> CreateUserAsync(UserCreateDto userCreateDto)
+        public async Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
-                var userCreateDomainObject = userCreateDto.AsDomainObject();
+                var userCreateDomainObject = userRegisterDto.AsDomainObject();
 
                 return await userAuthDomainService.CreateUserAsync(userCreateDomainObject);
             }
@@ -78,6 +78,15 @@ namespace Aurora.DomainProxy.Proxies
             {
                 var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
                 return await userAuthDomainService.ResetUserPasswordAsync(userId,newPassword);
+            };
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(string email)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                return await userAuthDomainService.GeneratePasswordResetTokenAsync(email);
             };
         }
     }
