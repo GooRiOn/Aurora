@@ -54,13 +54,12 @@ define(["require", "exports", "../services/users-manage-service", "../../../data
                     Materialize.toast('An error has occured', 4000, 'red');
             });
         };
-        UsersManageViewModel.prototype.openUserResetModal = function (user) {
-            this.resetedUserId = user.id;
-            $('admin-user-reset-password').openModal();
-        };
-        UsersManageViewModel.prototype.resetUserPassword = function () {
-            this.usesManageService.resetUserPassword(this.resetedUserId, this.userNewPassword).then(function (result) {
-                $('admin-user-reset-password').closeModal();
+        UsersManageViewModel.prototype.resetUserPassword = function (user) {
+            var newPassword = prompt("Enter new password");
+            if (!newPassword)
+                return;
+            this.usesManageService.resetUserPassword(user.id, newPassword).then(function (result) {
+                Materialize.toast('Password changed', 4000, 'green');
             });
         };
         UsersManageViewModel = __decorate([
