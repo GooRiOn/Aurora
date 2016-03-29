@@ -30,6 +30,13 @@ define(["require", "exports", "../../../data-service", "../../../auth-service", 
         UserService.prototype.logout = function () {
             return _super.prototype.post.call(this, 'Accounts/SignOut', null, true);
         };
+        UserService.prototype.sendPasswordResetEmail = function (userEmail) {
+            var url = "Accounts/Password/Reset/" + userEmail + "/Email/Send";
+            return _super.prototype.post.call(this, url, null, false);
+        };
+        UserService.prototype.resetUserPassword = function (userPasswordResetDto) {
+            return _super.prototype.post.call(this, 'Accounts/Password/Reset', userPasswordResetDto, false);
+        };
         UserService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])

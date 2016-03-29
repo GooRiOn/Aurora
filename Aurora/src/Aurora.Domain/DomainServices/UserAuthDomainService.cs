@@ -61,5 +61,17 @@ namespace Aurora.Domain.DomainServices
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             return await _userManager.ResetPasswordAsync(user, token, newPassword);
         }
+
+        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDomainObject userPasswordResetDomainObject)
+        {
+            var user = await _userManager.FindByEmailAsync(userPasswordResetDomainObject.Email);
+            return await _userManager.ResetPasswordAsync(user, userPasswordResetDomainObject.Token, userPasswordResetDomainObject.Password);
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+        }
     }
 }

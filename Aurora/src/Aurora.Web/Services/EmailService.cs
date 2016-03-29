@@ -18,13 +18,13 @@ namespace Aurora.Web.Services
                 }
             };
 
-            mailMessage.From.Add(new MailboxAddress("Aurora", "mail"));
+            mailMessage.From.Add(new MailboxAddress("Aurora", "aurora.info.net@gmail.com"));
             mailMessage.To.Add(new MailboxAddress(receiverEmail, receiverEmail));
 
             using (var smtpClient = new SmtpClient())
             {
-                smtpClient.Connect("",587,false);
-                smtpClient.Authenticate("","");
+                smtpClient.Connect("smtp.gmail.com", 587,false);
+                smtpClient.Authenticate("aurora.info.net@gmail.com", "aurora1234");
                 await smtpClient.SendAsync(mailMessage);
                 smtpClient.Disconnect(true);
             }

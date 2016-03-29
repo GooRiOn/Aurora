@@ -7,9 +7,8 @@ import {Router} from 'aurelia-router';
 @inject(userServices.UserService, auth.AuthService, Router)
 export class LoginViewModel
 {
-
     userService: userServices.IUserService;
-    authService: auth.IAuthService
+    authService: auth.IAuthService;
 
     userLoginDto: models.UserLoginDto;
 

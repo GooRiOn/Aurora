@@ -13,5 +13,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task<string> GetUserIdAsync(string userName);
         Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId);
         Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword);
+        Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDto userPasswordResetDto);
+        Task<string> GeneratePasswordResetTokenAsync(string email);
     }
 }

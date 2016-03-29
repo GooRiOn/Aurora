@@ -12,5 +12,7 @@ namespace Aurora.Domain.DomainServices.Interfaces
         Task<string> GetUserIdAsync(string userName);
         Task<UserSelfInfoDomainObject> GetUserSelfInfoAsync(string userId);
         Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword);
+        Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDomainObject userPasswordResetDomainObject);
+        Task<string> GeneratePasswordResetTokenAsync(string email);
     }
 }

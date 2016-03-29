@@ -16,3 +16,11 @@ export class UserRegisterDto extends  UserLoginDto
     email: string;
     confirmPassword: string;
 }
+
+export class UserPasswordResetDto
+{
+    email: string;
+    token: string;
+    passord: string;
+    confirmPassword: string;
+}

@@ -19,5 +19,11 @@ define(["require", "exports"], function (require, exports) {
         return UserRegisterDto;
     })(UserLoginDto);
     exports.UserRegisterDto = UserRegisterDto;
+    var UserPasswordResetDto = (function () {
+        function UserPasswordResetDto() {
+        }
+        return UserPasswordResetDto;
+    })();
+    exports.UserPasswordResetDto = UserPasswordResetDto;
 });
 //# sourceMappingURL=user-models.js.map

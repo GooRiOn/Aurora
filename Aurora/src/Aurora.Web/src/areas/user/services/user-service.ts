@@ -12,6 +12,8 @@ export interface IUserService
     login(userLoginDto: models.UserLoginDto): Promise<string>;
     getUserSelfInfo(): Promise<auth.IUser>;
     logout(): Promise<data.IResult>;
+    sendPasswordResetEmail(userEmail: string): Promise<data.IResult>;
+    resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult>;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -40,5 +42,15 @@ export class UserService extends app.DataService implements IUserService
     logout(): Promise<data.IResult>
     {
         return super.post('Accounts/SignOut', null, true);
+    }
+
+    sendPasswordResetEmail(userEmail: string): Promise<data.IResult>
+    {
+        const url = `Accounts/Password/Reset/${userEmail}/Email/Send`;
+        return super.post(url, null, false);
+    }
+
+    resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult> {
+        return super.post('Accounts/Password/Reset', userPasswordResetDto, false);
     }
 }

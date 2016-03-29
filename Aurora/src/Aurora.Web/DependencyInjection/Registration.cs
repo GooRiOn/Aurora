@@ -1,5 +1,7 @@
 ﻿using Aurora.Web.Auth;
 using Aurora.Web.Auth.Interfaces;
+using Aurora.Web.Services;
+using Aurora.Web.Services.Interfaces;
 using Autofac;
 
 namespace Aurora.Web.DependencyInjection
@@ -10,6 +12,7 @@ namespace Aurora.Web.DependencyInjection
         {
             builder.RegisterModule(new DomainProxy.DependencyInjection.Registration());
             builder.RegisterType<OAuthService>().As<IOAuthService>();
+            builder.RegisterType<EmailService>().As<IEmailService>();
         }
     }
 }

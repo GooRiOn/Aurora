@@ -81,6 +81,16 @@ namespace Aurora.DomainProxy.Proxies
             };
         }
 
+        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDto userResetPasswordResetDto)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                var userPasswordResetDomainObject = userResetPasswordResetDto.AsDomainObject();
+                return await userAuthDomainService.ResetUserPasswordAsync(userPasswordResetDomainObject);
+            };
+        }
+
         public async Task<string> GeneratePasswordResetTokenAsync(string email)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
