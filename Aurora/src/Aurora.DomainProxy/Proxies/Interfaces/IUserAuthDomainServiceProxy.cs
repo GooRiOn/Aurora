@@ -11,6 +11,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task<SignInResult> PasswordSignInAsync(UserLoginDto userLoginDto);
         Task SignOutAsync();
         Task<string> GetUserIdAsync(string userName);
+        Task<UserLoginInfoDto> GetUserLoginInfoAsync(string userName);
         Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId);
         Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword);
         Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDto userPasswordResetDto);

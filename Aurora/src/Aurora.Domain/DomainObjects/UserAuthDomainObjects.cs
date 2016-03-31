@@ -22,4 +22,13 @@
 
         public string Password { get; set; }
     }
+
+    public class UserLoginInfoDomainObject
+    {
+        public string Id { get; set; }
+
+        public bool IsLocked { get; set; }
+
+        public bool IsActive { get; set; }
+    }
 }

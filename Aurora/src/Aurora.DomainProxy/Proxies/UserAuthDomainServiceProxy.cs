@@ -62,6 +62,16 @@ namespace Aurora.DomainProxy.Proxies
             };
         }
 
+        public async Task<UserLoginInfoDto> GetUserLoginInfoAsync(string userName)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
+                var result = await userAuthDomainService.GetUserLoginInfoAsync(userName);
+                return result.AsDto();
+            };
+        }
+
         public async Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())

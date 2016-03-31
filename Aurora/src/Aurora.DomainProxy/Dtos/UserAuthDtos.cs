@@ -48,4 +48,13 @@ namespace Aurora.DomainProxy.Dtos
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class UserLoginInfoDto
+    {
+        public string Id { get; set; }
+
+        public bool IsLocked { get; set; }
+
+        public bool IsActive { get; set; }
+    }
 }

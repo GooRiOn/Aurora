@@ -1,11 +1,12 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using Aurora.Web.Auth.Interfaces;
 
 namespace Aurora.Web.Auth
 {
-    public class OAuthService : IOAuthService
+    public sealed class OAuthService : IOAuthService
     {
         private readonly TokenAuthOptions _tokenAuthOptions;
 
@@ -25,8 +26,7 @@ namespace Aurora.Web.Auth
                 _tokenAuthOptions.Audience,
                 signingCredentials: _tokenAuthOptions.SigningCredentials,
                 subject: identity,
-                expires: null
-                );
+                expires: DateTime.UtcNow.AddDays(14));
 
             return handler.WriteToken(securityToken);
         }

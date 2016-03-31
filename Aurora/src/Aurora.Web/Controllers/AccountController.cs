@@ -53,15 +53,25 @@ namespace Aurora.Web.Controllers
         [HttpPost("Login"), AllowAnonymous]
         public async Task<string> LoginUserAsync([FromBody] UserLoginDto userLoginDto)
         {
+            var user = await _userAuthDomainServiceProxy.GetUserLoginInfoAsync(userLoginDto.UserName);
+
+            if (user == null || !user.IsActive)
+            {
+                throw new OperationException("User not found");
+            }
+            if (user.IsLocked)
+            {
+                throw new OperationException("User is locked");
+            }
+
             var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userLoginDto);
 
             if (!signInResult.Succeeded)
             {
                 throw new OperationException("Sign in failed");
             }
-           
-            var userId = await _userAuthDomainServiceProxy.GetUserIdAsync(userLoginDto.UserName);
-            var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, userId);
+
+            var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, user.Id);
 
             return userToken;
         }

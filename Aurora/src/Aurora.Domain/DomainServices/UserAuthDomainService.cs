@@ -30,10 +30,10 @@ namespace Aurora.Domain.DomainServices
             return await _userManager.CreateAsync(userEntity, userCreateDomainObject.Password);
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginModel)
+        public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginDomainObject)
         {
             await SignOutAsync();
-            return await _signInManager.PasswordSignInAsync(userLoginModel.UserName, userLoginModel.Password, userLoginModel.RememberMe,false);
+            return await _signInManager.PasswordSignInAsync(userLoginDomainObject.UserName, userLoginDomainObject.Password, userLoginDomainObject.RememberMe,false);
         }
 
         public async Task SignOutAsync()
@@ -45,6 +45,21 @@ namespace Aurora.Domain.DomainServices
         {
             var user = await _userManager.FindByNameAsync(userName);
             return user.Id;
+        }
+
+        public async Task<UserLoginInfoDomainObject> GetUserLoginInfoAsync(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+
+            if (user == null)
+                return null;
+
+            return new UserLoginInfoDomainObject
+            {
+                Id = user.Id,
+                IsActive = user.IsActive,
+                IsLocked = user.IsLocked
+            };
         }
 
         public async Task<UserSelfInfoDomainObject> GetUserSelfInfoAsync(string userId)

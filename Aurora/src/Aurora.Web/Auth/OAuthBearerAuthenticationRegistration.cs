@@ -25,7 +25,7 @@ namespace Aurora.Web.Auth
 
         public static void RegisterTokenAuthorizationOptions(this IServiceCollection services)
         {
-            var key = new RsaSecurityKey(GetRandomKey());
+            var key = new RsaSecurityKey(GetNewRSAKey());
 
             var tokenOptions = new TokenAuthOptions
             {
@@ -64,7 +64,7 @@ namespace Aurora.Web.Auth
             });
         }
 
-        private static RSAParameters GetRandomKey()
+        private static RSAParameters GetNewRSAKey()
         {
             using (var rsa = new RSACryptoServiceProvider(2048))
             {
