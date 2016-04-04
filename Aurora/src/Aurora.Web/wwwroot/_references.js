@@ -22,9 +22,13 @@
 /// <reference path="../src/areas/admin/view-models/users-manage.js" />
 /// <reference path="../src/areas/project/config/project-router.js" />
 /// <reference path="../src/areas/project/models/project-models.js" />
+<<<<<<< HEAD
 /// <reference path="../src/areas/project/services/create-project-service.js" />
 /// <reference path="../src/areas/project/services/project-overiew-service.js" />
 /// <reference path="../src/areas/project/view-models/create-project.js" />
+=======
+/// <reference path="../src/areas/project/services/project-overiew-service.js" />
+>>>>>>> master
 /// <reference path="../src/areas/project/view-models/project-overview.js" />
 /// <reference path="../src/areas/user/config/user-router.js" />
 /// <reference path="../src/areas/user/models/user-models.js" />
@@ -54,10 +58,16 @@
 /// <reference path="dist/areas/admin/view-models/users-manage.js" />
 /// <reference path="dist/areas/project/config/project-router.js" />
 /// <reference path="dist/areas/project/models/project-models.js" />
+<<<<<<< HEAD
 /// <reference path="dist/areas/project/services/create-project-service.js" />
 /// <reference path="dist/areas/project/services/project-overiew-service.js" />
 /// <reference path="dist/areas/project/view-models/createproject.js" />
 /// <reference path="dist/areas/project/view-models/create-project.js" />
+=======
+/// <reference path="dist/areas/project/services/project-overiew-service.js" />
+/// <reference path="dist/areas/project/view-models/create-project.js" />
+/// <reference path="dist/areas/project/view-models/createproject.js" />
+>>>>>>> master
 /// <reference path="dist/areas/project/view-models/project-overview.js" />
 /// <reference path="dist/areas/user/config/user-router.js" />
 /// <reference path="dist/areas/user/models/user-models.js" />

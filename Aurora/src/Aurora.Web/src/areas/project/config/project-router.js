@@ -5,8 +5,12 @@ define(["require", "exports"], function (require, exports) {
         }
         ProjectRouter.prototype.configureRouter = function (config, router) {
             config.map([
+<<<<<<< HEAD
                 { route: ['', 'overview'], name: 'overview', moduleId: '../view-models/project-overview', nav: true, title: 'Overview' },
                 { route: 'create', name: 'create', moduleId: '../view-models/create-project', nav: true, title: 'Create' }
+=======
+                { route: ['', 'overview'], name: 'overview', moduleId: '../view-models/project-overview', nav: true, title: 'Overview' }
+>>>>>>> master
             ]);
             this.router = router;
         };

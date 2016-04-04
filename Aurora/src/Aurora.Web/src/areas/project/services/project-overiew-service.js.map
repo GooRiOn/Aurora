@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"version":3,"file":"project-overiew-service.js","sourceRoot":"","sources":["project-overiew-service.ts"],"names":["ProjectOverviewService","ProjectOverviewService.constructor"],"mappings":";;;;;;;;;;;;;;;IAUA;QAC4CA,0CAAeA;QAEvDA,gCAAYA,IAAgBA,EAAEA,WAA6BA;YACvDC,kBAAMA,IAAIA,EAAEA,WAAWA,CAACA,CAACA;QAC7BA,CAACA;QALLD;YAACA,0BAAMA,CAACA,iCAAUA,EAAEA,IAAIA,CAACA,WAAWA,CAACA;;mCAMpCA;QAADA,6BAACA;IAADA,CAACA,AAND,EAC4C,GAAG,CAAC,WAAW,EAK1D;IALY,8BAAsB,yBAKlC,CAAA"}
+=======
+{"version":3,"file":"project-overiew-service.js","sourceRoot":"","sources":["project-overiew-service.ts"],"names":["ProjectOverviewServiceUserService","ProjectOverviewServiceUserService.constructor"],"mappings":";;;;;;;;;;;;;;;IAUA;QACuDA,qDAAeA;QAElEA,2CAAYA,IAAgBA,EAAEA,WAA6BA;YACvDC,kBAAMA,IAAIA,EAAEA,WAAWA,CAACA,CAACA;QAC7BA,CAACA;QALLD;YAACA,0BAAMA,CAACA,iCAAUA,EAAEA,IAAIA,CAACA,WAAWA,CAACA;;8CAMpCA;QAADA,wCAACA;IAADA,CAACA,AAND,EACuD,GAAG,CAAC,WAAW,EAKrE;IALY,yCAAiC,oCAK7C,CAAA"}
+>>>>>>> master
