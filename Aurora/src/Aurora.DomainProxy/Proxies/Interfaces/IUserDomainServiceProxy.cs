@@ -4,7 +4,7 @@ using Aurora.Infrastructure.Data.Interfaces;
 
 namespace Aurora.DomainProxy.Proxies.Interfaces
 {
-    public interface IUserDomainServiceProxy
+    public interface IUserDomainServiceProxy : IBaseProxy
     {
         Task<IPagedResult<UserDto>> GetUsersPageAsync(int pageNumber, int pageSize);
         Task<IResult> LockUser(string userId);

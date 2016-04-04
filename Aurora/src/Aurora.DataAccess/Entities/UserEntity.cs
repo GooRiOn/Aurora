@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -12,6 +12,7 @@ namespace Aurora.DataAccess.Entities
         {
             this.IsActive = true;
             this.IsLocked = false;
+            this.UserProjects = new HashSet<UserProjectEntity>();
         }
 
         public string FirstName { get; set; }
@@ -21,6 +22,8 @@ namespace Aurora.DataAccess.Entities
         public bool IsActive { get; private set; }
         
         public bool IsLocked { get; private set; }
+
+        public ICollection<UserProjectEntity> UserProjects { get; set; }
 
         void ILockable.Lock()
         {

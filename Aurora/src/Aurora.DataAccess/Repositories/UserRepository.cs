@@ -5,8 +5,7 @@ namespace Aurora.DataAccess.Repositories
 {
     public class UserRepository : GenericRepository<UserEntity, string>, IUserRepository
     {
-        public UserRepository(AuroraContext context)
-            :base(context)
+        public UserRepository(AuroraContext context) :base(context)
         {
         }
     }

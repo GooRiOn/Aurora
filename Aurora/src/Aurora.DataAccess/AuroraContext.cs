@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aurora.DataAccess.Entities;
-using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
@@ -11,18 +10,19 @@ namespace Aurora.DataAccess
 {
     public class AuroraContext : IdentityDbContext<UserEntity>
     {
+        public DbSet<ProjectEntity> Projects { get; set; }
+        public DbSet<SprintEntity> Sprints { get; set; }  
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Data Source=DESKTOP-JQOI1KG;database=Aurora;Integrated Security=True");
         }
 
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    builder.Entity<InternalEntity>().Property<DateTime>("CreatedDate");
-        //    builder.Entity<InternalEntity>().Property<DateTime>("UpdatedDate");
-        //    builder.Ignore<InternalEntity>();
-        //    base.OnModelCreating(builder);
-        //}
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<UserProjectEntity>().HasKey(up => new { up.ProjectId, up.UserId});
+            base.OnModelCreating(builder);
+        }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

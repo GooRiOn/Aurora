@@ -1,6 +1,6 @@
 body {
     color: #272D4E;
-    background-image: url('https://zohodiscussions.com/discussions/getCustomFile.do?fileId=14737000006075071&forumGroupId=14737000000003003');
+    background-image: url('../images/background1.jpg');
 }
 
 img{
@@ -291,4 +291,8 @@ table {
     border-radius: 5px 5px 0px 0px;
     color: white;
     text-transform: uppercase;
+}
+
+.side-menu-item {
+    background-color: rgba(31, 220, 183, 0.36);
 }

@@ -15,6 +15,7 @@ namespace Aurora.DataAccess.DependencyInjection
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<ProjectRepository>().As<IProjectRepository>();
         }
     }
 }

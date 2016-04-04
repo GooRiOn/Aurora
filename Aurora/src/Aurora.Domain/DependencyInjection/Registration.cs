@@ -14,6 +14,7 @@ namespace Aurora.Domain.DependencyInjection
             builder.RegisterGeneric(typeof (DomainDomainServiceFactory<>)).As(typeof (IDomainServiceFactory<>));
             builder.RegisterType<UserDomainService>().As<IUserDomainService>();
             builder.RegisterType<UserAuthDomainService>().As<IUserAuthDomainService>();
+            builder.RegisterType<ProjectDomainService>().As<IProjectDomainService>();
         }
     }
 }

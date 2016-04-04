@@ -1,6 +1,4 @@
 ﻿using System;
-using Aurora.DataAccess;
-using Aurora.Domain.AppBuild;
 using Aurora.DomainProxy.AppBuild;
 using Aurora.Infrastructure.DependencyInjection;
 using Aurora.Infrastructure.DependencyInjection.Initerfaces;
@@ -10,11 +8,9 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Aurora.Web
@@ -23,18 +19,14 @@ namespace Aurora.Web
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
-
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
-
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+              
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             
@@ -45,7 +37,6 @@ namespace Aurora.Web
         public IConfigurationRoot Configuration { get; set; }
         public IContainer Container { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
@@ -72,7 +63,6 @@ namespace Aurora.Web
             return container.Resolve<IServiceProvider>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TokenAuthOptions tokenAuthOptions)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -98,8 +88,7 @@ namespace Aurora.Web
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
-            // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+           
             app.UseIdentity();
 
             app.UseMvc(routes =>
@@ -110,7 +99,6 @@ namespace Aurora.Web
             });
         }
 
-        // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
