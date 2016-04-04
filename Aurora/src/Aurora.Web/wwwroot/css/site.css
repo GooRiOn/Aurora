@@ -286,6 +286,10 @@ table {
     padding: 15px;
 }
 
+.view-body {
+    background-color: white;
+}
+
 .form-header {
     background-color: rgb(38, 166, 154);
     border-radius: 5px 5px 0px 0px;
@@ -295,4 +299,5 @@ table {
 
 .side-menu-item {
     background-color: rgba(31, 220, 183, 0.36);
+    margin-top: 10px;
 }

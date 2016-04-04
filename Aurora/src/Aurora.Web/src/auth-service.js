@@ -2,6 +2,7 @@ define(["require", "exports"], function (require, exports) {
     var AuthService = (function () {
         function AuthService() {
             this.accessToken = '';
+            this.isSessionStored = true;
         }
         AuthService.prototype.setUser = function (user) {
             this.user = user;

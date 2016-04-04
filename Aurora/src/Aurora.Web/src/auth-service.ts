@@ -22,6 +22,7 @@ export class AuthService implements IAuthService {
     constructor()
     {
         this.accessToken = '';
+        this.isSessionStored = true;
     }
 
     setUser(user: IUser) : void
