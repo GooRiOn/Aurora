@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
 using Aurora.Domain.DomainObjects;
-using Aurora.Domain.Mappings;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
@@ -24,10 +23,9 @@ namespace Aurora.Domain.DomainServices
             _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> CreateUserAsync(UserCreateDomainObject userCreateDomainObject)
+        public async Task<IdentityResult> CreateUserAsync(UserEntity user, string password)
         {
-            var userEntity = userCreateDomainObject.AsEntity();
-            return await _userManager.CreateAsync(userEntity, userCreateDomainObject.Password);
+            return await _userManager.CreateAsync(user, password);
         }
 
         public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginDomainObject)

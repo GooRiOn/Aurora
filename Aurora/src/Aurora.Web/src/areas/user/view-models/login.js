@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "../../../auth-service", "../services/user-service", "../models/user-models", 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, models, aurelia_framework_1, aurelia_router_1) {
+define(["require", "exports", '../../../auth-service', '../services/user-service', '../models/user-models', 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, models, aurelia_framework_1, aurelia_router_1) {
     var LoginViewModel = (function () {
         function LoginViewModel(userService, authService, router) {
             this.router = router;
@@ -18,7 +18,7 @@ define(["require", "exports", "../../../auth-service", "../services/user-service
         LoginViewModel.prototype.login = function () {
             var _this = this;
             this.userService.login(this.userLoginDto).then(function (result) {
-                _this.authService.setAccessToken(result, !_this.userLoginDto.rememberMe);
+                _this.authService.setAccessToken(result, _this.userLoginDto.rememberMe);
                 _this.getUserSelfInfo().then(function () {
                     Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
                     _this.router.navigate('#/');
@@ -31,10 +31,6 @@ define(["require", "exports", "../../../auth-service", "../services/user-service
                 var user = { userName: result.userName, roles: result.roles };
                 _this.authService.setUser(user);
             });
-        };
-        LoginViewModel.prototype.changeRememberMeState = function () {
-            this.userLoginDto.rememberMe = !this.userLoginDto.rememberMe;
-            Materialize.toast(this.userLoginDto.rememberMe.toString(), 4000);
         };
         LoginViewModel = __decorate([
             aurelia_framework_1.inject(userServices.UserService, auth.AuthService, aurelia_router_1.Router), 

@@ -8,20 +8,18 @@ define(["require", "exports"], function (require, exports) {
         };
         AuthService.prototype.setAccessToken = function (accessToken, isSessionStored) {
             if (isSessionStored) {
-                sessionStorage.setItem('accessToken', accessToken);
-                localStorage.clear();
-            }
-            else {
                 localStorage.setItem('accessToken', accessToken);
                 sessionStorage.clear();
             }
+            else {
+                sessionStorage.setItem('accessToken', accessToken);
+                localStorage.clear();
+            }
             this.accessToken = accessToken;
+            this.isSessionStored = isSessionStored;
         };
         AuthService.prototype.getAccessToken = function () {
-            var accessToken = sessionStorage.getItem('accessToken');
-            if (accessToken)
-                return accessToken;
-            return localStorage.getItem('accessToken');
+            return this.isSessionStored ? localStorage.getItem('accessToken') : sessionStorage.getItem('accessToken');
         };
         AuthService.prototype.clearAccessToken = function () {
             localStorage.clear();

@@ -8,10 +8,6 @@ namespace Aurora.DomainProxy.DependencyInjection
         public static void Register(IServiceCollection services)
         {
             Domain.DependencyInjection.AspNetRegistration.Register(services);
-
-            ToDomainObjectMappings.RegisterMaps();
-            ToDtoMappings.RegisterMaps();
-            
         }
     }
 }

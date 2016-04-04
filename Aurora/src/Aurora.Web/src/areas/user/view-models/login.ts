@@ -1,6 +1,6 @@
-﻿import auth = require("../../../auth-service")
-import userServices = require("../services/user-service");
-import models = require("../models/user-models");
+﻿import auth = require('../../../auth-service')
+import userServices = require('../services/user-service');
+import models = require('../models/user-models');
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 
@@ -23,7 +23,7 @@ export class LoginViewModel
     {
         this.userService.login(this.userLoginDto).then((result:string) => {
 
-            this.authService.setAccessToken(result, !this.userLoginDto.rememberMe);
+            this.authService.setAccessToken(result, this.userLoginDto.rememberMe);
 
             this.getUserSelfInfo().then(() =>
             {
@@ -40,11 +40,5 @@ export class LoginViewModel
             let user: auth.IUser = { userName: result.userName, roles: result.roles };
             this.authService.setUser(user);
         });
-    }
-
-    changeRememberMeState()
-    {
-        this.userLoginDto.rememberMe = !this.userLoginDto.rememberMe;
-        Materialize.toast(this.userLoginDto.rememberMe.toString(),4000);
     }
 }

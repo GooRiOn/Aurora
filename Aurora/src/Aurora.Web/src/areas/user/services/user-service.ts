@@ -1,8 +1,8 @@
-﻿import models = require("../models/user-models");
-import app = require("../../../data-service");
-import data = require("../../../data");
-import auth = require("../../../auth-service");
-import {HttpClient} from "aurelia-fetch-client";
+﻿import models = require('../models/user-models');
+import app = require('../../../data-service');
+import data = require('../../../data');
+import auth = require('../../../auth-service');
+import {HttpClient} from 'aurelia-fetch-client';
 import {inject} from 'aurelia-framework';
 
 

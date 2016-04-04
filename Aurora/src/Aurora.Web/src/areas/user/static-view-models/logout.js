@@ -17,7 +17,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             var _this = this;
             this.userService.logout().then(function (result) {
                 _this.authService.clearAccessToken();
-                _this.authService.user = null;
+                _this.authService.setUser(null);
             });
         };
         LogoutStaticViewModel = __decorate([

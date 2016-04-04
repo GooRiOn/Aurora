@@ -1,6 +1,6 @@
 ﻿import models = require('../models/admin-models');
-import services = require("../services/users-manage-service");
-import data = require("../../../data");
+import services = require('../services/users-manage-service');
+import data = require('../../../data');
 import {inject} from 'aurelia-framework';
 
 

@@ -10,7 +10,6 @@
     }
 }
 
-
 export class UserRegisterDto extends  UserLoginDto
 {
     email: string;

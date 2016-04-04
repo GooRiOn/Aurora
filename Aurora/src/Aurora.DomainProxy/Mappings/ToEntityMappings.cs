@@ -1,8 +1,8 @@
 ﻿using Aurora.DataAccess.Entities;
-using Aurora.Domain.DomainObjects;
+using Aurora.DomainProxy.Dtos;
 using AutoMapper;
 
-namespace Aurora.Domain.Mappings
+namespace Aurora.DomainProxy.Mappings
 {
     public static class ToEntityMappings
     {
@@ -12,15 +12,15 @@ namespace Aurora.Domain.Mappings
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UserCreateDomainObject, UserEntity>();
+                cfg.CreateMap<UserRegisterDto, UserEntity>();
             });
 
             _mapper = config.CreateMapper();
         }
 
-        public static UserEntity AsEntity(this UserCreateDomainObject domainObject)
+        public static UserEntity AsEntity(this UserRegisterDto dto)
         {
-            return _mapper.Map<UserEntity>(domainObject);
+            return _mapper.Map<UserEntity>(dto);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Aurora.Domain.AppBuild;
-using Aurora.Domain.Mappings;
 using Aurora.DomainProxy.Mappings;
 using Autofac;
 using Microsoft.AspNet.Builder;
@@ -14,6 +13,7 @@ namespace Aurora.DomainProxy.AppBuild
 
             ToDomainObjectMappings.RegisterMaps();
             ToDtoMappings.RegisterMaps();
+            ToEntityMappings.RegisterMaps();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿import auth = require('../../../auth-service')
 import userServices = require('../services/user-service');
-import data = require("../../../data");
+import data = require('../../../data');
 import {inject} from 'aurelia-framework';
 
 
@@ -21,7 +21,7 @@ export class LogoutStaticViewModel
         this.userService.logout().then((result: data.IResult) =>
         {
             this.authService.clearAccessToken();
-            this.authService.user = null;
+            this.authService.setUser(null);
         });
     }
 }

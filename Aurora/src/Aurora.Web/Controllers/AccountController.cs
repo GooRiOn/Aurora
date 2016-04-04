@@ -30,24 +30,21 @@ namespace Aurora.Web.Controllers
         [HttpPost("Register"), AllowAnonymous]
         public async Task<IResult> RegisterUserAsync([FromBody] UserRegisterDto userRegisterDto)
         {
-            if(!ModelState.IsValid)
-                return new Result
-                {
-                    State = ResultStateEnum.Failed,
-                    Errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray()
-                };
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray();
+                return CreateResult(ResultStateEnum.Failed, errors);
+            }
 
             var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegisterDto);
 
             if (!registerResult.Succeeded)
             {
-                return new Result
-                {
-                    State = ResultStateEnum.Failed,
-                    Errors = registerResult.Errors.Select(e => e.Description).ToArray()
-                };
+                var errors = registerResult.Errors.Select(e => e.Description).ToArray();
+                return CreateResult(ResultStateEnum.Failed, errors);
             }
-            return new Result();
+
+            return CreateResult();
         }
 
         [HttpPost("Login"), AllowAnonymous]
@@ -59,6 +56,7 @@ namespace Aurora.Web.Controllers
             {
                 throw new OperationException("User not found");
             }
+
             if (user.IsLocked)
             {
                 throw new OperationException("User is locked");
@@ -106,11 +104,10 @@ namespace Aurora.Web.Controllers
         public async Task<IResult> ResetUserPasswordAsync([FromBody]UserPasswordResetDto userPasswordResetDto)
         {
             if (!ModelState.IsValid)
-                return new Result
-                {
-                    State = ResultStateEnum.Failed,
-                    Errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray()
-                };
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray();
+                return CreateResult(ResultStateEnum.Failed, errors);
+            }
 
             userPasswordResetDto.Token = Base64Helper.Decode(userPasswordResetDto.Token);
 
@@ -118,14 +115,11 @@ namespace Aurora.Web.Controllers
 
             if (!result.Succeeded)
             {
-                return new Result
-                {
-                    State = ResultStateEnum.Failed,
-                    Errors = result.Errors.Select(e => e.Description).ToArray()
-                };
+                var errors = result.Errors.Select(e => e.Description).ToArray();
+                return CreateResult(ResultStateEnum.Failed, errors);
             }
 
-            return new Result();
+            return CreateResult();
         }
     }
 }

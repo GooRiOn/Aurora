@@ -27,9 +27,9 @@ namespace Aurora.DomainProxy.Proxies
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
-                var userCreateDomainObject = userRegisterDto.AsDomainObject();
+                var user = userRegisterDto.AsEntity();
 
-                return await userAuthDomainService.CreateUserAsync(userCreateDomainObject);
+                return await userAuthDomainService.CreateUserAsync(user, userRegisterDto.Password);
             }
         }
 

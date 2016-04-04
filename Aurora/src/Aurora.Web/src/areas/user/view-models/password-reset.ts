@@ -1,5 +1,5 @@
-﻿import userServices = require("../services/user-service");
-import data = require("../../../data");
+﻿import userServices = require('../services/user-service');
+import data = require('../../../data');
 import models = require('../models/user-models');
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';

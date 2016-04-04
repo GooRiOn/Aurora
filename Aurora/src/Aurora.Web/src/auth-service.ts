@@ -17,6 +17,7 @@ export class AuthService implements IAuthService {
 
     user: IUser;
     accessToken: string;
+    private isSessionStored : boolean;
 
     constructor()
     {
@@ -32,26 +33,22 @@ export class AuthService implements IAuthService {
     {
         if (isSessionStored)
         {
-            sessionStorage.setItem('accessToken', accessToken);
-            localStorage.clear();
-        }
-        else
-        {
             localStorage.setItem('accessToken', accessToken);
             sessionStorage.clear();
         }
+        else
+        {
+            sessionStorage.setItem('accessToken', accessToken);
+            localStorage.clear();
+        }
 
         this.accessToken = accessToken;
+        this.isSessionStored = isSessionStored;
     }
 
     getAccessToken(): string
     {
-        var accessToken = sessionStorage.getItem('accessToken');
-
-        if (accessToken)
-            return accessToken;
-        
-        return localStorage.getItem('accessToken');
+        return this.isSessionStored? localStorage.getItem('accessToken') : sessionStorage.getItem('accessToken');
     }
 
     clearAccessToken(): void

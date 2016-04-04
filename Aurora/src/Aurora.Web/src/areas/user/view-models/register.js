@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "../services/user-service", "../models/user-models", "../../../data", 'aurelia-framework', 'aurelia-router'], function (require, exports, userServices, models, data, aurelia_framework_1, aurelia_router_1) {
+define(["require", "exports", '../services/user-service', '../models/user-models', '../../../data', 'aurelia-framework', 'aurelia-router'], function (require, exports, userServices, models, data, aurelia_framework_1, aurelia_router_1) {
     var RegisterViewModel = (function () {
         function RegisterViewModel(userService, router) {
             this.router = router;
