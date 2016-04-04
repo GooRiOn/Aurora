@@ -21,7 +21,8 @@ define(["require", "exports", 'aurelia-framework', "auth-service", 'areas/user/s
             config.map([
                 { route: ['', 'welcome'], name: 'welcome', moduleId: 'welcome', nav: true, title: 'Welcome' },
                 { route: 'user', name: 'user', moduleId: 'areas/user/config/user-router', nav: true, title: 'User' },
-                { route: 'admin', name: 'admin', moduleId: 'areas/admin/config/admin-router', nav: true, title: 'Admin' }
+                { route: 'admin', name: 'admin', moduleId: 'areas/admin/config/admin-router', nav: true, title: 'Admin' },
+                { route: 'project', name: 'project', moduleId: 'areas/project/config/project-router', nav: true, title: 'Project' }
             ]);
             this.router = router;
         };
