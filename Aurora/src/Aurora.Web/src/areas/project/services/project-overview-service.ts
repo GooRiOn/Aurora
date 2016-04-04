@@ -4,7 +4,6 @@ import auth = require('../../../auth-service');
 import {HttpClient} from 'aurelia-fetch-client';
 import {inject} from 'aurelia-framework';
 
-
 export interface IProjectOverviewService {
 }
 

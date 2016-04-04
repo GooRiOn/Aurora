@@ -13,7 +13,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../../../data-service', '../../../auth-service', 'aurelia-fetch-client', 'aurelia-framework'], function (require, exports, app, auth, aurelia_fetch_client_1, aurelia_framework_1) {
-<<<<<<< HEAD
     var ProjectOverviewService = (function (_super) {
         __extends(ProjectOverviewService, _super);
         function ProjectOverviewService(http, authService) {
@@ -26,19 +25,5 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
         return ProjectOverviewService;
     })(app.DataService);
     exports.ProjectOverviewService = ProjectOverviewService;
-=======
-    var ProjectOverviewServiceUserService = (function (_super) {
-        __extends(ProjectOverviewServiceUserService, _super);
-        function ProjectOverviewServiceUserService(http, authService) {
-            _super.call(this, http, authService);
-        }
-        ProjectOverviewServiceUserService = __decorate([
-            aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
-            __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])
-        ], ProjectOverviewServiceUserService);
-        return ProjectOverviewServiceUserService;
-    })(app.DataService);
-    exports.ProjectOverviewServiceUserService = ProjectOverviewServiceUserService;
->>>>>>> master
 });
-//# sourceMappingURL=project-overiew-service.js.map
+//# sourceMappingURL=project-overview-service.js.map
