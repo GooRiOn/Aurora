@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../services/user-service', '../../../data', 'aurelia-framework', 'aurelia-router'], function (require, exports, userServices, data, aurelia_framework_1, aurelia_router_1) {
+    "use strict";
     var PasswordResetViewModel = (function () {
         function PasswordResetViewModel(userService, router) {
             this.router = router;
@@ -42,7 +43,7 @@ define(["require", "exports", '../services/user-service', '../../../data', 'aure
             __metadata('design:paramtypes', [userServices.UserService, aurelia_router_1.Router])
         ], PasswordResetViewModel);
         return PasswordResetViewModel;
-    })();
+    }());
     exports.PasswordResetViewModel = PasswordResetViewModel;
 });
 //# sourceMappingURL=password-reset.js.map

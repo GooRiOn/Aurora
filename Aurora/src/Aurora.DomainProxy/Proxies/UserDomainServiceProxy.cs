@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
@@ -60,6 +61,16 @@ namespace Aurora.DomainProxy.Proxies
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
                 await userDomainService.DeleteUser(userId);
                 return await CreateResultAsync(unitOfWork);
+            }
+        }
+
+        public async Task<IEnumerable<UserDto>> FindUsersByPhraseAsync(string searchPhrase)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                var result = await userDomainService.FindUsersByPhraseAsync(searchPhrase);
+                return result.Select(u => u.AsDto());
             }
         }
     }

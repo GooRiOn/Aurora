@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var AdminRouter = (function () {
         function AdminRouter() {
             this.heading = 'Admin';
@@ -10,7 +11,7 @@ define(["require", "exports"], function (require, exports) {
             this.router = router;
         };
         return AdminRouter;
-    })();
+    }());
     exports.AdminRouter = AdminRouter;
 });
 //# sourceMappingURL=admin-router.js.map

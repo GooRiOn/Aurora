@@ -1,4 +1,6 @@
-﻿namespace Aurora.Domain.DomainObjects
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Aurora.Domain.DomainObjects
 {
     public class UserSelfInfoDomainObject
     {

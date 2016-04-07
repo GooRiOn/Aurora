@@ -1,1 +1,1 @@
-{"version":3,"file":"data.js","sourceRoot":"","sources":["data.ts"],"names":["ResultStateEnum"],"mappings":";IAAA,WAAY,eAAe;QACvBA,2DAAWA,CAAAA;QACXA,yDAAUA,CAAAA;IACdA,CAACA,EAHW,uBAAe,KAAf,uBAAe,QAG1B;IAHD,IAAY,eAAe,GAAf,uBAGX,CAAA"}
+{"version":3,"file":"data.js","sourceRoot":"","sources":["data.ts"],"names":[],"mappings":";;IAAC,WAAY,eAAe;QACxB,2DAAW,CAAA;QACX,yDAAU,CAAA;IACd,CAAC,EAHY,uBAAe,KAAf,uBAAe,QAG3B;IAHA,IAAY,eAAe,GAAf,uBAGZ,CAAA"}

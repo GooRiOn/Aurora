@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var AuthService = (function () {
         function AuthService() {
             this.accessToken = '';
@@ -34,7 +35,7 @@ define(["require", "exports"], function (require, exports) {
             return this.user.roles.some(function (r) { return r === 'Admin'; });
         };
         return AuthService;
-    })();
+    }());
     exports.AuthService = AuthService;
 });
 //# sourceMappingURL=auth-service.js.map

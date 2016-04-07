@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../../../auth-service', '../services/user-service', '../models/user-models', 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, models, aurelia_framework_1, aurelia_router_1) {
+    "use strict";
     var LoginViewModel = (function () {
         function LoginViewModel(userService, authService, router) {
             this.router = router;
@@ -37,7 +38,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             __metadata('design:paramtypes', [userServices.UserService, auth.AuthService, aurelia_router_1.Router])
         ], LoginViewModel);
         return LoginViewModel;
-    })();
+    }());
     exports.LoginViewModel = LoginViewModel;
 });
 //# sourceMappingURL=login.js.map

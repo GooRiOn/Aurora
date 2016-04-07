@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var PageObject_Skeleton = (function () {
         function PageObject_Skeleton() {
         }
@@ -10,7 +11,7 @@ define(["require", "exports"], function (require, exports) {
             return browser.waitForRouterComplete();
         };
         return PageObject_Skeleton;
-    })();
+    }());
     exports.PageObject_Skeleton = PageObject_Skeleton;
 });
 //# sourceMappingURL=skeleton.po.js.map

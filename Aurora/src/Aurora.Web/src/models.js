@@ -7,4 +7,4 @@ define(["require", "exports"], function (require, exports) {
     }());
     exports.UserDto = UserDto;
 });
-//# sourceMappingURL=project-models.js.map
+//# sourceMappingURL=models.js.map

@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var UserRouter = (function () {
         function UserRouter() {
             this.heading = 'User';
@@ -12,7 +13,7 @@ define(["require", "exports"], function (require, exports) {
             this.router = router;
         };
         return UserRouter;
-    })();
+    }());
     exports.UserRouter = UserRouter;
 });
 //# sourceMappingURL=user-router.js.map

@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../services/user-service', '../models/user-models', '../../../data', 'aurelia-framework', 'aurelia-router'], function (require, exports, userServices, models, data, aurelia_framework_1, aurelia_router_1) {
+    "use strict";
     var RegisterViewModel = (function () {
         function RegisterViewModel(userService, router) {
             this.router = router;
@@ -38,7 +39,7 @@ define(["require", "exports", '../services/user-service', '../models/user-models
             __metadata('design:paramtypes', [userServices.UserService, aurelia_router_1.Router])
         ], RegisterViewModel);
         return RegisterViewModel;
-    })();
+    }());
     exports.RegisterViewModel = RegisterViewModel;
 });
 //# sourceMappingURL=register.js.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"project-overview.js","sourceRoot":"","sources":["project-overview.ts"],"names":["ProjectOverviewViewModel","ProjectOverviewViewModel.constructor"],"mappings":";IACA;QAAAA;YAEIC,SAAIA,GAAGA,UAAUA,CAACA;QACtBA,CAACA;QAADD,+BAACA;IAADA,CAACA,AAHD,IAGC;IAHY,gCAAwB,2BAGpC,CAAA"}
+{"version":3,"file":"project-overview.js","sourceRoot":"","sources":["project-overview.ts"],"names":[],"mappings":";;IACA;QAAA;YAEI,SAAI,GAAG,UAAU,CAAC;QACtB,CAAC;QAAD,+BAAC;IAAD,CAAC,AAHD,IAGC;IAHY,gCAAwB,2BAGpC,CAAA"}

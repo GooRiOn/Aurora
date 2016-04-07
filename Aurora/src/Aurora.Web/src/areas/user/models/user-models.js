@@ -4,12 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var UserLoginDto = (function () {
         function UserLoginDto() {
             this.rememberMe = true;
         }
         return UserLoginDto;
-    })();
+    }());
     exports.UserLoginDto = UserLoginDto;
     var UserRegisterDto = (function (_super) {
         __extends(UserRegisterDto, _super);
@@ -17,13 +18,13 @@ define(["require", "exports"], function (require, exports) {
             _super.apply(this, arguments);
         }
         return UserRegisterDto;
-    })(UserLoginDto);
+    }(UserLoginDto));
     exports.UserRegisterDto = UserRegisterDto;
     var UserPasswordResetDto = (function () {
         function UserPasswordResetDto() {
         }
         return UserPasswordResetDto;
-    })();
+    }());
     exports.UserPasswordResetDto = UserPasswordResetDto;
 });
 //# sourceMappingURL=user-models.js.map

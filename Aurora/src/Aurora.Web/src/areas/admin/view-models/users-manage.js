@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../services/users-manage-service', '../../../data', 'aurelia-framework'], function (require, exports, services, data, aurelia_framework_1) {
+    "use strict";
     var UsersManageViewModel = (function () {
         function UsersManageViewModel(usesManageService) {
             this.pageNumber = 1;
@@ -67,7 +68,7 @@ define(["require", "exports", '../services/users-manage-service', '../../../data
             __metadata('design:paramtypes', [services.UsersManageService])
         ], UsersManageViewModel);
         return UsersManageViewModel;
-    })();
+    }());
     exports.UsersManageViewModel = UsersManageViewModel;
 });
 //# sourceMappingURL=users-manage.js.map

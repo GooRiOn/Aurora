@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Aurora.DataAccess.Entities
 {
@@ -15,5 +16,9 @@ namespace Aurora.DataAccess.Entities
         public ProjectEntity Project { get; set; }
 
         public bool IsDeafult { get; set; }
+
+        public Guid MemberToken { get; set; }
+
+        public bool IsVeryfied { get; set; }
     }
 }

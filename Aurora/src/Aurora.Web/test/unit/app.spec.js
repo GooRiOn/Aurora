@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var RouterStub = (function () {
         function RouterStub() {
         }
@@ -9,7 +10,7 @@ define(["require", "exports"], function (require, exports) {
             this.routes = routes;
         };
         return RouterStub;
-    })();
+    }());
     describe('the App module', function () {
         var sut, mockedRouter;
         beforeEach(function () {

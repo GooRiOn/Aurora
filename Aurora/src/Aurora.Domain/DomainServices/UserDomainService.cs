@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
@@ -57,6 +58,11 @@ namespace Aurora.Domain.DomainServices
             var softDeletableUser = (ISoftDeletable)user;
 
             softDeletableUser.Delete();
+        }
+
+        public async Task<IEnumerable<UserDomainObject>> FindUsersByPhraseAsync(string searchPhrase)
+        {
+            return await Repository.Query.Where(u => u.UserName.Contains(searchPhrase) || u.Email.Contains(searchPhrase)).AsDomainObject().ToListAsync();
         }
     }
 }

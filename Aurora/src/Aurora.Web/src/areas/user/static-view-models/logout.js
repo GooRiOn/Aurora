@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../../../auth-service', '../services/user-service', 'aurelia-framework'], function (require, exports, auth, userServices, aurelia_framework_1) {
+    "use strict";
     var LogoutStaticViewModel = (function () {
         function LogoutStaticViewModel(authService, userService) {
             this.authService = authService;
@@ -25,7 +26,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             __metadata('design:paramtypes', [auth.AuthService, userServices.UserService])
         ], LogoutStaticViewModel);
         return LogoutStaticViewModel;
-    })();
+    }());
     exports.LogoutStaticViewModel = LogoutStaticViewModel;
 });
 //# sourceMappingURL=logout.js.map

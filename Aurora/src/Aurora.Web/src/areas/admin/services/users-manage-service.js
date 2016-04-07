@@ -13,6 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../../../data-service', '../../../auth-service', 'aurelia-fetch-client', 'aurelia-framework'], function (require, exports, app, auth, aurelia_fetch_client_1, aurelia_framework_1) {
+    "use strict";
     var UsersManageService = (function (_super) {
         __extends(UsersManageService, _super);
         function UsersManageService(http, authService) {
@@ -43,7 +44,7 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])
         ], UsersManageService);
         return UsersManageService;
-    })(app.DataService);
+    }(app.DataService));
     exports.UsersManageService = UsersManageService;
 });
 //# sourceMappingURL=users-manage-service.js.map

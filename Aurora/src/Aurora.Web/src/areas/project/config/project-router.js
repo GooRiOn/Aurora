@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var ProjectRouter = (function () {
         function ProjectRouter() {
             this.heading = 'Project';
@@ -11,7 +12,7 @@ define(["require", "exports"], function (require, exports) {
             this.router = router;
         };
         return ProjectRouter;
-    })();
+    }());
     exports.ProjectRouter = ProjectRouter;
 });
 //# sourceMappingURL=project-router.js.map

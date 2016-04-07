@@ -1,4 +1,5 @@
 define(["require", "exports", "aurelia-fetch-client"], function (require, exports, aurelia_fetch_client_1) {
+    "use strict";
     var DataService = (function () {
         function DataService(http, authService) {
             this.authService = authService;
@@ -27,7 +28,7 @@ define(["require", "exports", "aurelia-fetch-client"], function (require, export
             return this.http.fetch(url, requestConfig).then(function (response) { return response.json(); });
         };
         return DataService;
-    })();
+    }());
     exports.DataService = DataService;
 });
 //# sourceMappingURL=data-service.js.map

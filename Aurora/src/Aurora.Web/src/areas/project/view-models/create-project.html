@@ -10,10 +10,64 @@
             </div>
             <div class="view-body">
                 <div class="row">
-                    <div class="col s12">
+                    <div class="input-field col s12">
+                        <h5>Step 1: Name your project</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
                         <div>
-
+                            <input id="project-create-name" value.bind="newProject.name" type="text">
+                            <label for="project-create-name">Project name</label>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div>
+                            <input id="project-create-description" value.bind="newProject.description" type="text">
+                            <label for="project-create-description">Project description</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h5>Step 2: Add members</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div>
+                            <input id="project-create-search" value.bind="searchPhrase & debounce:500" type="text">
+                            <label for="project-create-search">Find users</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <ul class="collection" if.bind="users.length > 0">
+                            <li class="collection-item avatar" repeat.for="user of users">
+                                <i class="material-icons circle green">perm_identity</i>
+                                <strong class="title">${user.userName}</strong>
+                                <p>
+                                    <span if.bind="user.firstName">First name: ${user.firstName}<br></span> 
+                                    <span if.bind="user.lastName">Last name: ${user.lastName}<br></span>
+                                    <span if.bind="user.email">Email: ${user.email}</span>
+                                </p>
+                                <a href="#!" class="secondary-content" click.trigger="addProjectMember(user)" if.bind="!checkIfUserBelongsToMembers(user)"><i class="material-icons">add</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s6">
+                        <div class="chip" repeat.for="member of newProject.members">
+                            ${member.userName}
+                            <i class="material-icons" click.trigger="removeProjectMember(member)">close</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <a class="waves-effect waves-light btn" click.trigger="createNewProject()">Create</a>
                     </div>
                 </div>
             </div>

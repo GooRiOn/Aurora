@@ -1,4 +1,5 @@
 define(["require", "exports", './welcome.po', './skeleton.po'], function (require, exports, welcome_po_1, skeleton_po_1) {
+    "use strict";
     describe('aurelia skeleton app', function () {
         var po_welcome;
         var po_skeleton;

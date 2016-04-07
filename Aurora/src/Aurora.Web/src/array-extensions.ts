@@ -17,6 +17,6 @@ Array.prototype['firstOrNull'] = function (filter?: (item: any) => boolean)
 
 Array.prototype['remove'] = function (item: any)
 {
-    var index = this.indexOf(item);
+    let index = this.indexOf(item);
     this.splice(index, 1);
 }

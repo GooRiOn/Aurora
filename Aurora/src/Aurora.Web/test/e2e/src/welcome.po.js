@@ -1,4 +1,5 @@
 define(["require", "exports"], function (require, exports) {
+    "use strict";
     var PageObject_Welcome = (function () {
         function PageObject_Welcome() {
         }
@@ -27,7 +28,7 @@ define(["require", "exports"], function (require, exports) {
             });
         };
         return PageObject_Welcome;
-    })();
+    }());
     exports.PageObject_Welcome = PageObject_Welcome;
 });
 //# sourceMappingURL=welcome.po.js.map

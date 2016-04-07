@@ -13,17 +13,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 define(["require", "exports", '../../../data-service', '../../../auth-service', 'aurelia-fetch-client', 'aurelia-framework'], function (require, exports, app, auth, aurelia_fetch_client_1, aurelia_framework_1) {
+    "use strict";
     var CreateProjectService = (function (_super) {
         __extends(CreateProjectService, _super);
         function CreateProjectService(http, authService) {
             _super.call(this, http, authService);
         }
+        CreateProjectService.prototype.findUsersBySearchPhrase = function (searchPhrase) {
+            var url = "Users/" + searchPhrase + "/Find";
+            return _super.prototype.get.call(this, url, true);
+        };
         CreateProjectService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])
         ], CreateProjectService);
         return CreateProjectService;
-    })(app.DataService);
+    }(app.DataService));
     exports.CreateProjectService = CreateProjectService;
 });
 //# sourceMappingURL=create-project-service.js.map

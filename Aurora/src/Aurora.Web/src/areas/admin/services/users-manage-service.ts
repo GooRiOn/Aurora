@@ -1,4 +1,4 @@
-﻿import models = require('../models/admin-models');
+﻿import appModels = require('../../../models');
 import app = require('../../../data-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service');
@@ -7,7 +7,7 @@ import {inject} from 'aurelia-framework';
 
 export interface IUsersManageService
 {
-    getUsers(pageNumber: number, pageSize: number): Promise<data.IPagedResult<models.UserDto>>;
+    getUsers(pageNumber: number, pageSize: number): Promise<data.IPagedResult<appModels.UserDto>>;
     lockUser(userId: string): Promise<data.IResult>;
     unlockUser(userId: string): Promise<data.IResult>;
     deleteUser(userId: string): Promise<data.IResult>;
@@ -22,7 +22,7 @@ export class UsersManageService extends app.DataService implements IUsersManageS
         super(http, authService);
     }
 
-    getUsers(pageNumber: number, pageSize: number): Promise<data.IPagedResult<models.UserDto>>
+    getUsers(pageNumber: number, pageSize: number): Promise<data.IPagedResult<appModels.UserDto>>
     {
         var url = `Admin/Users/${pageNumber}/Page/${pageSize}/Size`;
         return super.get(url, true);
