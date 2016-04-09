@@ -7,7 +7,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
 {
-    [Authorize("Bearer")]
+    [Authorize("User")]
     public class BaseController : Controller
     {
         protected string GetUserId()

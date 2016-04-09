@@ -3,11 +3,12 @@ using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
 using Aurora.Infrastructure.Data.Interfaces;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
 {
-    [Route("api/Admin")]
+    [Route("api/Admin"), Authorize("Admin")]
     public class AdminController : BaseController
     {
         private readonly IUserDomainServiceProxy _userDomainServiceProxy;

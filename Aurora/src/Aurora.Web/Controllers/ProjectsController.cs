@@ -1,9 +1,10 @@
 ﻿using Aurora.DomainProxy.Proxies.Interfaces;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 
 namespace Aurora.Web.Controllers
 {
-    [Route("api/Projects")]
+    [Route("api/Projects"), Authorize("User")]
     public class ProjectsController : BaseController
     {
         private readonly IProjectDomainServiceProxy _projectDomainServiceProxy;

@@ -56,7 +56,8 @@ namespace Aurora.Domain.DomainServices
             {
                 Id = user.Id,
                 IsActive = user.IsActive,
-                IsLocked = user.IsLocked
+                IsLocked = user.IsLocked,
+                Roles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name).ToArrayAsync()
             };
         }
 

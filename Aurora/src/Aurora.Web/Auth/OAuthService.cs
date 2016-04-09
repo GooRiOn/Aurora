@@ -15,11 +15,16 @@ namespace Aurora.Web.Auth
             _tokenAuthOptions = tokenAuthOptions;
         }
 
-        public string GetUserAuthToken(string userName, string userId)
+        public string GetUserAuthToken(string userName, string userId, string[] roles)
         {
             var handler = new JwtSecurityTokenHandler();
 
             var identity = new ClaimsIdentity(new GenericIdentity(userName, "TokenAuth"), new[] { new Claim("UserId", userId, ClaimValueTypes.String) });
+
+            foreach (var role in roles)
+            {
+                identity.AddClaim(new Claim("role",role));
+            }
 
             var securityToken = handler.CreateToken(
                 _tokenAuthOptions.Issuer,

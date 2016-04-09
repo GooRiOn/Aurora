@@ -2,6 +2,6 @@
 {
     public interface IOAuthService
     {
-        string GetUserAuthToken(string userName, string userId);
+        string GetUserAuthToken(string userName, string userId, string[] roles);
     }
 }
