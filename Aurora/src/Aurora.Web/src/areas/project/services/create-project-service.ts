@@ -1,4 +1,4 @@
-﻿import appModels = require('../../../models');
+﻿import models = require('../models/project-models');
 import app = require('../../../data-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service');
@@ -7,7 +7,7 @@ import {inject} from 'aurelia-framework';
 
 
 export interface ICreateProjectService {
-    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]>
+    createProject(project: models.ProjectCreateDto): Promise<data.IResult>;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -17,9 +17,7 @@ export class CreateProjectService extends app.DataService implements ICreateProj
         super(http, authService);
     }
 
-    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]>
-    {
-        let url = `Users/${searchPhrase}/Find`;
-        return super.get(url, true);
+    createProject(project: models.ProjectCreateDto): Promise<data.IResult> {
+        return super.post('Projects/Create', project , true);
     }
 }

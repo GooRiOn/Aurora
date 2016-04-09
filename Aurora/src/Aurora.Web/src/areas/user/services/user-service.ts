@@ -1,4 +1,5 @@
-﻿import models = require('../models/user-models');
+﻿import appModels = require('../../../models');
+import models = require('../models/user-models');
 import app = require('../../../data-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service');
@@ -14,6 +15,7 @@ export interface IUserService
     logout(): Promise<data.IResult>;
     sendPasswordResetEmail(userEmail: string): Promise<data.IResult>;
     resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult>;
+    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]> ;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -52,5 +54,10 @@ export class UserService extends app.DataService implements IUserService
 
     resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult> {
         return super.post('Accounts/Password/Reset', userPasswordResetDto, false);
+    }
+
+    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]> {
+        let url = `Users/${searchPhrase}/Find`;
+        return super.get(url, true);
     }
 }

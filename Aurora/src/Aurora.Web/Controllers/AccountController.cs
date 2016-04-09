@@ -10,7 +10,6 @@ using Aurora.Web.Services.Interfaces;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity.Design;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Aurora.Web.Controllers
 {

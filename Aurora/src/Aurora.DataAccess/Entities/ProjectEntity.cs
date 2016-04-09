@@ -6,7 +6,7 @@ namespace Aurora.DataAccess.Entities
     {
         public ProjectEntity()
         {
-            this.ProjectMembers = new HashSet<UserProjectEntity>();
+            this.Members = new HashSet<UserProjectEntity>();
             this.Sprints = new HashSet<SprintEntity>();
         }
 
@@ -14,7 +14,7 @@ namespace Aurora.DataAccess.Entities
 
         public string Description { get; set; }
 
-        public ICollection<UserProjectEntity> ProjectMembers { get; set; } 
+        public ICollection<UserProjectEntity> Members { get; set; } 
 
         public ICollection<SprintEntity> Sprints { get; set; } 
     }

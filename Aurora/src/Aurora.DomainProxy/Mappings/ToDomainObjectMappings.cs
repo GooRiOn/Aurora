@@ -16,6 +16,7 @@ namespace Aurora.DomainProxy.Mappings
                 cfg.CreateMap<UserLoginDto, UserLoginDomainObject>();
                 cfg.CreateMap<UserDto, UserDomainObject>();
                 cfg.CreateMap<UserPasswordResetDto, UserPasswordResetDomainObject>();
+                cfg.CreateMap<ProjectCreateDto, ProjectCreateDomainObject>();
             });
 
             _mapper = config.CreateMapper();
@@ -29,6 +30,11 @@ namespace Aurora.DomainProxy.Mappings
         public static UserPasswordResetDomainObject AsDomainObject(this UserPasswordResetDto dto)
         {
             return _mapper.Map<UserPasswordResetDomainObject>(dto);
+        }
+
+        public static ProjectCreateDomainObject AsDomainObject(this ProjectCreateDto dto)
+        {
+            return _mapper.Map<ProjectCreateDomainObject>(dto);
         }
     }
 }
