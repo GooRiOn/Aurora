@@ -9,22 +9,32 @@ using Aurora.Web.Auth.Interfaces;
 using Aurora.Web.Services.Interfaces;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Server.Kestrel;
 using Microsoft.Data.Entity.Design;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Aurora.Web.Controllers
 {
     [Route("api/Accounts")]
     public class AccountController : BaseController
     {
+        private readonly IApplicationEnvironment _applicationEnvironment;
         private readonly IUserAuthDomainServiceProxy _userAuthDomainServiceProxy;
         private readonly IOAuthService _oAuthService;
         private readonly IEmailService _emailService;
+        private readonly IHttpService _httpService;
 
-        public AccountController(IUserAuthDomainServiceProxy userAuthDomainServiceProxy, IOAuthService oAuthService, IEmailService emailService)
+        public string AppBasePath => _applicationEnvironment.ApplicationBasePath;
+
+
+        public AccountController(IUserAuthDomainServiceProxy userAuthDomainServiceProxy, IOAuthService oAuthService, IEmailService emailService, 
+            IApplicationEnvironment applicationEnvironment, IHttpService httpService)
         {
             _userAuthDomainServiceProxy = userAuthDomainServiceProxy;
             _oAuthService = oAuthService;
             _emailService = emailService;
+            _applicationEnvironment = applicationEnvironment;
+            _httpService = httpService;
         }
 
         [HttpPost("Register"), AllowAnonymous]
@@ -35,6 +45,9 @@ namespace Aurora.Web.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray();
                 return CreateResult(ResultStateEnum.Failed, errors);
             }
+
+            var gravatarUrl = GravatarHelper.CreateGravatarUrl(userRegisterDto.UserName);
+            userRegisterDto.Gravatar = await _httpService.GetByteArrayAsync(gravatarUrl);
 
             var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegisterDto);
 
@@ -70,7 +83,7 @@ namespace Aurora.Web.Controllers
             }
 
             var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, user.Id);
-
+            
             return userToken;
         }
 

@@ -13,5 +13,6 @@ namespace Aurora.Domain.DomainServices.Interfaces
         Task UnlockUser(string userId);
         Task DeleteUser(string userId);
         Task<IEnumerable<UserDomainObject>> FindUsersByPhraseAsync(string searchPhrase);
+        Task<byte[]> GetUserGravatarAsync(string userName);
     }
 }

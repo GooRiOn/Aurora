@@ -1,13 +1,14 @@
-import {Router, RouterConfiguration} from 'aurelia-router'
-import {inject} from 'aurelia-framework';
 import auth = require("auth-service");
 import userAuth = require('areas/user/static-view-models/logout');
+import {Router, RouterConfiguration} from 'aurelia-router'
+import {inject} from 'aurelia-framework';
 
 @inject(auth.AuthService, userAuth.LogoutStaticViewModel)
 export class App {
 
   router: Router;
   authService: auth.IAuthService;
+  host = 'http://localhost:49849/api';
   
   constructor(authService: auth.AuthService, private logoutStaticViewModel : userAuth.LogoutStaticViewModel)
   {

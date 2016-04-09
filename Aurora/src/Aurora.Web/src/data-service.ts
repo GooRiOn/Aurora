@@ -1,9 +1,11 @@
 ﻿import auth = require("auth-service");
 import {HttpClient,json} from "aurelia-fetch-client";
 import {inject} from 'aurelia-framework';
+ 
 
 export interface IDataService
 {
+    host: string;
     http: HttpClient;
     authService: auth.AuthService;
     get<TResponse>(url: string, isAccessTokenRequired: boolean) : Promise<TResponse>;
@@ -15,6 +17,7 @@ export class DataService implements IDataService
 {
     http: HttpClient;
     authService: auth.AuthService;
+    host = 'http://localhost:49849/api/';
 
     constructor(http: HttpClient, authService: auth.AuthService)
     {
@@ -23,7 +26,7 @@ export class DataService implements IDataService
 
         this.http.configure(config =>
         {
-            config.withBaseUrl('http://localhost:49849/api/');
+            config.withBaseUrl(this.host);
         });
     }
 

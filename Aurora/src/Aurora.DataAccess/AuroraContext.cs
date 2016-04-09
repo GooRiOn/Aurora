@@ -11,8 +11,8 @@ namespace Aurora.DataAccess
     public class AuroraContext : IdentityDbContext<UserEntity>
     {
         public DbSet<ProjectEntity> Projects { get; set; }
-        public DbSet<SprintEntity> Sprints { get; set; }  
-
+        public DbSet<SprintEntity> Sprints { get; set; } 
+             
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Data Source=DESKTOP-JQOI1KG;database=Aurora;Integrated Security=True");

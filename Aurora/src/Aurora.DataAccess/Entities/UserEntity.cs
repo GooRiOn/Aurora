@@ -23,6 +23,8 @@ namespace Aurora.DataAccess.Entities
         
         public bool IsLocked { get; private set; }
 
+        public byte[] Gravatar { get; set; }
+
         public ICollection<UserProjectEntity> UserProjects { get; set; }
 
         void ILockable.Lock()

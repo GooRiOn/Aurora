@@ -13,6 +13,7 @@ namespace Aurora.Web.DependencyInjection
             builder.RegisterModule(new DomainProxy.DependencyInjection.Registration());
             builder.RegisterType<OAuthService>().As<IOAuthService>();
             builder.RegisterType<EmailService>().As<IEmailService>();
+            builder.RegisterType<HttpService>().As<IHttpService>();
         }
     }
 }

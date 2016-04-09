@@ -12,6 +12,8 @@
     public class UserCreateDomainObject : UserLoginDomainObject
     {
         public string Email { get; set; }
+
+        public byte[] GravatarBytes { get; set; }
     }
 
     public class UserPasswordResetDomainObject

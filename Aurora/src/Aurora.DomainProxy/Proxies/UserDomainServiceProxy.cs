@@ -73,5 +73,14 @@ namespace Aurora.DomainProxy.Proxies
                 return result.Select(u => u.AsDto());
             }
         }
+
+        public async Task<byte[]> GetUserGravatarAsync(string userName)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                return await userDomainService.GetUserGravatarAsync(userName);
+            }
+        }
     }
 }

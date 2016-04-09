@@ -64,5 +64,10 @@ namespace Aurora.Domain.DomainServices
         {
             return await Repository.Query.Where(u => u.UserName.Contains(searchPhrase) || u.Email.Contains(searchPhrase)).AsDomainObject().ToListAsync();
         }
+
+        public async Task<byte[]> GetUserGravatarAsync(string userName)
+        {
+            return await Repository.Query.Where(u => u.UserName == userName).Select(u => u.Gravatar).SingleOrDefaultAsync();
+        }
     }
 }

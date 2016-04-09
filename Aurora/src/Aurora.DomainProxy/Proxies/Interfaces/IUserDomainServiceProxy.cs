@@ -12,5 +12,6 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
         Task<IResult> UnlockUser(string userId);
         Task<IResult> DeleteUser(string userId);
         Task<IEnumerable<UserDto>> FindUsersByPhraseAsync(string searchPhrase);
+        Task<byte[]> GetUserGravatarAsync(string userName);
     }
 }

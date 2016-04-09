@@ -54,4 +54,9 @@ export class CreateProjectViewModel
     {
         this.newProject.members.remove(user);
     }
+
+    createNewProject()
+    {
+        
+    }
 }

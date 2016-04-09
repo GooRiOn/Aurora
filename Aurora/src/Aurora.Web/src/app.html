@@ -5,7 +5,8 @@
            <ul class="right hide-on-med-and-down">
                <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/register">Register</a></li>
                <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/login">Login</a></li>
-               <li if.bind="authService.user">Welcome ${authService.user.userName}</li>
+               <li if.bind="authService.user"><img src="${host}/Users/${authService.user.userName}/Gravatar" style="margin-right: 20px;margin-top: 3px;"/></li>
+               <li if.bind="authService.user"><strong>${authService.user.userName}</strong> </li>
                <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/" click.trigger="logout()">Logout</a></li>
            </ul>
        </div>

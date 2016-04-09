@@ -29,7 +29,7 @@ namespace Aurora.DomainProxy.Proxies
                 var userAuthDomainService = _userAuthDomainServiceFactory.Get(unitOfWork);
                 var user = userRegisterDto.AsEntity();
 
-                return await userAuthDomainService.CreateUserAsync(user, userRegisterDto.Password);
+                return await userAuthDomainService.CreateUserAsync(user, userRegisterDto.Password); 
             }
         }
 

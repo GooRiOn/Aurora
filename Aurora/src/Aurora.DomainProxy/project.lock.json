@@ -39,7 +39,10 @@
           "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
           "Microsoft.AspNet.Authentication.JwtBearer": "1.0.0-rc1-final",
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Drawing"
+        ]
       },
       "Autofac/4.0.0-rc1-177": {
         "type": "package",
@@ -2842,7 +2845,10 @@
           "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
           "Microsoft.AspNet.Authentication.JwtBearer": "1.0.0-rc1-final",
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Drawing"
+        ]
       },
       "Autofac/4.0.0-rc1-177": {
         "type": "package",
@@ -3800,7 +3806,10 @@
           "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
           "Microsoft.AspNet.Authentication.JwtBearer": "1.0.0-rc1-final",
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Drawing"
+        ]
       },
       "Autofac/4.0.0-rc1-177": {
         "type": "package",
