@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
@@ -49,12 +50,13 @@ namespace Aurora.Web.Controllers
         {
             var identityResult = await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userId,newPassword);
 
-            var result = new Result();
+            if (!identityResult.Succeeded)
+            {
+                var errors = identityResult.Errors.Select(e => e.Description).ToArray();
+                return CreateResult(ResultStateEnum.Failed, errors);
+            }
 
-            if(!identityResult.Succeeded)
-                result.State = ResultStateEnum.Failed;
-
-            return result;
+            return CreateResult();
         }
     }
 }

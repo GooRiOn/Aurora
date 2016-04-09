@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Aurora.Web.Services.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
@@ -7,7 +8,23 @@ namespace Aurora.Web.Services
 {
     public class EmailService : IEmailService
     {
-        public async Task SendEmailAsync(string subject, string body, string receiverEmail)
+        public async Task SendProjectJoinEmail(string projectName, Guid memberToken, string receiverEmail)
+        {
+            var subject = $"Aurora | You've been invited to {projectName} project!";
+            var body = $"http://localhost:49849/#/project/{memberToken}/join";
+
+            await SendEmailAsync(subject, body, receiverEmail);
+        }
+
+        public async Task SendResetPaswordEmail(string passwordResetToken, string receiverEmail)
+        {
+            var subject = "Aurora | Reset password";
+            var body = $"http://localhost:49849/#/user/password-reset?token={passwordResetToken}&email={receiverEmail}";
+
+            await SendEmailAsync(subject, body, receiverEmail);
+        }
+
+        private async Task SendEmailAsync(string subject, string body, string receiverEmail)
         {
             var mailMessage = new MimeMessage
             {

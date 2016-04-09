@@ -1,4 +1,5 @@
-﻿using Aurora.DataAccess.Entities;
+﻿using System.Collections.Generic;
+using Aurora.DataAccess.Entities;
 using Aurora.Domain.DomainObjects;
 
 namespace Aurora.Domain.DomainServices.Interfaces

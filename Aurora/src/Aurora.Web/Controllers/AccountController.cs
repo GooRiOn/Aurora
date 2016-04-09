@@ -103,7 +103,7 @@ namespace Aurora.Web.Controllers
             var passwordResetToken = await _userAuthDomainServiceProxy.GeneratePasswordResetTokenAsync(email);
             var encodedPasswordResetToken = Base64Helper.Encode(passwordResetToken);
 
-            await _emailService.SendEmailAsync("Password reset", $"http://localhost:49849/#/user/password-reset?token={encodedPasswordResetToken}&email={email}",email);
+            await _emailService.SendResetPaswordEmail(encodedPasswordResetToken, email);
             return new Result();
         }
 

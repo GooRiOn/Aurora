@@ -17,8 +17,6 @@ namespace Aurora.DataAccess.Entities
 
         public bool IsDeafult { get; set; }
 
-        public Guid MemberToken { get; set; }
-
         public bool IsVeryfied { get; set; }
     }
 }

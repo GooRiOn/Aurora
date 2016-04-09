@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Aurora.DataAccess.Entities
 {
@@ -13,6 +14,8 @@ namespace Aurora.DataAccess.Entities
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public Guid MemberToken { get; set; }
 
         public ICollection<UserProjectEntity> Members { get; set; } 
 

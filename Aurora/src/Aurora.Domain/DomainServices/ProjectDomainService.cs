@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Aurora.DataAccess.Entities;
 using Aurora.DataAccess.Interfaces;
 using Aurora.DataAccess.Repositories.Interfaces;
@@ -10,7 +10,7 @@ using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.DomainServices
 {
-    public class ProjectDomainService : EntityService<ProjectEntity,IProjectRepository,int>, IProjectDomainService
+    public sealed class ProjectDomainService : EntityService<ProjectEntity,IProjectRepository,int>, IProjectDomainService
     {
         public ProjectDomainService(IRepositoryFactory<IProjectRepository> repositoryFactory, IUnitOfWork unitOfWork) 
             : base(repositoryFactory, unitOfWork)
@@ -25,8 +25,7 @@ namespace Aurora.Domain.DomainServices
                 Description = project.Description,
                 Members = project.Members.Select(m => new UserProjectEntity
                 {
-                    UserId = m.Id,
-                    MemberToken = Guid.NewGuid()
+                    UserId = m.Id
                 }).ToList()
             };
 
