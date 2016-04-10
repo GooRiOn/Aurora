@@ -1,5 +1,4 @@
-﻿import appModels = require('../../../models');
-import models = require('../models/user-models');
+﻿import models = require('../models/user-models');
 import app = require('../../../data-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service');
@@ -9,13 +8,13 @@ import {inject} from 'aurelia-framework';
 
 export interface IUserService
 {
-    register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>;
-    login(userLoginDto: models.UserLoginDto): Promise<string>;
+    register(userRegisterDto: models.UserRegisterModel): Promise<data.IResult>;
+    login(userLoginDto: models.UserLoginModel): Promise<string>;
     getUserSelfInfo(): Promise<auth.IUser>;
     logout(): Promise<data.IResult>;
     sendPasswordResetEmail(userEmail: string): Promise<data.IResult>;
-    resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult>;
-    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]> ;
+    resetUserPassword(userPasswordResetDto: models.UserPasswordResetModel): Promise<data.IResult>;
+    findUsersBySearchPhrase(searchPhrase: string): Promise<models.UserModel[]> ;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -26,12 +25,12 @@ export class UserService extends app.DataService implements IUserService
         super(http, authService);
     }
 
-    register(userRegisterDto: models.UserRegisterDto): Promise<data.IResult>
+    register(userRegisterDto: models.UserRegisterModel): Promise<data.IResult>
     {
         return super.post('Accounts/Register', userRegisterDto, false);
     }
 
-    login(userLoginDto: models.UserLoginDto): Promise<string>
+    login(userLoginDto: models.UserLoginModel): Promise<string>
     {
         return super.post('Accounts/Login', userLoginDto, false);
     }
@@ -52,11 +51,11 @@ export class UserService extends app.DataService implements IUserService
         return super.post(url, null, false);
     }
 
-    resetUserPassword(userPasswordResetDto: models.UserPasswordResetDto): Promise<data.IResult> {
+    resetUserPassword(userPasswordResetDto: models.UserPasswordResetModel): Promise<data.IResult> {
         return super.post('Accounts/Password/Reset', userPasswordResetDto, false);
     }
 
-    findUsersBySearchPhrase(searchPhrase: string): Promise<appModels.UserDto[]> {
+    findUsersBySearchPhrase(searchPhrase: string): Promise<models.UserModel[]> {
         let url = `Users/${searchPhrase}/Find`;
         return super.get(url, true);
     }

@@ -7,7 +7,7 @@ import {inject} from 'aurelia-framework';
 
 
 export interface ICreateProjectService {
-    createProject(project: models.ProjectCreateDto): Promise<data.IResult>;
+    createProject(project: models.ProjectCreateModel): Promise<data.IResult>;
 }
 
 @inject(HttpClient, auth.AuthService)
@@ -17,7 +17,7 @@ export class CreateProjectService extends app.DataService implements ICreateProj
         super(http, authService);
     }
 
-    createProject(project: models.ProjectCreateDto): Promise<data.IResult> {
+    createProject(project: models.ProjectCreateModel): Promise<data.IResult> {
         return super.post('Projects/Create', project , true);
     }
 }

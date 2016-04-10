@@ -1,4 +1,4 @@
-﻿import appModels = require('../../../models');
+﻿import userModels = require('../../user/models/user-models');
 import models = require('../models/project-models');
 import services = require('../services/create-project-service');
 import data = require('../../../data');
@@ -9,8 +9,8 @@ import {inject, BindingEngine} from 'aurelia-framework';
 export class CreateProjectViewModel
 {
     searchPhrase: string;
-    users: appModels.UserDto[];
-    newProject: models.ProjectCreateDto;
+    users: userModels.UserModel[];
+    newProject: models.ProjectCreateModel;
 
     private createProjectService: services.ICreateProjectService;
     private userService: userSerices.IUserService;
@@ -21,7 +21,7 @@ export class CreateProjectViewModel
         this.createProjectService = createProjectService;
         this.userService = userService;
         this.bindingEngine = bindingEngine;
-        this.newProject = new models.ProjectCreateDto();
+        this.newProject = new models.ProjectCreateModel();
 
         this.bindingEngine.propertyObserver(this,'searchPhrase').subscribe((newValue, oldValue) =>
         {
@@ -34,13 +34,13 @@ export class CreateProjectViewModel
             if (newValue.length < 3)
                 return;
             
-            this.userService.findUsersBySearchPhrase(this.searchPhrase).then((result: appModels.UserDto[]) => {
+            this.userService.findUsersBySearchPhrase(this.searchPhrase).then((result: userModels.UserModel[]) => {
                 this.users = result;
             });
         });
     }
 
-    addProjectMember(user: appModels.UserDto)
+    addProjectMember(user: userModels.UserModel)
     {
         let isUserAlreadyMember = this.newProject.members.some(m => m.id === user.id);
 
@@ -53,7 +53,7 @@ export class CreateProjectViewModel
         this.newProject.members.push(user);
     }
 
-    removeProjectMember(user: appModels.UserDto)
+    removeProjectMember(user: userModels.UserModel)
     {
         this.newProject.members.remove(user);
     }

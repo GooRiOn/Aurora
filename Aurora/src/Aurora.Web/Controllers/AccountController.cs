@@ -44,15 +44,7 @@ namespace Aurora.Web.Controllers
             var gravatarUrl = GravatarHelper.CreateGravatarUrl(userRegister.UserName);
             userRegister.Gravatar = await _httpService.GetByteArrayAsync(gravatarUrl);
 
-            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegister);
-
-            if (!registerResult.Succeeded)
-            {
-                var errors = registerResult.Errors.Select(e => e.Description).ToArray();
-                return CreateResult(ResultStateEnum.Failed, errors);
-            }
-
-            return CreateResult();
+            return await _userAuthDomainServiceProxy.CreateUserAsync(userRegister);
         }
 
         [HttpPost("Login"), AllowAnonymous]
@@ -70,12 +62,7 @@ namespace Aurora.Web.Controllers
                 throw new OperationException("User is locked");
             }
 
-            var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userLogin);
-
-            if (!signInResult.Succeeded)
-            {
-                throw new OperationException("Sign in failed");
-            }
+            await _userAuthDomainServiceProxy.PasswordSignInAsync(userLogin);
 
             var userToken = _oAuthService.GetUserAuthToken(userLogin.UserName, user.Id, user.Roles);
             
@@ -119,15 +106,7 @@ namespace Aurora.Web.Controllers
 
             userPasswordReset.Token = Base64Helper.Decode(userPasswordReset.Token);
 
-            var result = await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userPasswordReset);
-
-            if (!result.Succeeded)
-            {
-                var errors = result.Errors.Select(e => e.Description).ToArray();
-                return CreateResult(ResultStateEnum.Failed, errors);
-            }
-
-            return CreateResult();
+            return await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userPasswordReset);
         }
     }
 }

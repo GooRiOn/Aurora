@@ -8,12 +8,12 @@ import {Router} from 'aurelia-router';
 export class RegisterViewModel
 {
     userService: userServices.IUserService;
-    userRegisterDto: models.UserRegisterDto;
+    userRegisterDto: models.UserRegisterModel;
 
     constructor(userService: userServices.UserService, private router: Router)
     {
         this.userService = userService;
-        this.userRegisterDto = new models.UserRegisterDto();
+        this.userRegisterDto = new models.UserRegisterModel();
     }
 
     register()

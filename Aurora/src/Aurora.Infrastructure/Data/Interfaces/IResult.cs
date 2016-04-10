@@ -4,7 +4,7 @@ namespace Aurora.Infrastructure.Data.Interfaces
 {
     public interface IResult
     {
-        string[] Errors { get; set; }
+        IEnumerable<string> Errors { get; set; }
         ResultStateEnum State { get; set; }
     }
     

@@ -8,14 +8,14 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
 {
     public interface IUserAuthDomainServiceProxy
     {
-        Task<IdentityResult> CreateUserAsync(UserRegisterWriteModel userRegisterDto);
-        Task<SignInResult> PasswordSignInAsync(UserLoginWriteModel userLoginDto);
+        Task<IResult> CreateUserAsync(UserRegisterWriteModel userRegisterDto);
+        Task PasswordSignInAsync(UserLoginWriteModel userLoginDto);
         Task SignOutAsync();
         Task<string> GetUserIdAsync(string userName);
         Task<UserLoginInfoReadModel> GetUserLoginInfoAsync(string userName);
         Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId);
-        Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword);
-        Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userPasswordResetDto);
+        Task<IResult> ResetUserPasswordAsync(string userId, string newPassword);
+        Task<IResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userPasswordResetDto);
         Task<string> GeneratePasswordResetTokenAsync(string email);
     }
 }

@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DomainProxy.Mappings;
 using Aurora.DomainProxy.Proxies.Interfaces;
+using Aurora.Infrastructure.Data;
+using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 using Aurora.Infrastructure.Models.ReadModels;
 using Aurora.Infrastructure.Models.WriteModels;
@@ -9,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Aurora.DomainProxy.Proxies
 {
-    public class UserAuthDomainServiceProxy : BaseProxy, IUserAuthDomainServiceProxy
+    public class UserAuthDomainServiceProxy : IUserAuthDomainServiceProxy
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IUserAuthDomainService _userAuthDomainService; 
@@ -21,15 +24,17 @@ namespace Aurora.DomainProxy.Proxies
         }
 
 
-        public async Task<IdentityResult> CreateUserAsync(UserRegisterWriteModel userRegister)
+        public async Task<IResult> CreateUserAsync(UserRegisterWriteModel userRegister)
         {
             var user = userRegister.AsEntity();
-            return await _userAuthDomainService.CreateUserAsync(user, userRegister.Password); 
+            var identityResult = await _userAuthDomainService.CreateUserAsync(user, userRegister.Password);
+
+            return CreateResult(identityResult);
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginWriteModel userLogin)
+        public async Task PasswordSignInAsync(UserLoginWriteModel userLogin)
         {
-            return await _userAuthDomainService.PasswordSignInAsync(userLogin);
+            await _userAuthDomainService.PasswordSignInAsync(userLogin);
         }
 
         public async Task SignOutAsync()
@@ -52,19 +57,34 @@ namespace Aurora.DomainProxy.Proxies
             return await _userAuthDomainService.GetUserSelfInfoAsync(userId);
         }
 
-        public async Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword)
+        public async Task<IResult> ResetUserPasswordAsync(string userId, string newPassword)
         {
-            return await _userAuthDomainService.ResetUserPasswordAsync(userId,newPassword);
+            var identityResult = await _userAuthDomainService.ResetUserPasswordAsync(userId,newPassword);
+            return CreateResult(identityResult);
         }
 
-        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userResetPasswordReset)
+        public async Task<IResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userResetPasswordReset)
         {
-            return await _userAuthDomainService.ResetUserPasswordAsync(userResetPasswordReset);
+            var identityResult = await _userAuthDomainService.ResetUserPasswordAsync(userResetPasswordReset);
+            return CreateResult(identityResult);
         }
 
         public async Task<string> GeneratePasswordResetTokenAsync(string email)
         {
             return await _userAuthDomainService.GeneratePasswordResetTokenAsync(email);
+        }
+
+        private IResult CreateResult(IdentityResult identityResult)
+        {
+            if (!identityResult.Succeeded)
+            {
+                return new Result
+                {
+                    State = ResultStateEnum.Failed,
+                    Errors = identityResult.Errors.Select(e => e.Description).ToList()
+                };
+            }
+            return new Result();
         }
     }
 }

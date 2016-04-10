@@ -10,13 +10,13 @@ export class LoginViewModel
     userService: userServices.IUserService;
     authService: auth.IAuthService;
 
-    userLoginDto: models.UserLoginDto;
+    userLoginDto: models.UserLoginModel;
 
     constructor(userService: userServices.UserService, authService: auth.AuthService, private router: Router)
     {
         this.userService = userService;
         this.authService = authService;
-        this.userLoginDto = new models.UserLoginDto();
+        this.userLoginDto = new models.UserLoginModel();
     }
 
     login()

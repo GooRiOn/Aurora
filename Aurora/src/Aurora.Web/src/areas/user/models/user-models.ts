@@ -1,4 +1,4 @@
-﻿export class UserLoginDto
+﻿export class UserLoginModel
 {
     userName: string;
     password: string;
@@ -10,16 +10,25 @@
     }
 }
 
-export class UserRegisterDto extends  UserLoginDto
+export class UserRegisterModel extends UserLoginModel
 {
     email: string;
     confirmPassword: string;
 }
 
-export class UserPasswordResetDto
+export class UserPasswordResetModel
 {
     email: string;
     token: string;
     passord: string;
     confirmPassword: string;
+}
+
+export class UserModel {
+    id: string;
+    userName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isLocked: boolean;
 }

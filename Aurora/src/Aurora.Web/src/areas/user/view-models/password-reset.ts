@@ -10,7 +10,7 @@ export class PasswordResetViewModel
     userService: userServices.IUserService;
     userEmail: string;
     
-    userResetPasswordDto: models.UserPasswordResetDto;
+    userResetPasswordDto: models.UserPasswordResetModel;
 
     constructor(userService: userServices.UserService, private router : Router)
     {

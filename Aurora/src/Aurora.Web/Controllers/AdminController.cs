@@ -48,15 +48,7 @@ namespace Aurora.Web.Controllers
         [HttpPost("Users/{userId}/Password/{newPassword}/Reset")]
         public async Task<IResult> ResetUserPaswordAsync(string userId, string newPassword)
         {
-            var identityResult = await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userId,newPassword);
-
-            if (!identityResult.Succeeded)
-            {
-                var errors = identityResult.Errors.Select(e => e.Description).ToArray();
-                return CreateResult(ResultStateEnum.Failed, errors);
-            }
-
-            return CreateResult();
+            return await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userId,newPassword);
         }
     }
 }

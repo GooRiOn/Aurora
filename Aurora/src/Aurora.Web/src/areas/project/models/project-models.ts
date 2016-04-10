@@ -1,19 +1,10 @@
-﻿import appModels = require('../../../models');
+﻿import userModels = require('../../user/models/user-models');
 
-export class UserDto {
-    id: string;
-    userName: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    isLocked: boolean;
-}
-
-export class ProjectCreateDto
+export class ProjectCreateModel
 {
     name: string;
     description: string;
-    members: appModels.UserDto[];
+    members: userModels.UserModel[];
 
     constructor()
     {

@@ -1,4 +1,4 @@
-﻿import appModels = require('../../../models');
+﻿import userModels = require('../../user/models/user-models');
 import services = require('../services/users-manage-service');
 import data = require('../../../data');
 import {inject} from 'aurelia-framework';
@@ -8,7 +8,7 @@ import {inject} from 'aurelia-framework';
 export class UsersManageViewModel
 {
     usesManageService: services.IUsersManageService;
-    users: appModels.UserDto[];
+    users: userModels.UserModel[];
     pageNumber = 1;
     pageSize = 10;
 
@@ -24,13 +24,13 @@ export class UsersManageViewModel
 
     getUsers()
     {
-        this.usesManageService.getUsers(this.pageNumber, this.pageSize).then((result: data.IPagedResult<appModels.UserDto>) =>
+        this.usesManageService.getUsers(this.pageNumber, this.pageSize).then((result: data.IPagedResult<userModels.UserModel>) =>
         {
              this.users = result.content;
         });
     }
 
-    changeUserLockout(user: appModels.UserDto)
+    changeUserLockout(user: userModels.UserModel)
     {
         let promise = this.usesManageService.lockUser(user.id);
         if (user.isLocked)
@@ -46,7 +46,7 @@ export class UsersManageViewModel
         });
     }
 
-    unlockUser(user: appModels.UserDto) {
+    unlockUser(user: userModels.UserModel) {
         this.usesManageService.unlockUser(user.id).then((result: data.IResult) => {
             if (result.state === data.ResultStateEnum.Succeed)
                 user.isLocked = false;
@@ -55,7 +55,7 @@ export class UsersManageViewModel
         });
     }
 
-    deleteUser(user: appModels.UserDto)
+    deleteUser(user: userModels.UserModel)
     {
         var self = this;
 
@@ -72,7 +72,7 @@ export class UsersManageViewModel
         });
     }
 
-    resetUserPassword(user: appModels.UserDto)
+    resetUserPassword(user: userModels.UserModel)
     {
         var newPassword = prompt("Enter new password");
 

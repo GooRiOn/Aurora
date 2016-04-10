@@ -5,7 +5,7 @@ namespace Aurora.Infrastructure.Data
 {
     public class Result : IResult
     {
-         public string[] Errors { get; set; }
+         public IEnumerable<string> Errors { get; set; }
          public ResultStateEnum State { get; set; }
 
          public Result()

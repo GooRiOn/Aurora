@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
+using Aurora.Infrastructure.Data;
+using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Models.ReadModels;
 using Aurora.Infrastructure.Models.WriteModels;
 using Microsoft.AspNet.Identity;
@@ -29,10 +31,9 @@ namespace Aurora.Domain.DomainServices
             return await _userManager.CreateAsync(user, password);
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginWriteModel userLogin)
+        public async Task PasswordSignInAsync(UserLoginWriteModel userLogin)
         {
-            await SignOutAsync();
-            return await _signInManager.PasswordSignInAsync(userLogin.UserName, userLogin.Password, userLogin.RememberMe,false);
+            await _signInManager.PasswordSignInAsync(userLogin.UserName, userLogin.Password, userLogin.RememberMe,false);
         }
 
         public async Task SignOutAsync()
