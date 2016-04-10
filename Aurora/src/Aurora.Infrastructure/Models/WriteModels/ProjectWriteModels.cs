@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Aurora.Infrastructure.Models.ReadModels;
 
-namespace Aurora.DomainProxy.Dtos
+namespace Aurora.Infrastructure.Models.WriteModels
 {
-    public class ProjectCreateDto
+    public class ProjectCreateWriteModel
     {
         public string Name { get; set; }
 
@@ -11,6 +12,6 @@ namespace Aurora.DomainProxy.Dtos
 
         public Guid MemberToken { get; set; }
 
-        public IEnumerable<UserDto> Members { get; set; } 
+        public IEnumerable<UserWriteModel> Members { get; set; }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
+using Aurora.Infrastructure.Models.ReadModels;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Net.Http.Headers;
 
 namespace Aurora.Web.Controllers
 {
@@ -19,7 +18,7 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpGet("{searchPhrase}/Find")]
-        public async Task<IEnumerable<UserDto>> FindUsersBySearchPhraseAsync(string searchPhrase)
+        public async Task<IEnumerable<UserReadModel>> FindUsersBySearchPhraseAsync(string searchPhrase)
         {
             return await _userDomainServiceProxy.FindUsersByPhraseAsync(searchPhrase);
         }

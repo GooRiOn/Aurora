@@ -3,11 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
-using Aurora.DomainProxy.Dtos;
-using Aurora.DomainProxy.Mappings;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
+using Aurora.Infrastructure.Models.ReadModels;
 
 namespace Aurora.DomainProxy.Proxies
 {
@@ -22,15 +21,12 @@ namespace Aurora.DomainProxy.Proxies
             _userDomainServiceFactory = userDomainServiceFactory;
         }
 
-        public async Task<IPagedResult<UserDto>> GetUsersPageAsync(int pageNumber, int pageSize)
+        public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
-                var pagedResult = await userDomainService.GetUsersPageAsync(pageNumber, pageSize);
-
-                var dtos = pagedResult.Content.Select(c => c.AsDto());
-                return GetPagedResult(dtos, pagedResult.TotalPages);
+                return await userDomainService.GetUsersPageAsync(pageNumber, pageSize);
             }
         }
 
@@ -64,13 +60,12 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IEnumerable<UserDto>> FindUsersByPhraseAsync(string searchPhrase)
+        public async Task<IEnumerable<UserReadModel>> FindUsersByPhraseAsync(string searchPhrase)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
-                var result = await userDomainService.FindUsersByPhraseAsync(searchPhrase);
-                return result.Select(u => u.AsDto());
+                return await userDomainService.FindUsersByPhraseAsync(searchPhrase);
             }
         }
 

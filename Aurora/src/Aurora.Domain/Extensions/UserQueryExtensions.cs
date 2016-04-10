@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using Aurora.DataAccess.Entities;
-using Aurora.Domain.DomainObjects;
+using Aurora.Infrastructure.Models.ReadModels;
+
 
 namespace Aurora.Domain.Extensions
 {
     public static class UserQueryExtensions
     {
-        public static IQueryable<UserDomainObject> AsDomainObject(this IQueryable<UserEntity> that)
+        public static IQueryable<UserReadModel> AsReadModel(this IQueryable<UserEntity> that)
         {
-            return that.Where(u => u.IsActive).Select(u => new UserDomainObject
+            return that.Where(u => u.IsActive).Select(u => new UserReadModel
             {
                 Id = u.Id,
                 UserName = u.UserName,

@@ -1,5 +1,5 @@
 ﻿using Aurora.DataAccess.Entities;
-using Aurora.DomainProxy.Dtos;
+using Aurora.Infrastructure.Models.WriteModels;
 using AutoMapper;
 
 namespace Aurora.DomainProxy.Mappings
@@ -12,13 +12,13 @@ namespace Aurora.DomainProxy.Mappings
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UserRegisterDto, UserEntity>();
+                cfg.CreateMap<UserRegisterWriteModel, UserEntity>();
             });
 
             _mapper = config.CreateMapper();
         }
 
-        public static UserEntity AsEntity(this UserRegisterDto dto)
+        public static UserEntity AsEntity(this UserRegisterWriteModel dto)
         {
             return _mapper.Map<UserEntity>(dto);
         }

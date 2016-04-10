@@ -10,9 +10,7 @@ namespace Aurora.DomainProxy.AppBuild
         public static void OnDomainProxyBuild(this IApplicationBuilder app, IContainer container)
         {
             app.OnDomainBuild(container);
-
-            ToDomainObjectMappings.RegisterMaps();
-            ToDtoMappings.RegisterMaps();
+         
             ToEntityMappings.RegisterMaps();
         }
     }

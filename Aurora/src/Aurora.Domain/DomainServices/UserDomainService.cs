@@ -4,12 +4,12 @@ using Aurora.DataAccess.Interfaces;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
 using Aurora.DataAccess.Entities.Interfaces;
-using Aurora.Domain.DomainObjects;
 using Aurora.Infrastructure.Data;
 using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 using System.Linq;
 using Aurora.Domain.Extensions;
+using Aurora.Infrastructure.Models.ReadModels;
 using Microsoft.Data.Entity;
 
 namespace Aurora.Domain.DomainServices
@@ -22,13 +22,13 @@ namespace Aurora.Domain.DomainServices
 
         }
 
-        public async Task<IPagedResult<UserDomainObject>> GetUsersPageAsync(int pageNumber, int pageSize)
+        public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
             var qUsers = ReadRepository.Query;
-            var result = await qUsers.AsDomainObject().Skip(pageNumber - 1).Take(pageSize).ToListAsync();
+            var result = await qUsers.AsReadModel().Skip(pageNumber - 1).Take(pageSize).ToListAsync();
             var usersNumber = await qUsers.CountAsync();
 
-            return new PagedResult<UserDomainObject>
+            return new PagedResult<UserReadModel>
             {
                 TotalPages = GetPagedResultTotalPages(usersNumber,pageSize),
                 Content = result
@@ -59,9 +59,9 @@ namespace Aurora.Domain.DomainServices
             softDeletableUser.Delete();
         }
 
-        public async Task<IEnumerable<UserDomainObject>> FindUsersByPhraseAsync(string searchPhrase)
+        public async Task<IEnumerable<UserReadModel>> FindUsersByPhraseAsync(string searchPhrase)
         {
-            return await ReadRepository.Query.Where(u => u.UserName.Contains(searchPhrase) || u.Email.Contains(searchPhrase)).AsDomainObject().ToListAsync();
+            return await ReadRepository.Query.Where(u => u.UserName.Contains(searchPhrase) || u.Email.Contains(searchPhrase)).AsReadModel().ToListAsync();
         }
 
         public async Task<byte[]> GetUserGravatarAsync(string userName)

@@ -13,6 +13,7 @@ namespace Aurora.Infrastructure.Data
              State = ResultStateEnum.Succeed;
          }
     }
+  
     public class PagedResult<TContent> : IPagedResult<TContent>
     {
         public IEnumerable<TContent> Content { get; set; }

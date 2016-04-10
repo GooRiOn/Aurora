@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
-using Aurora.Domain.Interfaces;
-using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Mappings;
 using Aurora.DomainProxy.Proxies.Interfaces;
-using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
+using Aurora.Infrastructure.Models.ReadModels;
+using Aurora.Infrastructure.Models.WriteModels;
 using Microsoft.AspNet.Identity;
 
 namespace Aurora.DomainProxy.Proxies
@@ -22,16 +21,15 @@ namespace Aurora.DomainProxy.Proxies
         }
 
 
-        public async Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto)
+        public async Task<IdentityResult> CreateUserAsync(UserRegisterWriteModel userRegister)
         {
-            var user = userRegisterDto.AsEntity();
-            return await _userAuthDomainService.CreateUserAsync(user, userRegisterDto.Password); 
+            var user = userRegister.AsEntity();
+            return await _userAuthDomainService.CreateUserAsync(user, userRegister.Password); 
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginDto userLoginModel)
+        public async Task<SignInResult> PasswordSignInAsync(UserLoginWriteModel userLogin)
         {
-            var userLoginDomainObject = userLoginModel.AsDomainObject();
-            return await _userAuthDomainService.PasswordSignInAsync(userLoginDomainObject);
+            return await _userAuthDomainService.PasswordSignInAsync(userLogin);
         }
 
         public async Task SignOutAsync()
@@ -44,16 +42,14 @@ namespace Aurora.DomainProxy.Proxies
             return await _userAuthDomainService.GetUserIdAsync(userName);
         }
 
-        public async Task<UserLoginInfoDto> GetUserLoginInfoAsync(string userName)
+        public async Task<UserLoginInfoReadModel> GetUserLoginInfoAsync(string userName)
         {
-            var result = await _userAuthDomainService.GetUserLoginInfoAsync(userName);
-            return result.AsDto();
+            return await _userAuthDomainService.GetUserLoginInfoAsync(userName);
         }
 
-        public async Task<UserSelfInfoDto> GetUserSelfInfoAsync(string userId)
+        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
         {
-            var result = await _userAuthDomainService.GetUserSelfInfoAsync(userId);
-            return result.AsDto();
+            return await _userAuthDomainService.GetUserSelfInfoAsync(userId);
         }
 
         public async Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword)
@@ -61,10 +57,9 @@ namespace Aurora.DomainProxy.Proxies
             return await _userAuthDomainService.ResetUserPasswordAsync(userId,newPassword);
         }
 
-        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDto userResetPasswordResetDto)
+        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userResetPasswordReset)
         {
-            var userPasswordResetDomainObject = userResetPasswordResetDto.AsDomainObject();
-            return await _userAuthDomainService.ResetUserPasswordAsync(userPasswordResetDomainObject);
+            return await _userAuthDomainService.ResetUserPasswordAsync(userResetPasswordReset);
         }
 
         public async Task<string> GeneratePasswordResetTokenAsync(string email)

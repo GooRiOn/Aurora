@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
 using Aurora.Infrastructure.Data.Interfaces;
+using Aurora.Infrastructure.Models.ReadModels;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 
@@ -22,7 +22,7 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpGet("Users/{pageNumber}/Page/{pageSize}/Size")]
-        public async Task<IPagedResult<UserDto>> GetUsersPageAsync(int pageNumber, int pageSize)
+        public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
             return await _userDomainServiceProxy.GetUsersPageAsync(pageNumber, pageSize);
         }

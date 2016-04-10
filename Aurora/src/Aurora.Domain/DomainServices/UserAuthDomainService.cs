@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
-using Aurora.Domain.DomainObjects;
+using Aurora.Infrastructure.Models.ReadModels;
+using Aurora.Infrastructure.Models.WriteModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
@@ -28,10 +29,10 @@ namespace Aurora.Domain.DomainServices
             return await _userManager.CreateAsync(user, password);
         }
 
-        public async Task<SignInResult> PasswordSignInAsync(UserLoginDomainObject userLoginDomainObject)
+        public async Task<SignInResult> PasswordSignInAsync(UserLoginWriteModel userLogin)
         {
             await SignOutAsync();
-            return await _signInManager.PasswordSignInAsync(userLoginDomainObject.UserName, userLoginDomainObject.Password, userLoginDomainObject.RememberMe,false);
+            return await _signInManager.PasswordSignInAsync(userLogin.UserName, userLogin.Password, userLogin.RememberMe,false);
         }
 
         public async Task SignOutAsync()
@@ -45,14 +46,14 @@ namespace Aurora.Domain.DomainServices
             return user.Id;
         }
 
-        public async Task<UserLoginInfoDomainObject> GetUserLoginInfoAsync(string userName)
+        public async Task<UserLoginInfoReadModel> GetUserLoginInfoAsync(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);
 
             if (user == null)
                 return null;
 
-            return new UserLoginInfoDomainObject
+            return new UserLoginInfoReadModel
             {
                 Id = user.Id,
                 IsActive = user.IsActive,
@@ -61,12 +62,12 @@ namespace Aurora.Domain.DomainServices
             };
         }
 
-        public async Task<UserSelfInfoDomainObject> GetUserSelfInfoAsync(string userId)
+        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
             var userRoles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == userId)).Select(r => r.Name).ToArrayAsync();
 
-            return new UserSelfInfoDomainObject {UserName = user.UserName, Roles = userRoles};
+            return new UserSelfInfoReadModel { UserName = user.UserName, Roles = userRoles};
         }
 
         public async Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword)
@@ -76,10 +77,10 @@ namespace Aurora.Domain.DomainServices
             return await _userManager.ResetPasswordAsync(user, token, newPassword);
         }
 
-        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetDomainObject userPasswordResetDomainObject)
+        public async Task<IdentityResult> ResetUserPasswordAsync(UserPasswordResetWriteModel userPasswordReset)
         {
-            var user = await _userManager.FindByEmailAsync(userPasswordResetDomainObject.Email);
-            return await _userManager.ResetPasswordAsync(user, userPasswordResetDomainObject.Token, userPasswordResetDomainObject.Password);
+            var user = await _userManager.FindByEmailAsync(userPasswordReset.Email);
+            return await _userManager.ResetPasswordAsync(user, userPasswordReset.Token, userPasswordReset.Password);
         }
 
         public async Task<string> GeneratePasswordResetTokenAsync(string email)

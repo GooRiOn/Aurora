@@ -27,15 +27,6 @@ namespace Aurora.DomainProxy.Proxies
 
             return result;
         }
-
-        public IPagedResult<TResult> GetPagedResult<TResult>(IEnumerable<TResult> source, int totalPagesNumber)
-        {
-            return new PagedResult<TResult>
-            {
-                Content = source,
-                TotalPages = totalPagesNumber
-            };
-        }  
     }
 }
 

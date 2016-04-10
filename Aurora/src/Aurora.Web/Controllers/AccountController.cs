@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
 using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Helpers;
+using Aurora.Infrastructure.Models.ReadModels;
+using Aurora.Infrastructure.Models.WriteModels;
 using Aurora.Web.Auth.Interfaces;
 using Aurora.Web.Services.Interfaces;
 using Microsoft.AspNet.Authorization;
@@ -32,7 +33,7 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Register"), AllowAnonymous]
-        public async Task<IResult> RegisterUserAsync([FromBody] UserRegisterDto userRegisterDto)
+        public async Task<IResult> RegisterUserAsync([FromBody] UserRegisterWriteModel userRegister)
         {
             if (!ModelState.IsValid)
             {
@@ -40,10 +41,10 @@ namespace Aurora.Web.Controllers
                 return CreateResult(ResultStateEnum.Failed, errors);
             }
 
-            var gravatarUrl = GravatarHelper.CreateGravatarUrl(userRegisterDto.UserName);
-            userRegisterDto.Gravatar = await _httpService.GetByteArrayAsync(gravatarUrl);
+            var gravatarUrl = GravatarHelper.CreateGravatarUrl(userRegister.UserName);
+            userRegister.Gravatar = await _httpService.GetByteArrayAsync(gravatarUrl);
 
-            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegisterDto);
+            var registerResult = await _userAuthDomainServiceProxy.CreateUserAsync(userRegister);
 
             if (!registerResult.Succeeded)
             {
@@ -55,9 +56,9 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Login"), AllowAnonymous]
-        public async Task<string> LoginUserAsync([FromBody] UserLoginDto userLoginDto)
+        public async Task<string> LoginUserAsync([FromBody] UserLoginWriteModel userLogin)
         {
-            var user = await _userAuthDomainServiceProxy.GetUserLoginInfoAsync(userLoginDto.UserName);
+            var user = await _userAuthDomainServiceProxy.GetUserLoginInfoAsync(userLogin.UserName);
 
             if (user == null || !user.IsActive)
             {
@@ -69,20 +70,20 @@ namespace Aurora.Web.Controllers
                 throw new OperationException("User is locked");
             }
 
-            var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userLoginDto);
+            var signInResult = await _userAuthDomainServiceProxy.PasswordSignInAsync(userLogin);
 
             if (!signInResult.Succeeded)
             {
                 throw new OperationException("Sign in failed");
             }
 
-            var userToken = _oAuthService.GetUserAuthToken(userLoginDto.UserName, user.Id, user.Roles);
+            var userToken = _oAuthService.GetUserAuthToken(userLogin.UserName, user.Id, user.Roles);
             
             return userToken;
         }
 
         [HttpGet("SelfInfo")]
-        public async Task<UserSelfInfoDto> GetUserSelfInfo()
+        public async Task<UserSelfInfoReadModel> GetUserSelfInfo()
         {
             var userId = GetUserId();
             var result = await _userAuthDomainServiceProxy.GetUserSelfInfoAsync(userId);
@@ -108,7 +109,7 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Password/Reset"), AllowAnonymous]
-        public async Task<IResult> ResetUserPasswordAsync([FromBody]UserPasswordResetDto userPasswordResetDto)
+        public async Task<IResult> ResetUserPasswordAsync([FromBody]UserPasswordResetWriteModel userPasswordReset)
         {
             if (!ModelState.IsValid)
             {
@@ -116,9 +117,9 @@ namespace Aurora.Web.Controllers
                 return CreateResult(ResultStateEnum.Failed, errors);
             }
 
-            userPasswordResetDto.Token = Base64Helper.Decode(userPasswordResetDto.Token);
+            userPasswordReset.Token = Base64Helper.Decode(userPasswordReset.Token);
 
-            var result = await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userPasswordResetDto);
+            var result = await _userAuthDomainServiceProxy.ResetUserPasswordAsync(userPasswordReset);
 
             if (!result.Succeeded)
             {

@@ -7,5 +7,6 @@ namespace Aurora.Infrastructure.Interfaces
     {
         int Commit();
         Task<int> CommitAsync();
+        void Rollback();
     }
 }

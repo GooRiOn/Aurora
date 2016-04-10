@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Aurora.DataAccess.Entities;
 using Aurora.DataAccess.Interfaces;
-using Aurora.Domain.DomainObjects;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Infrastructure.Interfaces;
+using Aurora.Infrastructure.Models.WriteModels;
 
 namespace Aurora.Domain.DomainServices
 {
@@ -14,7 +14,7 @@ namespace Aurora.Domain.DomainServices
         {
         }
 
-        public void CreateProject(ProjectCreateDomainObject project)
+        public void CreateProject(ProjectCreateWriteModel project)
         {
             var projectEntity = new ProjectEntity
             {

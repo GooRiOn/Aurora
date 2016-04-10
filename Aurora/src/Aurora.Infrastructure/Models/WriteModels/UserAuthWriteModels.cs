@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.Net.Http.Headers;
 
-namespace Aurora.DomainProxy.Dtos
+namespace Aurora.Infrastructure.Models.WriteModels
 {
-    public class UserLoginDto
+    public class UserLoginWriteModel
     {
         [Required]
         public string UserName { get; set; }
@@ -13,11 +12,10 @@ namespace Aurora.DomainProxy.Dtos
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        
         public bool RememberMe { get; set; }
     }
 
-    public class UserRegisterDto : UserLoginDto
+    public class UserRegisterWriteModel : UserLoginWriteModel
     {
         [Required]
         [EmailAddress]
@@ -31,7 +29,7 @@ namespace Aurora.DomainProxy.Dtos
         public byte[] Gravatar { get; set; }
     }
 
-    public class UserPasswordResetDto
+    public class UserPasswordResetWriteModel
     {
         [Required]
         [EmailAddress]
@@ -49,16 +47,5 @@ namespace Aurora.DomainProxy.Dtos
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class UserLoginInfoDto
-    {
-        public string Id { get; set; }
-
-        public bool IsLocked { get; set; }
-
-        public bool IsActive { get; set; }
-
-        public string[] Roles { get; set; }
     }
 }

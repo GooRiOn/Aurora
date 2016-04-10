@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aurora.DomainProxy.Dtos;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data;
 using Aurora.Infrastructure.Data.Interfaces;
+using Aurora.Infrastructure.Models.WriteModels;
 using Aurora.Web.Services.Interfaces;
 using Microsoft.AspNet.Mvc;
 
@@ -24,7 +24,7 @@ namespace Aurora.Web.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IResult> CreateProjectAsync([FromBody] ProjectCreateDto project)
+        public async Task<IResult> CreateProjectAsync([FromBody] ProjectCreateWriteModel project)
         {
             project.MemberToken = Guid.NewGuid();
 
