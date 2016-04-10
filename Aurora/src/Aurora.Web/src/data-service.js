@@ -2,10 +2,12 @@ define(["require", "exports", "aurelia-fetch-client"], function (require, export
     "use strict";
     var DataService = (function () {
         function DataService(http, authService) {
+            var _this = this;
+            this.host = 'http://localhost:49849/api/';
             this.authService = authService;
             this.http = http;
             this.http.configure(function (config) {
-                config.withBaseUrl('http://localhost:49849/api/');
+                config.withBaseUrl(_this.host);
             });
         }
         DataService.prototype.get = function (url, isAccessTokenRequired) {

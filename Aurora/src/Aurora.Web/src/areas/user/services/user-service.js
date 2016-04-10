@@ -38,6 +38,10 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
         UserService.prototype.resetUserPassword = function (userPasswordResetDto) {
             return _super.prototype.post.call(this, 'Accounts/Password/Reset', userPasswordResetDto, false);
         };
+        UserService.prototype.findUsersBySearchPhrase = function (searchPhrase) {
+            var url = "Users/" + searchPhrase + "/Find";
+            return _super.prototype.get.call(this, url, true);
+        };
         UserService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])

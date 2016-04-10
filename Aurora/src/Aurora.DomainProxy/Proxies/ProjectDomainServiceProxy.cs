@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Aurora.Domain.DomainServices;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
 using Aurora.DomainProxy.Dtos;
@@ -23,7 +22,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> CreateProjectAsync(ProjectCreateDto project)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var projectDomainService = _projectDomainServiceFactory.Get(unitOfWork);
                 var projectDomainObject = project.AsDomainObject();

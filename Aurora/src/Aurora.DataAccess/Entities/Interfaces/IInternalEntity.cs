@@ -2,7 +2,12 @@
 
 namespace Aurora.DataAccess.Entities.Interfaces
 {
-    public interface IInternalEntity<TKey>
+    public interface IInternalEntity
+    {
+        
+    }
+
+    public interface IInternalEntity<TKey> : IInternalEntity
     {
         TKey Id { get; set; }
     }

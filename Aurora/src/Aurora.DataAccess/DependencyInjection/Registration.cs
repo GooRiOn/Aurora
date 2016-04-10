@@ -11,11 +11,11 @@ namespace Aurora.DataAccess.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AuroraContext>().AsSelf();
-            builder.RegisterGeneric(typeof (RepositoryFactory<>)).As(typeof (IRepositoryFactory<>));
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
-            builder.RegisterType<UserRepository>().As<IUserRepository>();
-            builder.RegisterType<ProjectRepository>().As<IProjectRepository>();
+            builder.RegisterGeneric(typeof(RepositoryFactory<>)).As(typeof(IRepositoryFactory<>));
+            builder.RegisterGeneric(typeof (ReadRepository<>)).As(typeof (IReadRepository<>));
+            builder.RegisterGeneric(typeof(WriteRepository<>)).As(typeof(IWriteRepository<>));
         }
     }
 }

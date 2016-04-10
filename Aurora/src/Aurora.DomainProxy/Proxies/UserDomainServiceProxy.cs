@@ -36,7 +36,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> LockUser(string userId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
                 await userDomainService.LockUser(userId);
@@ -46,7 +46,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> UnlockUser(string userId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
                 await userDomainService.UnlockUser(userId);
@@ -56,7 +56,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> DeleteUser(string userId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
                 await userDomainService.DeleteUser(userId);

@@ -20,6 +20,7 @@ namespace Aurora.DomainProxy.Proxies
             }
             catch (Exception e)
             {
+                unitOfWork.Rollback();
                 result.Errors = new[] { "An error has occured during SaveChanges" };
                 result.State = ResultStateEnum.Failed;
             }
@@ -37,3 +38,4 @@ namespace Aurora.DomainProxy.Proxies
         }  
     }
 }
+

@@ -12,9 +12,9 @@ namespace Aurora.DataAccess
             _customResolver = customResolver;
         }
 
-        public IUnitOfWork Get()
+        public IUnitOfWork Get(bool isReadOnly = true)
         {
-            return _customResolver.Resolve<IUnitOfWork>();
+            return _customResolver.Resolve<IUnitOfWork,bool>("isReadOnly", isReadOnly);
         }
     }
 }

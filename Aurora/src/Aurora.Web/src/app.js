@@ -7,11 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", 'aurelia-framework', "auth-service", 'areas/user/static-view-models/logout'], function (require, exports, aurelia_framework_1, auth, userAuth) {
+define(["require", "exports", "auth-service", 'areas/user/static-view-models/logout', 'aurelia-framework'], function (require, exports, auth, userAuth, aurelia_framework_1) {
     "use strict";
     var App = (function () {
         function App(authService, logoutStaticViewModel) {
             this.logoutStaticViewModel = logoutStaticViewModel;
+            this.host = 'http://localhost:49849/api';
             this.authService = authService;
         }
         App.prototype.logout = function () {

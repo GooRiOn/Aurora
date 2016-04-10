@@ -1,8 +1,8 @@
 ﻿using Aurora.DataAccess.Entities.Interfaces;
 
-namespace Aurora.Domain.DomainServices.Interfaces
+namespace Aurora.DataAccess.Repositories.Interfaces
 {
-    public interface IEntityService<TEntity> where TEntity : class, IInternalEntity
+    public interface IWriteRepository<TEntity> where TEntity : class, IInternalEntity
     {
         TEntity Add(TEntity entity);
         void Update(TEntity entity);

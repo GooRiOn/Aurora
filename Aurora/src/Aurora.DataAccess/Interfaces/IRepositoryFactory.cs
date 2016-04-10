@@ -1,9 +1,12 @@
-﻿using Aurora.Infrastructure.Interfaces;
+﻿using Aurora.DataAccess.Entities.Interfaces;
+using Aurora.DataAccess.Repositories.Interfaces;
+using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.DataAccess.Interfaces
 {
-    public interface IRepositoryFactory<out TRepo>
+    public interface IRepositoryFactory<TEntity> where TEntity : class, IInternalEntity
     {
-        TRepo Get(IUnitOfWork unitOfWork);
+        IReadRepository<TEntity> GetRead(IUnitOfWork unitOfWork);
+        IWriteRepository<TEntity> GetWrite(IUnitOfWork unitOfWork);
     }
 }

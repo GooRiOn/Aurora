@@ -7,23 +7,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", '../services/create-project-service', 'aurelia-framework', 'aurelia-binding'], function (require, exports, services, aurelia_framework_1, aurelia_binding_1) {
+define(["require", "exports", '../models/project-models', '../services/create-project-service', '../../../data', '../../user/services/user-service', 'aurelia-framework'], function (require, exports, models, services, data, userSerices, aurelia_framework_1) {
     "use strict";
     var CreateProjectViewModel = (function () {
-        function CreateProjectViewModel(createProjectService, observerLocator) {
+        function CreateProjectViewModel(createProjectService, userService, bindingEngine) {
+            var _this = this;
             this.createProjectService = createProjectService;
-            this.observerLocator = observerLocator;
-            this.observerLocator.getObserver(this, 'searchPhrase').subscribe(this.findUsersBySearchPhrase);
+            this.userService = userService;
+            this.bindingEngine = bindingEngine;
+            this.newProject = new models.ProjectCreateDto();
+            this.bindingEngine.propertyObserver(this, 'searchPhrase').subscribe(function (newValue, oldValue) {
+                if (newValue.length === 0) {
+                    _this.users = [];
+                    return;
+                }
+                if (newValue.length < 3)
+                    return;
+                _this.userService.findUsersBySearchPhrase(_this.searchPhrase).then(function (result) {
+                    _this.users = result;
+                });
+            });
         }
-        CreateProjectViewModel.prototype.findUsersBySearchPhrase = function () {
-            var self = this;
-            self.createProjectService.findUsersBySearchPhrase(self.searchPhrase).then(function (result) {
-                self.users = result;
+        CreateProjectViewModel.prototype.addProjectMember = function (user) {
+            var isUserAlreadyMember = this.newProject.members.some(function (m) { return m.id === user.id; });
+            if (isUserAlreadyMember) {
+                Materialize.toast("You cannot add same user twice", 4000, 'btn orange');
+                return;
+            }
+            this.newProject.members.push(user);
+        };
+        CreateProjectViewModel.prototype.removeProjectMember = function (user) {
+            this.newProject.members.remove(user);
+        };
+        CreateProjectViewModel.prototype.createProject = function () {
+            this.createProjectService.createProject(this.newProject).then(function (result) {
+                if (result.state === data.ResultStateEnum.Succeed)
+                    Materialize.toast('Project created', 4000, 'btn');
             });
         };
         CreateProjectViewModel = __decorate([
-            aurelia_framework_1.inject(services.CreateProjectService, aurelia_binding_1.ObserverLocator), 
-            __metadata('design:paramtypes', [services.CreateProjectService, aurelia_binding_1.ObserverLocator])
+            aurelia_framework_1.inject(services.CreateProjectService, userSerices.UserService, aurelia_framework_1.BindingEngine), 
+            __metadata('design:paramtypes', [services.CreateProjectService, userSerices.UserService, aurelia_framework_1.BindingEngine])
         ], CreateProjectViewModel);
         return CreateProjectViewModel;
     }());

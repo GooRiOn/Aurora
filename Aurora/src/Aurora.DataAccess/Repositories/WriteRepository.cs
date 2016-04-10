@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.Data.Entity;
 
 namespace Aurora.DataAccess.Repositories
 {
-    public abstract class GenericRepository<TEntity,TKey> : IGenericRepository<TEntity,TKey> where TEntity : class, IInternalEntity<TKey>
+    public class WriteRepository<TEntity> : IWriteRepository<TEntity> where TEntity : class, IInternalEntity
     {
-        public IQueryable<TEntity> Query => _context.Set<TEntity>();
-
         private readonly AuroraContext _context;
 
-        protected GenericRepository(AuroraContext context)
+        public WriteRepository(AuroraContext context)
         {
             _context = context;
         }
@@ -37,11 +33,6 @@ namespace Aurora.DataAccess.Repositories
                 throw new NotSupportedException("Entity must implement ISoftDeletable interface");
 
             softDeletableEntity.Delete();
-        }
-
-        public virtual async Task<TEntity> GetByIdAsync(TKey id)
-        {
-            return await Query.SingleOrDefaultAsync(entity => entity.Id.Equals(id));
         }
     }
 }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Aurora.DataAccess.Entities;
 using Aurora.DataAccess.Interfaces;
-using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Domain.DomainObjects;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.DomainServices
 {
-    public sealed class ProjectDomainService : EntityService<ProjectEntity,IProjectRepository,int>, IProjectDomainService
+    public sealed class ProjectDomainService : EntityService<ProjectEntity>, IProjectDomainService
     {
-        public ProjectDomainService(IRepositoryFactory<IProjectRepository> repositoryFactory, IUnitOfWork unitOfWork) 
+        public ProjectDomainService(IRepositoryFactory<ProjectEntity> repositoryFactory, IUnitOfWork unitOfWork) 
             : base(repositoryFactory, unitOfWork)
         {
         }
@@ -29,7 +26,7 @@ namespace Aurora.Domain.DomainServices
                 }).ToList()
             };
 
-            Repository.Add(projectEntity);
+            WriteRepository.Add(projectEntity);
         }
     }
 }

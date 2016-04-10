@@ -17,11 +17,15 @@ namespace Aurora.DataAccess
 
         private bool _isCommited;
         private bool _isDisposed;
+        private bool _isReadOnly;
 
-        public UnitOfWork(AuroraContext context)
+        public UnitOfWork(AuroraContext context, bool isReadOnly)
         {
             _context = context;
-            _transaction = context.Database.BeginTransaction();
+            _isReadOnly = isReadOnly;
+
+            if(!isReadOnly)
+                _transaction = context.Database.BeginTransaction();
         }
 
         public int Commit()
@@ -30,6 +34,9 @@ namespace Aurora.DataAccess
                 throw new NotSupportedException("Cannot commit commited UOW");
             if (_isDisposed)
                 throw new NotSupportedException("Cannot commit disposed UOW");
+            if (_isReadOnly)
+                throw new NotSupportedException("Cannot commit readonly UOW");
+
 
             var result = _context.SaveChanges();
 
@@ -46,8 +53,10 @@ namespace Aurora.DataAccess
                 throw new NotSupportedException("Cannot commit commited UOW");
             if (_isDisposed)
                 throw new NotSupportedException("Cannot commit disposed UOW");
+            if (_isReadOnly)
+                throw new NotSupportedException("Cannot commit readonly UOW");
 
-             var result = await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
 
             _transaction.Commit();
 
@@ -56,13 +65,20 @@ namespace Aurora.DataAccess
             return result;
         }
 
+        public void Rollback()
+        {
+            _transaction.Rollback();
+        }
+
         public void Dispose()
         {
             if (_isDisposed == false)
             {
                 _context.Dispose();
                 _isDisposed = true;
-                _transaction.Dispose();
+
+                if(!_isReadOnly)
+                    _transaction.Dispose();
             }
         }
 

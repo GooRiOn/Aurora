@@ -19,9 +19,8 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
         function CreateProjectService(http, authService) {
             _super.call(this, http, authService);
         }
-        CreateProjectService.prototype.findUsersBySearchPhrase = function (searchPhrase) {
-            var url = "Users/" + searchPhrase + "/Find";
-            return _super.prototype.get.call(this, url, true);
+        CreateProjectService.prototype.createProject = function (project) {
+            return _super.prototype.post.call(this, 'Projects/Create', project, true);
         };
         CreateProjectService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 

@@ -6,7 +6,7 @@ using Aurora.Infrastructure.Data.Interfaces;
 
 namespace Aurora.Domain.DomainServices.Interfaces
 {
-    public interface IUserDomainService : IEntityService<UserEntity, string>
+    public interface IUserDomainService : IEntityService<UserEntity>
     {
         Task<IPagedResult<UserDomainObject>> GetUsersPageAsync(int pageNumber, int pageSize);
         Task LockUser(string userId);

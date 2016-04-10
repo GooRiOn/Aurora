@@ -4,7 +4,7 @@ using Aurora.Domain.DomainObjects;
 
 namespace Aurora.Domain.DomainServices.Interfaces
 {
-    public interface IProjectDomainService : IEntityService<ProjectEntity,int>
+    public interface IProjectDomainService : IEntityService<ProjectEntity>
     {
         void CreateProject(ProjectCreateDomainObject project);
     }

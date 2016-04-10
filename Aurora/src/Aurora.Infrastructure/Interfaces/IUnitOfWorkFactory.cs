@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWorkFactory<out TUnitOfWork>
     {
-        TUnitOfWork Get();
+        TUnitOfWork Get(bool isReadOnly = true);
     }
 
     public interface IUnitOfWorkFactory : IUnitOfWorkFactory<IUnitOfWork>

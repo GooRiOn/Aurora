@@ -1,10 +1,12 @@
-﻿using Aurora.DataAccess.Interfaces;
+﻿using Aurora.DataAccess.Entities.Interfaces;
+using Aurora.DataAccess.Interfaces;
+using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.Infrastructure.DependencyInjection.Initerfaces;
 using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.DataAccess
 {
-    public class RepositoryFactory<TRepo> : IRepositoryFactory<TRepo>
+    public class RepositoryFactory<TEntity> : IRepositoryFactory<TEntity> where TEntity : class, IInternalEntity
     {
         private ICustomDependencyResolver _resolver { get; set; }
 
@@ -13,10 +15,16 @@ namespace Aurora.DataAccess
             _resolver = resolver;
         }
 
-        public TRepo Get(IUnitOfWork unitOfWork)
+        public IReadRepository<TEntity> GetRead(IUnitOfWork unitOfWork)
         {
             var contextGetter = (IContextGetter)unitOfWork;
-            return _resolver.Resolve<TRepo, AuroraContext>("context",contextGetter.Context);
+            return _resolver.Resolve<IReadRepository<TEntity>, AuroraContext>("context",contextGetter.Context);
+        }
+
+        public IWriteRepository<TEntity> GetWrite(IUnitOfWork unitOfWork)
+        {
+            var contextGetter = (IContextGetter)unitOfWork;
+            return _resolver.Resolve<IWriteRepository<TEntity>, AuroraContext>("context", contextGetter.Context);
         }
     }
 }

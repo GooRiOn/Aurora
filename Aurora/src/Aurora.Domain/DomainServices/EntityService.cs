@@ -8,34 +8,30 @@ using Aurora.Infrastructure.Interfaces;
 
 namespace Aurora.Domain.DomainServices
 {
-    public abstract class EntityService<TEntity,TRepo, TKey> : IEntityService<TEntity,TKey> 
-        where TEntity : class, IInternalEntity<TKey> where TRepo : IGenericRepository<TEntity, TKey>
+    public abstract class EntityService<TEntity> : IEntityService<TEntity> where TEntity : class, IInternalEntity 
     {
-        protected TRepo Repository { get; }
+        protected IReadRepository<TEntity> ReadRepository { get; }
+        protected IWriteRepository<TEntity> WriteRepository { get; } 
 
-        protected EntityService(IRepositoryFactory<TRepo> repositoryFactory, IUnitOfWork unitOfWork)
+        protected EntityService(IRepositoryFactory<TEntity> repositoryFactory, IUnitOfWork unitOfWork)
         {
-            Repository = repositoryFactory.Get(unitOfWork);
+            ReadRepository = repositoryFactory.GetRead(unitOfWork);
+            WriteRepository = repositoryFactory.GetWrite(unitOfWork);
         } 
 
         public TEntity Add(TEntity entity)
         {
-            return Repository.Add(entity);
+            return WriteRepository.Add(entity);
         }
 
         public void Update(TEntity entity)
         {
-            Repository.Update(entity);
+            WriteRepository.Update(entity);
         }
 
         public void Delete(TEntity entity)
         {
-            Repository.Delete(entity);
-        }
-
-        public async Task<TEntity> GetByIdAsync(TKey id)
-        {
-            return await Repository.GetByIdAsync(id);
+            WriteRepository.Delete(entity);
         }
 
         protected int GetPagedResultTotalPages(int collection, int pageSize)
