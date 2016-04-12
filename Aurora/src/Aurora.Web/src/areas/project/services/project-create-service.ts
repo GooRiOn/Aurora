@@ -6,12 +6,12 @@ import {HttpClient} from 'aurelia-fetch-client';
 import {inject} from 'aurelia-framework';
 
 
-export interface ICreateProjectService {
+export interface IProjectCreateService {
     createProject(project: models.ProjectCreateModel): Promise<data.IResult>;
 }
 
 @inject(HttpClient, auth.AuthService)
-export class CreateProjectService extends app.DataService implements ICreateProjectService {
+export class ProjectCreateService extends app.DataService implements IProjectCreateService {
 
     constructor(http: HttpClient, authService: auth.AuthService) {
         super(http, authService);

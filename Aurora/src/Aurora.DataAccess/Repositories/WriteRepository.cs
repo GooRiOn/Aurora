@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Aurora.DataAccess.Repositories.Interfaces;
 using Aurora.DataAccess.Entities.Interfaces;
 using Microsoft.Data.Entity;
@@ -14,18 +15,27 @@ namespace Aurora.DataAccess.Repositories
             _context = context;
         }
 
-        public virtual TEntity Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
             return entity;
         }
 
-        public virtual void Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(TEntity entity)
+        public void UpdateAttached<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> propertySelector)
+        {
+            _context.Attach(entity);
+
+            var entry = _context.Entry(entity);
+
+            entry.Property(propertySelector).IsModified = true;
+        }
+
+        public void Delete(TEntity entity)
         {
             var softDeletableEntity = entity as ISoftDeletable;
 

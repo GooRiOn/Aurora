@@ -10,5 +10,5 @@ export interface IResult {
 
 export interface IPagedResult<TContent> {
     content: TContent[];
-    totalPaes: number;
+    totalPages: number;
 }

@@ -9,9 +9,9 @@ namespace Aurora.Domain.DomainServices.Interfaces
     public interface IUserDomainService : IEntityService<UserEntity>
     {
         Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize);
-        Task LockUser(string userId);
-        Task UnlockUser(string userId);
-        Task DeleteUser(string userId);
+        Task LockUserAsync(string userId);
+        Task UnlockUserAsync(string userId);
+        Task DeleteUserAsync(string userId);
         Task<IEnumerable<UserReadModel>> FindUsersByPhraseAsync(string searchPhrase);
         Task<byte[]> GetUserGravatarAsync(string userName);
     }

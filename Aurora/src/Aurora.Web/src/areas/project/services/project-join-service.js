@@ -14,20 +14,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 define(["require", "exports", '../../../data-service', '../../../auth-service', 'aurelia-fetch-client', 'aurelia-framework'], function (require, exports, app, auth, aurelia_fetch_client_1, aurelia_framework_1) {
     "use strict";
-    var CreateProjectService = (function (_super) {
-        __extends(CreateProjectService, _super);
-        function CreateProjectService(http, authService) {
+    var ProjectJoinService = (function (_super) {
+        __extends(ProjectJoinService, _super);
+        function ProjectJoinService(http, authService) {
             _super.call(this, http, authService);
         }
-        CreateProjectService.prototype.createProject = function (project) {
-            return _super.prototype.post.call(this, 'Projects/Create', project, true);
+        ProjectJoinService.prototype.joinProject = function (memberToken) {
+            var url = "Projects/" + memberToken + "/Join";
+            return _super.prototype.post.call(this, url, null, true);
         };
-        CreateProjectService = __decorate([
+        ProjectJoinService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])
-        ], CreateProjectService);
-        return CreateProjectService;
+        ], ProjectJoinService);
+        return ProjectJoinService;
     }(app.DataService));
-    exports.CreateProjectService = CreateProjectService;
+    exports.ProjectJoinService = ProjectJoinService;
 });
-//# sourceMappingURL=create-project-service.js.map
+//# sourceMappingURL=project-join-service.js.map

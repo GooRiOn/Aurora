@@ -11,7 +11,7 @@ namespace Aurora.Web.Services
         public async Task SendProjectJoinEmail(string projectName, Guid memberToken, string receiverEmail)
         {
             var subject = $"Aurora | You've been invited to {projectName} project!";
-            var body = $"http://localhost:49849/#/project/{memberToken}/join";
+            var body = $"http://localhost:49849/#/project/join?memberToken={memberToken}";
 
             await SendEmailAsync(subject, body, receiverEmail);
         }

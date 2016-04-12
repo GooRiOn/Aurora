@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", '../models/project-models', '../services/create-project-service', '../../../data', '../../user/services/user-service', 'aurelia-framework'], function (require, exports, models, services, data, userSerices, aurelia_framework_1) {
+define(["require", "exports", '../models/project-models', '../services/project-create-service', '../../../data', '../../user/services/user-service', 'aurelia-framework'], function (require, exports, models, services, data, userSerices, aurelia_framework_1) {
     "use strict";
     var CreateProjectViewModel = (function () {
         function CreateProjectViewModel(createProjectService, userService, bindingEngine) {
@@ -15,7 +15,7 @@ define(["require", "exports", '../models/project-models', '../services/create-pr
             this.createProjectService = createProjectService;
             this.userService = userService;
             this.bindingEngine = bindingEngine;
-            this.newProject = new models.ProjectCreateDto();
+            this.newProject = new models.ProjectCreateModel();
             this.bindingEngine.propertyObserver(this, 'searchPhrase').subscribe(function (newValue, oldValue) {
                 if (newValue.length === 0) {
                     _this.users = [];
@@ -46,11 +46,11 @@ define(["require", "exports", '../models/project-models', '../services/create-pr
             });
         };
         CreateProjectViewModel = __decorate([
-            aurelia_framework_1.inject(services.CreateProjectService, userSerices.UserService, aurelia_framework_1.BindingEngine), 
-            __metadata('design:paramtypes', [services.CreateProjectService, userSerices.UserService, aurelia_framework_1.BindingEngine])
+            aurelia_framework_1.inject(services.ProjectCreateService, userSerices.UserService, aurelia_framework_1.BindingEngine), 
+            __metadata('design:paramtypes', [services.ProjectCreateService, userSerices.UserService, aurelia_framework_1.BindingEngine])
         ], CreateProjectViewModel);
         return CreateProjectViewModel;
     }());
     exports.CreateProjectViewModel = CreateProjectViewModel;
 });
-//# sourceMappingURL=create-project.js.map
+//# sourceMappingURL=project-create.js.map

@@ -11,6 +11,7 @@ export class UsersManageViewModel
     users: userModels.UserModel[];
     pageNumber = 1;
     pageSize = 10;
+    totalPages = 1;
 
     constructor(usesManageService: services.UsersManageService)
     {
@@ -26,7 +27,8 @@ export class UsersManageViewModel
     {
         this.usesManageService.getUsers(this.pageNumber, this.pageSize).then((result: data.IPagedResult<userModels.UserModel>) =>
         {
-             this.users = result.content;
+            this.users = result.content;
+            this.totalPages = result.totalPages;
         });
     }
 
@@ -83,5 +85,24 @@ export class UsersManageViewModel
         {
             Materialize.toast('Password changed', 4000, 'green');
         });
+    }
+
+    getUsersPreviousPage()
+    {
+        this.pageNumber -= 1;
+
+        if (this.pageNumber < 1)
+            this.pageNumber = 1;
+
+        this.getUsers();
+    }
+
+    getUsersNextPage() {
+        this.pageNumber += 1;
+
+        if (this.pageNumber > this.totalPages)
+            this.pageNumber = this.totalPages;
+
+        this.getUsers();
     }
 }

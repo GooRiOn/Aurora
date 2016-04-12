@@ -1,26 +1,24 @@
 ﻿import userModels = require('../../user/models/user-models');
 import models = require('../models/project-models');
-import services = require('../services/create-project-service');
+import services = require('../services/project-create-service');
 import data = require('../../../data');
 import userSerices = require('../../user/services/user-service'); 
 import {inject, BindingEngine} from 'aurelia-framework';
 
-@inject(services.CreateProjectService, userSerices.UserService, BindingEngine)
+@inject(services.ProjectCreateService, userSerices.UserService, BindingEngine)
 export class CreateProjectViewModel
 {
     searchPhrase: string;
     users: userModels.UserModel[];
     newProject: models.ProjectCreateModel;
 
-    private createProjectService: services.ICreateProjectService;
+    private createProjectService: services.IProjectCreateService;
     private userService: userSerices.IUserService;
-    private bindingEngine: BindingEngine;
 
-    constructor(createProjectService: services.CreateProjectService, userService: userSerices.UserService, bindingEngine: BindingEngine)
+    constructor(createProjectService: services.ProjectCreateService, userService: userSerices.UserService, private bindingEngine: BindingEngine)
     {
         this.createProjectService = createProjectService;
         this.userService = userService;
-        this.bindingEngine = bindingEngine;
         this.newProject = new models.ProjectCreateModel();
 
         this.bindingEngine.propertyObserver(this,'searchPhrase').subscribe((newValue, oldValue) =>
@@ -46,7 +44,7 @@ export class CreateProjectViewModel
 
         if (isUserAlreadyMember)
         {
-            Materialize.toast("You cannot add same user twice", 4000, 'btn orange');
+            Materialize.toast('You cannot add same user twice', 4000, 'btn orange');
             return;
         }
 

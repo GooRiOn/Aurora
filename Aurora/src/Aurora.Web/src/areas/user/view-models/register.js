@@ -13,7 +13,7 @@ define(["require", "exports", '../services/user-service', '../models/user-models
         function RegisterViewModel(userService, router) {
             this.router = router;
             this.userService = userService;
-            this.userRegisterDto = new models.UserRegisterDto();
+            this.userRegisterDto = new models.UserRegisterModel();
         }
         RegisterViewModel.prototype.register = function () {
             var _this = this;

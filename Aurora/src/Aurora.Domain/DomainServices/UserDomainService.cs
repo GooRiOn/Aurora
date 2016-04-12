@@ -24,9 +24,9 @@ namespace Aurora.Domain.DomainServices
 
         public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
-            var qUsers = ReadRepository.Query;
-            var result = await qUsers.AsReadModel().Skip(pageNumber - 1).Take(pageSize).ToListAsync();
-            var usersNumber = await qUsers.CountAsync();
+            var qUsers = ReadRepository.NoTrackedQuery;
+            var result = await qUsers.AsReadModel().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+            var usersNumber = await qUsers.CountAsync(u => u.IsActive);
 
             return new PagedResult<UserReadModel>
             {
@@ -35,7 +35,7 @@ namespace Aurora.Domain.DomainServices
             };
         }
 
-        public async Task LockUser(string userId)
+        public async Task LockUserAsync(string userId)
         {
             var user = await ReadRepository.Query.SingleOrDefaultAsync(u => u.Id == userId);
             var lockableUser = (ILockable) user;
@@ -43,7 +43,7 @@ namespace Aurora.Domain.DomainServices
             lockableUser.Lock();
         }
 
-        public async Task UnlockUser(string userId)
+        public async Task UnlockUserAsync(string userId)
         {
             var user = await ReadRepository.Query.SingleOrDefaultAsync(u => u.Id == userId);
             var lockableUser = (ILockable)user;
@@ -51,7 +51,7 @@ namespace Aurora.Domain.DomainServices
             lockableUser.Unlock();
         }
 
-        public async Task DeleteUser(string userId)
+        public async Task DeleteUserAsync(string userId)
         {
             var user = await ReadRepository.Query.SingleOrDefaultAsync(u => u.Id == userId);
             var softDeletableUser = (ISoftDeletable)user;

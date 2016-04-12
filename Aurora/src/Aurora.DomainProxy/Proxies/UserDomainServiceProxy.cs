@@ -35,7 +35,7 @@ namespace Aurora.DomainProxy.Proxies
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
-                await userDomainService.LockUser(userId);
+                await userDomainService.LockUserAsync(userId);
                 return await CreateResultAsync(unitOfWork);
             }
         }
@@ -45,7 +45,7 @@ namespace Aurora.DomainProxy.Proxies
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
-                await userDomainService.UnlockUser(userId);
+                await userDomainService.UnlockUserAsync(userId);
                 return await CreateResultAsync(unitOfWork);
             }
         }
@@ -55,7 +55,7 @@ namespace Aurora.DomainProxy.Proxies
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
-                await userDomainService.DeleteUser(userId);
+                await userDomainService.DeleteUserAsync(userId);
                 return await CreateResultAsync(unitOfWork);
             }
         }

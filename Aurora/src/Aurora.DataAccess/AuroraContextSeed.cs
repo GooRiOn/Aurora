@@ -23,6 +23,10 @@ namespace Aurora.DataAccess
                 var adminRole = await roleManager.FindByNameAsync(RoleNames.Admin);
 
                 context.UserRoles.Add(new IdentityUserRole<string> { UserId = adminUser.Id, RoleId = adminRole.Id });
+
+                for (var i = 0; i < 100; ++i)
+                    await CreateUser(new UserEntity {UserName = $"user{i}", Email = $"user{i}@aurora.com"}, userManager);
+
                 await context.SaveChangesAsync();
             }
         }

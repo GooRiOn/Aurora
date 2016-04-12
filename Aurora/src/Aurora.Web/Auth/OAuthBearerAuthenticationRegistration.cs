@@ -19,6 +19,7 @@ namespace Aurora.Web.Auth
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy("User", new AuthorizationPolicyBuilder()
+                    .AddRequirements()
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
 

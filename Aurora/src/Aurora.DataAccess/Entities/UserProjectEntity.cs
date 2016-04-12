@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using Aurora.DataAccess.Entities.Interfaces;
 
 namespace Aurora.DataAccess.Entities
 {
-    public class UserProjectEntity
+    public class UserProjectEntity : IInternalEntity
     {
         public string UserId { get; set; }
         

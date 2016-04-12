@@ -7,10 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", '../../../auth-service', '../services/user-service', 'aurelia-framework'], function (require, exports, auth, userServices, aurelia_framework_1) {
+define(["require", "exports", '../../../auth-service', '../services/user-service', 'aurelia-framework', 'aurelia-router'], function (require, exports, auth, userServices, aurelia_framework_1, aurelia_router_1) {
     "use strict";
     var LogoutStaticViewModel = (function () {
-        function LogoutStaticViewModel(authService, userService) {
+        function LogoutStaticViewModel(authService, userService, router) {
+            this.router = router;
             this.authService = authService;
             this.userService = userService;
         }
@@ -19,11 +20,12 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             this.userService.logout().then(function (result) {
                 _this.authService.clearAccessToken();
                 _this.authService.setUser(null);
+                _this.router.navigate('#/');
             });
         };
         LogoutStaticViewModel = __decorate([
-            aurelia_framework_1.inject(auth.AuthService, userServices.UserService), 
-            __metadata('design:paramtypes', [auth.AuthService, userServices.UserService])
+            aurelia_framework_1.inject(auth.AuthService, userServices.UserService, aurelia_router_1.Router), 
+            __metadata('design:paramtypes', [auth.AuthService, userServices.UserService, aurelia_router_1.Router])
         ], LogoutStaticViewModel);
         return LogoutStaticViewModel;
     }());

@@ -1,17 +1,11 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
-    var UserDto = (function () {
-        function UserDto() {
-        }
-        return UserDto;
-    }());
-    exports.UserDto = UserDto;
-    var ProjectCreateDto = (function () {
-        function ProjectCreateDto() {
+    var ProjectCreateModel = (function () {
+        function ProjectCreateModel() {
             this.members = [];
         }
-        return ProjectCreateDto;
+        return ProjectCreateModel;
     }());
-    exports.ProjectCreateDto = ProjectCreateDto;
+    exports.ProjectCreateModel = ProjectCreateModel;
 });
 //# sourceMappingURL=project-models.js.map

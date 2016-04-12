@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
 using Aurora.DomainProxy.Proxies.Interfaces;
@@ -27,6 +28,17 @@ namespace Aurora.DomainProxy.Proxies
 
                 projectDomainService.CreateProject(project);
 
+                return await CreateResultAsync(unitOfWork);
+            }
+        }
+
+        public async Task<IResult> ActivateProjectMemberAsync(Guid memberToken, string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
+            {
+                var projectDomainService = _projectDomainServiceFactory.Get(unitOfWork);
+
+                await projectDomainService.ActivateProjectMemberAsync(memberToken, userId);
                 return await CreateResultAsync(unitOfWork);
             }
         }

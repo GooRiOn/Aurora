@@ -5,26 +5,32 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 define(["require", "exports"], function (require, exports) {
     "use strict";
-    var UserLoginDto = (function () {
-        function UserLoginDto() {
+    var UserLoginModel = (function () {
+        function UserLoginModel() {
             this.rememberMe = true;
         }
-        return UserLoginDto;
+        return UserLoginModel;
     }());
-    exports.UserLoginDto = UserLoginDto;
-    var UserRegisterDto = (function (_super) {
-        __extends(UserRegisterDto, _super);
-        function UserRegisterDto() {
+    exports.UserLoginModel = UserLoginModel;
+    var UserRegisterModel = (function (_super) {
+        __extends(UserRegisterModel, _super);
+        function UserRegisterModel() {
             _super.apply(this, arguments);
         }
-        return UserRegisterDto;
-    }(UserLoginDto));
-    exports.UserRegisterDto = UserRegisterDto;
-    var UserPasswordResetDto = (function () {
-        function UserPasswordResetDto() {
+        return UserRegisterModel;
+    }(UserLoginModel));
+    exports.UserRegisterModel = UserRegisterModel;
+    var UserPasswordResetModel = (function () {
+        function UserPasswordResetModel() {
         }
-        return UserPasswordResetDto;
+        return UserPasswordResetModel;
     }());
-    exports.UserPasswordResetDto = UserPasswordResetDto;
+    exports.UserPasswordResetModel = UserPasswordResetModel;
+    var UserModel = (function () {
+        function UserModel() {
+        }
+        return UserModel;
+    }());
+    exports.UserModel = UserModel;
 });
 //# sourceMappingURL=user-models.js.map

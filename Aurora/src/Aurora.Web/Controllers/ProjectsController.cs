@@ -38,5 +38,12 @@ namespace Aurora.Web.Controllers
 
             return result;
         }
+
+        [HttpPost("{memberToken}/Join")]
+        public async Task<IResult> JoinProjectAsync(Guid memberToken)
+        {
+            var userId = GetUserId();
+            return await _projectDomainServiceProxy.ActivateProjectMemberAsync(memberToken, userId);
+        }
     }
 }

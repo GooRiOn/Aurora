@@ -14,7 +14,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             this.router = router;
             this.userService = userService;
             this.authService = authService;
-            this.userLoginDto = new models.UserLoginDto();
+            this.userLoginDto = new models.UserLoginModel();
         }
         LoginViewModel.prototype.login = function () {
             var _this = this;
