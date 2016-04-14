@@ -66,6 +66,11 @@ export class CreateProjectViewModel
                 Materialize.toast('Project created', 4000, 'btn');
                 this.router.navigate('#/project/overview');
             }
+            else
+            {
+                for (let error of result.errors)
+                    Materialize.toast(error, 4000, 'btn orange');
+            }
                 
         });
     }

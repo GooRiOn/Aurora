@@ -49,6 +49,7 @@ namespace Aurora.Domain.DomainServices
 
             projectMember.IsVeryfied = true;
             projectMember.IsDeafult = true;
+
             userProjectWriteRepository.Update(projectMember);
         }
     }

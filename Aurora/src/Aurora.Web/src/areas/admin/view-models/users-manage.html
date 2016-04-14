@@ -46,9 +46,13 @@
                 </tr>
                 </tbody>
             </table>
+            <br/>
             <div class="row">
-                <a class="waves-effect waves-light btn" click.trigger="getUsersPreviousPage()"><</a>
-                <a class="waves-effect waves-light btn" click.trigger="getUsersNextPage()">></a>
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn" click.trigger="getUsersPreviousPage()"><</a>
+                    <span style="color: white;">${pageNumber}/${totalPages}</span>
+                    <a class="waves-effect waves-light btn" click.trigger="getUsersNextPage()">></a>
+                </div>
             </div>
         </div>
     </div>

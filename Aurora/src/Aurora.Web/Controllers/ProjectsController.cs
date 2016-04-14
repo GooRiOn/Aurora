@@ -25,6 +25,12 @@ namespace Aurora.Web.Controllers
         [HttpPost("Create")]
         public async Task<IResult> CreateProjectAsync([FromBody] ProjectCreateWriteModel project)
         {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(v => v.ErrorMessage).ToArray();
+                return CreateResult(ResultStateEnum.Failed,errors);
+            }
+
             project.MemberToken = Guid.NewGuid();
 
             var userId = GetUserId();
