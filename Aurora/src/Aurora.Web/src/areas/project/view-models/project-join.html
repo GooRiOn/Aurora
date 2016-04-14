@@ -1,3 +1,40 @@
 ﻿<template>
-    
+    <div class="container">
+        <div class="row">
+            <form class="col s8 offset-s2 form-position ">
+                <div class="row form-header">
+                    <div class="col s2 offset-s4">
+                        <h3>
+                            <span if.bind="isProjectJoinSucceed">Welcome!</span>
+                            <span if.bind="!isProjectJoinSucceed">Error</span>
+                        </h3>
+                    </div>
+                </div>
+                <div if.bind="isProjectJoinSucceed">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <span>To visit project page click the button below.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <a class="waves-effect waves-light btn" href="#/project/overview">Click me</a>
+                        </div>
+                    </div>
+                </div>
+                <div if.bind="!isProjectJoinSucceed">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <span>En unexpected error has occured. Please contact us via contact form.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <a class="waves-effect waves-light btn" href="#/contact">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </template>

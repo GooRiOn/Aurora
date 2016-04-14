@@ -7,7 +7,7 @@ namespace Aurora.Domain.DomainServices.Interfaces
 {
     public interface IProjectDomainService : IEntityService<ProjectEntity>
     {
-        void CreateProject(ProjectCreateWriteModel project);
+        void CreateProject(ProjectCreateWriteModel project, string creatorId);
         Task ActivateProjectMemberAsync(Guid memberToken, string userId);
     }
 }

@@ -20,13 +20,13 @@ namespace Aurora.DomainProxy.Proxies
             _projectDomainServiceFactory = projectDomainServiceFactory;
         }
 
-        public async Task<IResult> CreateProjectAsync(ProjectCreateWriteModel project)
+        public async Task<IResult> CreateProjectAsync(ProjectCreateWriteModel project, string creatorId)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var projectDomainService = _projectDomainServiceFactory.Get(unitOfWork);
 
-                projectDomainService.CreateProject(project);
+                projectDomainService.CreateProject(project, creatorId);
 
                 return await CreateResultAsync(unitOfWork);
             }

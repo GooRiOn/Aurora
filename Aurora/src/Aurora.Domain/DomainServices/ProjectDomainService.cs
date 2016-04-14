@@ -22,7 +22,7 @@ namespace Aurora.Domain.DomainServices
             _userProjectRepositoryFactory = userProjectRepositoryFactory;
         }
 
-        public void CreateProject(ProjectCreateWriteModel project)
+        public void CreateProject(ProjectCreateWriteModel project, string creatorId)
         {
             var projectEntity = new ProjectEntity
             {
@@ -35,6 +35,8 @@ namespace Aurora.Domain.DomainServices
                 }).ToList()
             };
 
+            projectEntity.Members.Add(new UserProjectEntity {UserId = creatorId, IsVeryfied = true, IsDeafult = true});
+
             WriteRepository.Add(projectEntity);
         }
 
@@ -46,6 +48,7 @@ namespace Aurora.Domain.DomainServices
             var projectMember = await userProjectReadRepository.Query.SingleOrDefaultAsync(pm => pm.UserId == userId && pm.Project.MemberToken == memberToken);
 
             projectMember.IsVeryfied = true;
+            projectMember.IsDeafult = true;
             userProjectWriteRepository.Update(projectMember);
         }
     }

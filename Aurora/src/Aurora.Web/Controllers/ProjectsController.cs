@@ -27,7 +27,8 @@ namespace Aurora.Web.Controllers
         {
             project.MemberToken = Guid.NewGuid();
 
-            var result = await _projectDomainServiceProxy.CreateProjectAsync(project);
+            var userId = GetUserId();
+            var result = await _projectDomainServiceProxy.CreateProjectAsync(project, userId);
 
             if (result.State == ResultStateEnum.Failed)
                 return result;

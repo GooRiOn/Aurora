@@ -4,8 +4,9 @@ import services = require('../services/project-create-service');
 import data = require('../../../data');
 import userSerices = require('../../user/services/user-service'); 
 import {inject, BindingEngine} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
 
-@inject(services.ProjectCreateService, userSerices.UserService, BindingEngine)
+@inject(services.ProjectCreateService, userSerices.UserService, BindingEngine, Router)
 export class CreateProjectViewModel
 {
     searchPhrase: string;
@@ -15,7 +16,7 @@ export class CreateProjectViewModel
     private createProjectService: services.IProjectCreateService;
     private userService: userSerices.IUserService;
 
-    constructor(createProjectService: services.ProjectCreateService, userService: userSerices.UserService, private bindingEngine: BindingEngine)
+    constructor(createProjectService: services.ProjectCreateService, userService: userSerices.UserService, private bindingEngine: BindingEngine, private router: Router)
     {
         this.createProjectService = createProjectService;
         this.userService = userService;
@@ -61,7 +62,11 @@ export class CreateProjectViewModel
         this.createProjectService.createProject(this.newProject).then((result: data.IResult) =>
         {
             if (result.state === data.ResultStateEnum.Succeed)
+            {
                 Materialize.toast('Project created', 4000, 'btn');
+                this.router.navigate('#/project/overview');
+            }
+                
         });
     }
 }

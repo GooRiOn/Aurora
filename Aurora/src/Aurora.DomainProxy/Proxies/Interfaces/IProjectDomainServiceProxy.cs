@@ -7,7 +7,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
 {
     public interface IProjectDomainServiceProxy : IBaseProxy
     {
-        Task<IResult> CreateProjectAsync(ProjectCreateWriteModel project);
+        Task<IResult> CreateProjectAsync(ProjectCreateWriteModel project, string creatorId);
         Task<IResult> ActivateProjectMemberAsync(Guid memberToken, string userId);
     }
 }

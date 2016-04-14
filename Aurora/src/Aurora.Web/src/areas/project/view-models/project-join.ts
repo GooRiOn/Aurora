@@ -3,9 +3,11 @@ import data = require('../../../data');
 import {inject} from 'aurelia-framework';
 
 @inject(services.ProjectJoinService)
-export class JoinProjectViewModel
+export class ProjectJoinViewModel
 {
     private joinProjectService: services.IProjectJoinService;
+
+    isProjectJoinSucceed = false;
 
     constructor(joinProjectService: services.ProjectJoinService)
     {
@@ -23,7 +25,7 @@ export class JoinProjectViewModel
         this.joinProjectService.joinProject(memberToken).then((result: data.IResult) =>
         {
             if (result.state === data.ResultStateEnum.Succeed)
-                Materialize.toast('WORKS!', 4000, 'btn');
+                this.isProjectJoinSucceed = true;
         });
     }
 }
