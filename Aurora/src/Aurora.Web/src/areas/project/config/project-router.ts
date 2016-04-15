@@ -6,7 +6,7 @@ export class ProjectRouter {
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.map([
-            { route: ['', 'overview'], name: 'overview', moduleId: '../view-models/project-overview', nav: true, title: 'Overview' },
+            { route: ['', 'dashboard'], name: 'dashboard', moduleId: '../view-models/project-dashboard', nav: true, title: 'Dashboard' },
             { route: 'create', name: 'create', moduleId: '../view-models/project-create', nav: true, title: 'Create' },
             { route: 'join', name: 'join', moduleId: '../view-models/project-join', nav: true, title: 'Join' }
           ]);
