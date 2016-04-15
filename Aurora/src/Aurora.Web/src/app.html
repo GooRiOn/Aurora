@@ -1,7 +1,12 @@
 <template>
    <nav class="nav-dark">
        <div class="nav-wrapper">
-           <a href="#/" class="brand-logo" ><img src="images/logo.png" if.bind="!authService.user"/></a>
+           <ul class="left hide-on-med-and-down">
+               <li><a href="#/"><img src="images/logo.png"/></a></li>
+               <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/project/dashboard">Dashboard</a></li>
+               <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/project/create">Create project</a></li>
+               <li if.bind="authService.isUserAdmin()"><a class="waves-effect waves-light btn-large" href="#/admin/users-manage">Users manage</a></li>
+           </ul>
            <ul class="right hide-on-med-and-down">
                <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/register">Register</a></li>
                <li if.bind="!authService.user"><a class="waves-effect waves-light btn-large" href="#/user/login">Login</a></li>
@@ -11,25 +16,6 @@
            </ul>
        </div>
    </nav>
-
-
-    <ul id="nav-mobile" class="side-nav fixed" style="overflow: auto; left: 0px; background-color: rgba(0, 0, 0, 0.7);" if.bind="authService.user">
-        <li class="logo">
-            <img src="images/logo.png"/>
-        </li>
-        <li>
-            <hr/>
-        </li>
-        <li class="bold side-menu-item ">
-            <a href="#/project/overview" class="waves-effect waves-teal side-nav-elem">Project overview</a>
-        </li>
-        <li class="bold side-menu-item ">
-            <a href="#/project/create" class="waves-effect waves-teal side-nav-elem">Create project</a>
-        </li>
-        <li class="bold side-menu-item " if.bind="authService.isUserAdmin()">
-            <a href="#/admin/users-manage" class="waves-effect waves-teal side-nav-elem">Users Manage</a>
-        </li>
-    </ul>
     <div class="page-host container">
     <router-view></router-view>
   </div>

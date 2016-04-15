@@ -287,7 +287,7 @@ table {
 }
 
 .view-body {
-    background-color: white;
+    background-color: rgba(255, 254, 254, 0.93);;
     padding: 20px;
 }
 
@@ -301,4 +301,32 @@ table {
 .side-menu-item {
     background-color: rgba(31, 220, 183, 0.36);
     margin-top: 10px;
+}
+
+.dashboard-position {
+    margin-top: 50px;
+}
+
+.sprints-card {
+    background-color: rgb(230, 24, 110) !important;
+}
+
+.backlog-card {
+    background-color: rgb(119, 151, 31) !important;
+}
+
+.tasks-card {
+    background-color: rgb(237, 183, 37) !important;
+}
+
+.user-stories-card {
+    background-color: rgb(130, 211, 225) !important;
+}
+
+.members-card {
+    background-color: rgb(63, 17, 63) !important;
+}
+
+.statistics-card {
+    background-color: rgb(73, 196, 160) !important;
 }

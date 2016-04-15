@@ -10,7 +10,7 @@ export class UsersManageViewModel
     usesManageService: services.IUsersManageService;
     users: userModels.UserModel[];
     pageNumber = 1;
-    pageSize = 10;
+    pageSize = 5;
     totalPages = 1;
 
     constructor(usesManageService: services.UsersManageService)
