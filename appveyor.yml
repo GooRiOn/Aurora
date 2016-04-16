@@ -1,0 +1,29 @@
+version: 1.0.{build}
+clone_depth: 1
+environment:
+  JSPM_GITHUB_AUTH_TOKEN:
+    secure: magic_SECURE_APPVEYOR_JSPM_GITHUB_AUTH_TOKEN_magic
+install:
+- npm install
+- node_modules\.bin\jspm config registries.bower.handler jspm-bower-endpoint
+- node_modules\.bin\jspm config registries.bower.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.bower.timeouts.build 300
+- node_modules\.bin\jspm config registries.github.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.github.timeouts.build 300
+- node_modules\.bin\jspm config registries.github.auth %JSPM_GITHUB_AUTH_TOKEN%
+- node_modules\.bin\jspm config registries.npm.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.npm.timeouts.build 300
+- node_modules\.bin\jspm install
+cache:
+- node_modules -> package.json
+- jspm_packages -> package.json
+artifacts:
+- path: dist
+deploy:
+- provider: WebDeploy
+  server: https://magic_publishProfile_publishUrl_magic/msdeploy.axd?site=magic_publishProfile_msdeploySite_magic
+  website: magic_publishProfile_msdeploySite_magic
+  username: magic_publishProfile_userName_magic
+  password:
+    secure: magic_secure_appveyor_publishProfile_userPWD_magic
+  artifact: dist.zip
