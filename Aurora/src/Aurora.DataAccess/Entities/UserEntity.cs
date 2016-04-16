@@ -12,7 +12,7 @@ namespace Aurora.DataAccess.Entities
         {
             this.IsActive = true;
             this.IsLocked = false;
-            this.UserProjects = new HashSet<UserProjectEntity>();
+            this.Projects = new HashSet<UserProjectEntity>();
         }
 
         public string FirstName { get; set; }
@@ -25,7 +25,7 @@ namespace Aurora.DataAccess.Entities
 
         public byte[] Gravatar { get; set; }
 
-        public ICollection<UserProjectEntity> UserProjects { get; set; }
+        public ICollection<UserProjectEntity> Projects { get; set; }
 
         void ILockable.Lock()
         {

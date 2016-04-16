@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Aurora.DataAccess.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
 
 namespace Aurora.DataAccess
 {
@@ -12,6 +13,11 @@ namespace Aurora.DataAccess
     {
         public DbSet<ProjectEntity> Projects { get; set; }
         public DbSet<SprintEntity> Sprints { get; set; } 
+        public DbSet<BacklogItemEntity> BacklogItems { get; set; }
+        public DbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<LabelEntity> Labels { get; set; }  
+        public DbSet<StageEntity> Stages { get; set; } 
+         
              
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -21,6 +27,13 @@ namespace Aurora.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserProjectEntity>().HasKey(up => new { up.ProjectId, up.UserId});
+            builder.Entity<TaskLabelEntity>().HasKey(tl => new { tl.TaskId, tl.LabelId });
+
+            foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             base.OnModelCreating(builder);
         }
 
