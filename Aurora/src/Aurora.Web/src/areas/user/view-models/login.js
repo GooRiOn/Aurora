@@ -21,8 +21,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             this.userService.login(this.userLoginDto).then(function (result) {
                 _this.authService.setAccessToken(result, _this.userLoginDto.rememberMe);
                 _this.getUserSelfInfo().then(function () {
-                    var user = _this.authService.getUser();
-                    Materialize.toast("welcome " + user.userName, 4000, 'btn');
+                    Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
                     _this.router.navigate('#/');
                 });
             });

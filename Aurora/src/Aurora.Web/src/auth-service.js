@@ -5,9 +5,6 @@ define(["require", "exports"], function (require, exports) {
             this.accessToken = '';
             this.isSessionStored = true;
         }
-        AuthService.prototype.getUser = function () {
-            return this.user;
-        };
         AuthService.prototype.setUser = function (user) {
             this.user = user;
         };
@@ -38,7 +35,7 @@ define(["require", "exports"], function (require, exports) {
             return this.user.roles.some(function (r) { return r === 'Admin'; });
         };
         AuthService.prototype.isUserLogged = function () {
-            return this.user !== null;
+            return this.user ? true : false;
         };
         return AuthService;
     }());

@@ -12,18 +12,18 @@ namespace Aurora.DataAccess.Entities
             this.BacklogItems = new HashSet<BacklogItemEntity>();
         }
         
-        public int ProjectId { get; set; }
-
-        [ForeignKey("ProjectId")]
-        public ProjectEntity Project { get; set; }
-
-        public int SprintNumber { get; set; }
+        public string Name { get; set; }
 
         public DateTime EstimatedStartDate { get; set; }
 
         public DateTime EstimatedEndDate { get; set; }
 
         public SprintState State { get; set; }
+
+        public int ProjectId { get; set; }
+
+        [ForeignKey("ProjectId")]
+        public ProjectEntity Project { get; set; }
 
         public ICollection<BacklogItemEntity> BacklogItems { get; set; } 
     }
