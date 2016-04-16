@@ -17,6 +17,7 @@ namespace Aurora.Web.Controllers
     [Route("api/Accounts")]
     public class AccountController : BaseController
     {
+        private readonly IUserDomainServiceProxy _userDomainServiceProxy;
         private readonly IUserAuthDomainServiceProxy _userAuthDomainServiceProxy;
         private readonly IOAuthService _oAuthService;
         private readonly IEmailService _emailService;
@@ -24,12 +25,13 @@ namespace Aurora.Web.Controllers
         
 
         public AccountController(IUserAuthDomainServiceProxy userAuthDomainServiceProxy, IOAuthService oAuthService, IEmailService emailService, 
-             IHttpService httpService)
+             IHttpService httpService, IUserDomainServiceProxy userDomainServiceProxy)
         {
             _userAuthDomainServiceProxy = userAuthDomainServiceProxy;
             _oAuthService = oAuthService;
             _emailService = emailService;
             _httpService = httpService;
+            _userDomainServiceProxy = userDomainServiceProxy;
         }
 
         [HttpPost("Register"), AllowAnonymous]
@@ -73,7 +75,7 @@ namespace Aurora.Web.Controllers
         public async Task<UserSelfInfoReadModel> GetUserSelfInfo()
         {
             var userId = GetUserId();
-            var result = await _userAuthDomainServiceProxy.GetUserSelfInfoAsync(userId);
+            var result = await _userDomainServiceProxy.GetUserSelfInfoAsync(userId);
 
             return result;
         }

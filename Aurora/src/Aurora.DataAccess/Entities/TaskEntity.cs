@@ -20,10 +20,13 @@ namespace Aurora.DataAccess.Entities
         [ForeignKey("StageId")]
         public StageEntity Stage { get; set; }
 
-        public string MemberId { get; set; }
+        [ForeignKey("Member"), Column(Order = 0)]
+        public string UserId { get; set; }
+        
+        public int UserProjectId { get; set; }
 
-        [ForeignKey("MemberId")]
-        public UserProjectEntity Member { get; set; }
+        [ForeignKey("UserProjectId")]
+        public UserProjectEntity UserProject { get; set; }
 
         public string Tite { get; set; }
 

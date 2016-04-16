@@ -37,7 +37,7 @@ export class LoginViewModel
     {
         return this.userService.getUserSelfInfo().then((result: auth.IUser) =>
         {
-            let user: auth.IUser = { userName: result.userName, roles: result.roles };
+            let user: auth.IUser = { userName: result.userName, roles: result.roles, projects: result.projects };
             this.authService.setUser(user);
         });
     }

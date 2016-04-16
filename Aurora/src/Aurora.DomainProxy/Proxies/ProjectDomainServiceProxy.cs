@@ -42,5 +42,16 @@ namespace Aurora.DomainProxy.Proxies
                 return await CreateResultAsync(unitOfWork);
             }
         }
+
+        public async Task<IResult> SetDefaultUserProjectAsync(int projectId, string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
+            {
+                var projectDomainService = _projectDomainServiceFactory.Get(unitOfWork);
+
+                projectDomainService.SetDefaultUserProject(projectId, userId);
+                return await CreateResultAsync(unitOfWork);
+            }
+        }
     }
 }

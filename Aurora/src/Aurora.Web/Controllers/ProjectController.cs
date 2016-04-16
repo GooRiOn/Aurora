@@ -11,12 +11,12 @@ using Microsoft.AspNet.Mvc;
 namespace Aurora.Web.Controllers
 {
     [Route("api/Projects")]
-    public class ProjectsController : BaseController
+    public class ProjectController : BaseController
     {
         private readonly IProjectDomainServiceProxy _projectDomainServiceProxy;
         private readonly IEmailService _emailService;
 
-        public ProjectsController(IProjectDomainServiceProxy projectDomainServiceProxy, IEmailService emailService)
+        public ProjectController(IProjectDomainServiceProxy projectDomainServiceProxy, IEmailService emailService)
         {
             _projectDomainServiceProxy = projectDomainServiceProxy;
             _emailService = emailService;
@@ -51,6 +51,13 @@ namespace Aurora.Web.Controllers
         {
             var userId = GetUserId();
             return await _projectDomainServiceProxy.ActivateProjectMemberAsync(memberToken, userId);
+        }
+
+        [HttpPost("{projectId}/Default")]
+        public async Task<IResult> SetDefaultUserProjectAsync(int projectId)
+        {
+            var userId = GetUserId();
+            return await _projectDomainServiceProxy.SetDefaultUserProjectAsync(projectId, userId);
         }
     }
 }

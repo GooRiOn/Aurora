@@ -52,5 +52,19 @@ namespace Aurora.Domain.DomainServices
 
             userProjectWriteRepository.Update(projectMember);
         }
+
+        public void SetDefaultUserProject(int projectId, string userId)
+        {
+            var writeUserProjectRepository = _userProjectRepositoryFactory.GetWrite(_unitOfWork);
+
+            var userProject = new UserProjectEntity
+            {
+                ProjectId = projectId,
+                UserId = userId,
+                IsDeafult = true
+            };
+
+            writeUserProjectRepository.UpdateAttached(userProject, up => up.IsDeafult);
+        }
     }
 }

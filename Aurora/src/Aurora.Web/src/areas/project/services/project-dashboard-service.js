@@ -27,4 +27,4 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
     }(app.DataService));
     exports.ProjectOverviewService = ProjectOverviewService;
 });
-//# sourceMappingURL=project-overview-service.js.map
+//# sourceMappingURL=project-dashboard-service.js.map

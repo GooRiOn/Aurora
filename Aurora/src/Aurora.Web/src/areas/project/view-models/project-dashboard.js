@@ -1,11 +1,10 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
-    var ProjectOverviewViewModel = (function () {
-        function ProjectOverviewViewModel() {
-            this.test = "Overview";
+    var ProjectDashboardViewModel = (function () {
+        function ProjectDashboardViewModel() {
         }
-        return ProjectOverviewViewModel;
+        return ProjectDashboardViewModel;
     }());
-    exports.ProjectOverviewViewModel = ProjectOverviewViewModel;
+    exports.ProjectDashboardViewModel = ProjectDashboardViewModel;
 });
-//# sourceMappingURL=project-overview.js.map
+//# sourceMappingURL=project-dashboard.js.map

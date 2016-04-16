@@ -12,7 +12,8 @@ define(["require", "exports", '../services/users-manage-service', '../../../data
     var UsersManageViewModel = (function () {
         function UsersManageViewModel(usesManageService) {
             this.pageNumber = 1;
-            this.pageSize = 10;
+            this.pageSize = 5;
+            this.totalPages = 1;
             this.usesManageService = usesManageService;
         }
         UsersManageViewModel.prototype.activate = function () {
@@ -22,6 +23,7 @@ define(["require", "exports", '../services/users-manage-service', '../../../data
             var _this = this;
             this.usesManageService.getUsers(this.pageNumber, this.pageSize).then(function (result) {
                 _this.users = result.content;
+                _this.totalPages = result.totalPages;
             });
         };
         UsersManageViewModel.prototype.changeUserLockout = function (user) {
@@ -62,6 +64,18 @@ define(["require", "exports", '../services/users-manage-service', '../../../data
             this.usesManageService.resetUserPassword(user.id, newPassword).then(function (result) {
                 Materialize.toast('Password changed', 4000, 'green');
             });
+        };
+        UsersManageViewModel.prototype.getUsersPreviousPage = function () {
+            this.pageNumber -= 1;
+            if (this.pageNumber < 1)
+                this.pageNumber = 1;
+            this.getUsers();
+        };
+        UsersManageViewModel.prototype.getUsersNextPage = function () {
+            this.pageNumber += 1;
+            if (this.pageNumber > this.totalPages)
+                this.pageNumber = this.totalPages;
+            this.getUsers();
         };
         UsersManageViewModel = __decorate([
             aurelia_framework_1.inject(services.UsersManageService), 

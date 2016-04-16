@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
-using Aurora.Infrastructure.Data;
-using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Models.ReadModels;
 using Aurora.Infrastructure.Models.WriteModels;
 using Microsoft.AspNet.Identity;
@@ -62,15 +59,7 @@ namespace Aurora.Domain.DomainServices
                 Roles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name).ToArrayAsync()
             };
         }
-
-        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            var userRoles = await _roleManager.Roles.Where(r => r.Users.Any(u => u.UserId == userId)).Select(r => r.Name).ToArrayAsync();
-
-            return new UserSelfInfoReadModel { UserName = user.UserName, Roles = userRoles};
-        }
-
+        
         public async Task<IdentityResult> ResetUserPasswordAsync(string userId, string newPassword)
         {
             var user = await _userManager.FindByIdAsync(userId);

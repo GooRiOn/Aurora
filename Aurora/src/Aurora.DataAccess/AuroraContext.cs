@@ -26,7 +26,7 @@ namespace Aurora.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<UserProjectEntity>().HasKey(up => new { up.ProjectId, up.UserId});
+            //builder.Entity<UserProjectEntity>().HasKey(up => new { up.ProjectId, up.UserId});
             builder.Entity<TaskLabelEntity>().HasKey(tl => new { tl.TaskId, tl.LabelId });
 
             foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))

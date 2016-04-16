@@ -9,26 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 define(["require", "exports", '../services/project-join-service', '../../../data', 'aurelia-framework'], function (require, exports, services, data, aurelia_framework_1) {
     "use strict";
-    var JoinProjectViewModel = (function () {
-        function JoinProjectViewModel(joinProjectService) {
+    var ProjectJoinViewModel = (function () {
+        function ProjectJoinViewModel(joinProjectService) {
+            this.isProjectJoinSucceed = false;
             this.joinProjectService = joinProjectService;
         }
-        JoinProjectViewModel.prototype.activate = function (params) {
-            this.memberToken = params;
-            this.joinProject();
+        ProjectJoinViewModel.prototype.activate = function (params) {
+            var memberToken = params.memberToken;
+            this.joinProject(memberToken);
         };
-        JoinProjectViewModel.prototype.joinProject = function () {
-            this.joinProjectService.joinProject(this.memberToken).then(function (result) {
+        ProjectJoinViewModel.prototype.joinProject = function (memberToken) {
+            var _this = this;
+            this.joinProjectService.joinProject(memberToken).then(function (result) {
                 if (result.state === data.ResultStateEnum.Succeed)
-                    Materialize.toast('WORKS!', 4000, 'btn');
+                    _this.isProjectJoinSucceed = true;
             });
         };
-        JoinProjectViewModel = __decorate([
+        ProjectJoinViewModel = __decorate([
             aurelia_framework_1.inject(services.ProjectJoinService), 
             __metadata('design:paramtypes', [services.ProjectJoinService])
-        ], JoinProjectViewModel);
-        return JoinProjectViewModel;
+        ], ProjectJoinViewModel);
+        return ProjectJoinViewModel;
     }());
-    exports.JoinProjectViewModel = JoinProjectViewModel;
+    exports.ProjectJoinViewModel = ProjectJoinViewModel;
 });
 //# sourceMappingURL=project-join.js.map

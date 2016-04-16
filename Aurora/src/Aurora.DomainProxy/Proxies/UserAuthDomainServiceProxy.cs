@@ -52,11 +52,6 @@ namespace Aurora.DomainProxy.Proxies
             return await _userAuthDomainService.GetUserLoginInfoAsync(userName);
         }
 
-        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
-        {
-            return await _userAuthDomainService.GetUserSelfInfoAsync(userId);
-        }
-
         public async Task<IResult> ResetUserPasswordAsync(string userId, string newPassword)
         {
             var identityResult = await _userAuthDomainService.ResetUserPasswordAsync(userId,newPassword);

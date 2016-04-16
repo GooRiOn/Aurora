@@ -21,6 +21,15 @@ namespace Aurora.DomainProxy.Proxies
             _userDomainServiceFactory = userDomainServiceFactory;
         }
 
+        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
+        {
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var userDomainService = _userDomainServiceFactory.Get(unitOfWork);
+                return await userDomainService.GetUserSelfInfoAsync(userId);
+            }
+        }
+
         public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())

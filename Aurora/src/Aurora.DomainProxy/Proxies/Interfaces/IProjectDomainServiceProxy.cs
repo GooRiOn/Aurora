@@ -9,5 +9,6 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
     {
         Task<IResult> CreateProjectAsync(ProjectCreateWriteModel project, string creatorId);
         Task<IResult> ActivateProjectMemberAsync(Guid memberToken, string userId);
+        Task<IResult> SetDefaultUserProjectAsync(int projectId, string userId);
     }
 }

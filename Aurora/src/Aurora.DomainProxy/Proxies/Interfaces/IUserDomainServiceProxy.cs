@@ -7,6 +7,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
 {
     public interface IUserDomainServiceProxy : IBaseProxy
     {
+        Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId);
         Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize);
         Task<IResult> LockUser(string userId);
         Task<IResult> UnlockUser(string userId);

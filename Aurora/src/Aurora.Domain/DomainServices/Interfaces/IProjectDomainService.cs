@@ -9,5 +9,6 @@ namespace Aurora.Domain.DomainServices.Interfaces
     {
         void CreateProject(ProjectCreateWriteModel project, string creatorId);
         Task ActivateProjectMemberAsync(Guid memberToken, string userId);
+        void SetDefaultUserProject(int projectId, string userId);
     }
 }

@@ -21,7 +21,8 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
             this.userService.login(this.userLoginDto).then(function (result) {
                 _this.authService.setAccessToken(result, _this.userLoginDto.rememberMe);
                 _this.getUserSelfInfo().then(function () {
-                    Materialize.toast("welcome " + _this.authService.user.userName, 4000, 'btn');
+                    var user = _this.authService.getUser();
+                    Materialize.toast("welcome " + user.userName, 4000, 'btn');
                     _this.router.navigate('#/');
                 });
             });
@@ -29,7 +30,7 @@ define(["require", "exports", '../../../auth-service', '../services/user-service
         LoginViewModel.prototype.getUserSelfInfo = function () {
             var _this = this;
             return this.userService.getUserSelfInfo().then(function (result) {
-                var user = { userName: result.userName, roles: result.roles };
+                var user = { userName: result.userName, roles: result.roles, projects: result.projects };
                 _this.authService.setUser(user);
             });
         };

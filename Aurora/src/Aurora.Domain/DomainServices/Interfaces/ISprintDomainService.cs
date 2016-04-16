@@ -1,6 +1,8 @@
-﻿namespace Aurora.Domain.DomainServices.Interfaces
+﻿using Aurora.DataAccess.Entities;
+
+namespace Aurora.Domain.DomainServices.Interfaces
 {
-    public class ISprintDomainService
+    public interface ISprintDomainService : IEntityService<SprintEntity>
     {
          
     }

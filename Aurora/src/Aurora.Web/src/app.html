@@ -4,7 +4,7 @@
            <ul class="left hide-on-med-and-down">
                <li><a href="#/"><img src="images/logo.png"/></a></li>
                <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/project/dashboard">Dashboard</a></li>
-               <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/project/create">Create project</a></li>
+               <li if.bind="authService.user"><a class="waves-effect waves-light btn-large" href="#/project/create">Create project</a></li>               
                <li if.bind="authService.isUserAdmin()"><a class="waves-effect waves-light btn-large" href="#/admin/users-manage">Users manage</a></li>
            </ul>
            <ul class="right hide-on-med-and-down">

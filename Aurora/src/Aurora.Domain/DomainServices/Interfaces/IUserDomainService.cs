@@ -8,6 +8,7 @@ namespace Aurora.Domain.DomainServices.Interfaces
 {
     public interface IUserDomainService : IEntityService<UserEntity>
     {
+        Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId);
         Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize);
         Task LockUserAsync(string userId);
         Task UnlockUserAsync(string userId);

@@ -1,22 +1,29 @@
 ﻿export interface IAuthService {
     user: IUser;
-    accessToken: string;
     setUser(user: IUser): void;
     setAccessToken(accessToken: string, isSessionStored: boolean): void;
     getAccessToken(): string;
-    clearAccessToken(): void
+    clearAccessToken(): void;
     isUserAdmin(): boolean;
+    isUserLogged(): boolean;
+}
+
+export interface IUserProject
+{
+    id: number;
+    name: string;
 }
 
 export interface IUser {
     userName: string;
     roles: any[];
+    projects: IUser[];
 }
 
 export class AuthService implements IAuthService {
 
     user: IUser;
-    accessToken: string;
+    private accessToken: string;
     private isSessionStored : boolean;
 
     constructor()
@@ -64,5 +71,10 @@ export class AuthService implements IAuthService {
     {
         if (!this.user) return false;
         return this.user.roles.some(r => r === 'Admin');
+    }
+
+    isUserLogged(): boolean
+    {
+        return this.user ? true : false;
     }
 }

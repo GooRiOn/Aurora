@@ -10,16 +10,25 @@ using Aurora.Infrastructure.Interfaces;
 using System.Linq;
 using Aurora.Domain.Extensions;
 using Aurora.Infrastructure.Models.ReadModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
 namespace Aurora.Domain.DomainServices
 {
     public class UserDomainService : EntityService<UserEntity>, IUserDomainService
     {
-        public UserDomainService(IRepositoryFactory<UserEntity> repositoryFactory, IUnitOfWork unitOfWork)
+        private readonly RoleManager<IdentityRole> _roleManager; 
+
+        public UserDomainService(IRepositoryFactory<UserEntity> repositoryFactory, IUnitOfWork unitOfWork, RoleManager<IdentityRole> roleManager)
             : base(repositoryFactory, unitOfWork)
         {
+            _roleManager = roleManager;
+        }
 
+        public async Task<UserSelfInfoReadModel> GetUserSelfInfoAsync(string userId)
+        {
+            return await ReadRepository.NoTrackedQuery.Where(u => u.Id == userId).AsReadModel(_roleManager,userId).SingleOrDefaultAsync();
         }
 
         public async Task<IPagedResult<UserReadModel>> GetUsersPageAsync(int pageNumber, int pageSize)

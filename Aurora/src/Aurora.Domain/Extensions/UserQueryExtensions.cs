@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Aurora.DataAccess.Entities;
 using Aurora.Infrastructure.Models.ReadModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace Aurora.Domain.Extensions
@@ -19,5 +21,19 @@ namespace Aurora.Domain.Extensions
                 IsLocked = u.IsLocked
             });
         }
+
+        public static IQueryable<UserSelfInfoReadModel> AsReadModel(this IQueryable<UserEntity> that, RoleManager<IdentityRole> roleManager, string userId)
+        {
+            return that.Select(u => new UserSelfInfoReadModel
+            {
+                UserName = u.UserName,
+                Projects = u.Projects.Select(p => new ProjectReadModel
+                {
+                    Id = p.ProjectId,
+                    Name = p.Project.Name
+                }),
+                Roles = roleManager.Roles.Where(r => r.Users.Any(ur => ur.UserId == userId)).Select(r => r.Name).ToList()
+            });
+        } 
     }
 }
