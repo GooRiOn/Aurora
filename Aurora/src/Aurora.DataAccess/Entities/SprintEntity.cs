@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Aurora.Infrastructure.Enums;
 
 namespace Aurora.DataAccess.Entities
 {
@@ -21,6 +22,8 @@ namespace Aurora.DataAccess.Entities
         public DateTime EstimatedStartDate { get; set; }
 
         public DateTime EstimatedEndDate { get; set; }
+
+        public SprintState State { get; set; }
 
         public ICollection<BacklogItemEntity> BacklogItems { get; set; } 
     }

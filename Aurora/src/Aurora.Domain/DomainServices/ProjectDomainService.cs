@@ -35,7 +35,7 @@ namespace Aurora.Domain.DomainServices
                 }).ToList()
             };
 
-            projectEntity.Members.Add(new UserProjectEntity {UserId = creatorId, IsVeryfied = true, IsDeafult = true});
+            projectEntity.Members.Add(new UserProjectEntity {UserId = creatorId, IsActivated = true, IsDeafult = true});
 
             WriteRepository.Add(projectEntity);
         }
@@ -47,7 +47,7 @@ namespace Aurora.Domain.DomainServices
 
             var projectMember = await userProjectReadRepository.Query.SingleOrDefaultAsync(pm => pm.UserId == userId && pm.Project.MemberToken == memberToken);
 
-            projectMember.IsVeryfied = true;
+            projectMember.IsActivated = true;
             projectMember.IsDeafult = true;
 
             userProjectWriteRepository.Update(projectMember);

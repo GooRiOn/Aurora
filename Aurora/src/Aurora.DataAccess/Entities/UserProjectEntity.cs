@@ -23,7 +23,7 @@ namespace Aurora.DataAccess.Entities
 
         public bool IsDeafult { get; set; }
 
-        public bool IsVeryfied { get; set; }
+        public bool IsActivated { get; set; }
 
         public ICollection<TaskEntity> Tasks { get; set; } 
     }

@@ -8,11 +8,11 @@ using Microsoft.AspNet.Mvc;
 namespace Aurora.Web.Controllers
 {
     [Route("api/Users")]
-    public class UsersController : BaseController
+    public class UserController : BaseController
     {
         private readonly IUserDomainServiceProxy _userDomainServiceProxy;
 
-        public UsersController(IUserDomainServiceProxy userDomainServiceProxy)
+        public UserController(IUserDomainServiceProxy userDomainServiceProxy)
         {
             _userDomainServiceProxy = userDomainServiceProxy;
         }
