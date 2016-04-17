@@ -18,9 +18,9 @@ namespace Aurora.Domain.DomainServices
         {
         }
 
-        public async Task<IEnumerable<SprintReadModel>> GetProjectSprints(string projectId)
+        public async Task<IEnumerable<SprintReadModel>> GetProjectSprintsAsync(int projectId)
         {
-            return await ReadRepository.NoTrackedQuery.Where(s => s.IsActive).AsReadModel().ToListAsync();
+            return await ReadRepository.NoTrackedQuery.Where(s => s.IsActive && s.ProjectId == projectId).AsReadModel().ToListAsync();
         }
 
         public void CreateSprint(SprintEntity sprint)

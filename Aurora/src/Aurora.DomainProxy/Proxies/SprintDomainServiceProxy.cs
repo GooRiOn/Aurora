@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using Aurora.DataAccess.Entities;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Interfaces;
+using Aurora.DomainProxy.Mappings;
 using Aurora.DomainProxy.Proxies.Interfaces;
 using Aurora.Infrastructure.Data.Interfaces;
 using Aurora.Infrastructure.Interfaces;
 using Aurora.Infrastructure.Models.ReadModels;
+using Aurora.Infrastructure.Models.WriteModels;
 
 namespace Aurora.DomainProxy.Proxies
 {
@@ -21,24 +23,47 @@ namespace Aurora.DomainProxy.Proxies
             _sprintDomainServiceFactory = sprintDomainServiceFactory;
         }
 
-        public Task<IEnumerable<SprintReadModel>> GetProjectSprints(string projectId)
+        public async Task<IEnumerable<SprintReadModel>> GetProjectSprintsAsync(int projectId)
         {
-            throw new System.NotImplementedException();
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
+                return await sprintDomainService.GetProjectSprintsAsync(projectId);
+            }
         }
 
-        public Task<IResult> CreateSprintAsync(SprintEntity sprint)
+        public async Task<IResult> CreateSprintAsync(SprintWriteModel sprint)
         {
-            throw new System.NotImplementedException();
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
+                var sprintEntity = sprint.AsEntity();
+                sprintDomainService.CreateSprint(sprintEntity);
+
+                return await CreateResultAsync(unitOfWork);
+            }
         }
 
-        public Task<IResult> UpdateSprintAsync(SprintEntity sprint)
+        public async Task<IResult> UpdateSprintAsync(SprintWriteModel sprint)
         {
-            throw new System.NotImplementedException();
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
+                var sprintEntity = sprint.AsEntity();
+                sprintDomainService.UpdateSprint(sprintEntity);
+
+                return await CreateResultAsync(unitOfWork);
+            }
         }
 
-        public Task<IResult> DeleteSprintAsync(int sprintId)
+        public async Task<IResult> DeleteSprintAsync(int sprintId)
         {
-            throw new System.NotImplementedException();
+            using (var unitOfWork = _unitOfWorkFactory.Get())
+            {
+                var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
+                await sprintDomainService.DeleteSprintAsync(sprintId);
+                return await CreateResultAsync(unitOfWork);
+            }
         }
     }
 }

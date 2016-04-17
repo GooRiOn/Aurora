@@ -11,3 +11,19 @@ export class ProjectCreateModel
         this.members = [];
     }
 }
+
+export enum SprintState
+{
+    Past = 1,
+    Currnet = 2,
+    Future = 3
+}
+
+export class SprintModel
+{
+    id: number;
+    name: string;
+    estimatedStartDate: Date;
+    estimatedEndDate: Date;
+    state: SprintState;
+}

@@ -27,10 +27,11 @@ namespace Aurora.Domain.Extensions
             return that.Select(u => new UserSelfInfoReadModel
             {
                 UserName = u.UserName,
-                Projects = u.Projects.Select(p => new ProjectReadModel
+                Projects = u.Projects.Where(p => p.IsActive && p.IsActivated).Select(p => new ProjectReadModel
                 {
                     Id = p.ProjectId,
-                    Name = p.Project.Name
+                    Name = p.Project.Name,
+                    IsDefault = p.IsDeafult
                 }),
                 Roles = roleManager.Roles.Where(r => r.Users.Any(ur => ur.UserId == userId)).Select(r => r.Name).ToList()
             });

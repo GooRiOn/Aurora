@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Aurora.Infrastructure.Enums;
 
-namespace Aurora.Infrastructure.Models.ReadModels
+namespace Aurora.Infrastructure.Models.WriteModels
 {
-    public class SprintReadModel
+    public class SprintWriteModel
     {
         public int Id { get; set; }
 

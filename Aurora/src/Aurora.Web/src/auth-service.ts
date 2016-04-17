@@ -6,18 +6,20 @@
     clearAccessToken(): void;
     isUserAdmin(): boolean;
     isUserLogged(): boolean;
+    getUserDefaultProject(): IUserProject;
 }
 
 export interface IUserProject
 {
     id: number;
     name: string;
+    isDefault: boolean;
 }
 
 export interface IUser {
     userName: string;
     roles: any[];
-    projects: IUser[];
+    projects: IUserProject[];
 }
 
 export class AuthService implements IAuthService {
@@ -76,5 +78,10 @@ export class AuthService implements IAuthService {
     isUserLogged(): boolean
     {
         return this.user ? true : false;
+    }
+
+    getUserDefaultProject(): IUserProject
+    {
+        return this.user.projects.firstOrNull(p => p.isDefault);
     }
 }

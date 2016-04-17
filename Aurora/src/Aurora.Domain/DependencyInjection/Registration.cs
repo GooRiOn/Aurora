@@ -15,6 +15,7 @@ namespace Aurora.Domain.DependencyInjection
             builder.RegisterType<UserDomainService>().As<IUserDomainService>();
             builder.RegisterType<UserAuthDomainService>().As<IUserAuthDomainService>();
             builder.RegisterType<ProjectDomainService>().As<IProjectDomainService>();
+            builder.RegisterType<SprintDomainService>().As<ISprintDomainService>();
         }
     }
 }
