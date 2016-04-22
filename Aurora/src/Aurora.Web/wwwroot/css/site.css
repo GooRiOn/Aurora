@@ -330,3 +330,7 @@ table {
 .statistics-card {
     background-color: rgb(73, 196, 160) !important;
 }
+
+.text-center {
+    text-align: center;
+}

@@ -9,6 +9,14 @@ import {inject} from 'aurelia-framework';
 export class ProjectSprintsViewModel
 {
     sprints: models.SprintModel[];
+    newSprint: models.SprintModel;
+    isNewSprintCreating = false;
+
+    sprintState = [
+        { name: 'Past', value: models.SprintState.Past },
+        { name: 'Current', value: models.SprintState.Currnet },
+        { name: 'Future', value: models.SprintState.Future }
+    ];
 
     private projectSprintsService: services.IProjectSpintsService;
     private authService: auth.IAuthService;
@@ -32,8 +40,9 @@ export class ProjectSprintsViewModel
         });
     }
 
-    createSprint()
+    activateNewSprintCreation()
     {
-        
+        this.isNewSprintCreating = true;
+        this.newSprint = new models.SprintModel();
     }
 }

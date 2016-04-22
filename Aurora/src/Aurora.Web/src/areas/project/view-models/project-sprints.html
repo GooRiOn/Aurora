@@ -8,14 +8,59 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <ul class="collection">
-                        <li class="collection-item">Alvin</li>
-                        <li class="collection-item">Alvin</li>
-                        <li class="collection-item">Alvin</li>
-                        <li class="collection-item">Alvin</li>
-                    </ul>
+            <div class="view-body" if.bind="sprints.length > 0 && !isNewSprintCreating">
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="collection">
+                            <li class="collection-item">Alvin</li>
+                            <li class="collection-item">Alvin</li>
+                            <li class="collection-item">Alvin</li>
+                            <li class="collection-item">Alvin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="view-body" if.bind="sprints.length === 0 && !isNewSprintCreating">
+                <div class="row">
+                    <div class="col s12 text-center">
+                        <h4>It's lonely here. Create your first sprint!</h4>
+                        <a class="waves-effect waves-light btn" click.trigger="activateNewSprintCreation()">Create</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-body" if.bind="isNewSprintCreating">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div>
+                            <input id="project-create-name" value.bind="newSprint.name" type="text">
+                            <label for="project-create-name">Sprint name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div>
+                            <input id="project-create-name" value.bind="newSprint.estimatedStartDate" type="text">
+                            <label for="project-create-name">Start</label>
+                        </div>
+                    </div>
+                    <div class="input-field col s6">
+                        <div>
+                            <input id="project-create-name" value.bind="newSprint.estimatedEndDate" type="text">
+                            <label for="project-create-name">End</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select class="icons">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="" data-icon="images/sample-1.jpg" class="left circle">example 1</option>
+                            <option value="" data-icon="images/office.jpg" class="left circle">example 2</option>
+                            <option value="" data-icon="images/yuna.jpg" class="left circle">example 3</option>
+                        </select>
+                        <label>Images in select</label>
+                    </div>
                 </div>
             </div>
         </div>
