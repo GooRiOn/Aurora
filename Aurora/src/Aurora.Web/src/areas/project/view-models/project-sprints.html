@@ -9,18 +9,19 @@
                 </div>
             </div>
 
-            <div class="view-body" if.bind="sprints.length > 0 && !isNewSprintCreating">
+            <div class="view-body" if.bind="sprints.length > 0 && !isActiveSprintViewEnabled">
                 <div class="row">
                     <div class="col s12">
                         <ul class="collection">
                             <li class="collection-item avatar" repeat.for="sprint of sprints">
+                                <i class="material-icons circle ${sprint.state === 1? 'amber darken-3' : sprint.state === 2? 'green' : 'blue'}">av_timer</i>
                                 <strong class="title">${sprint.name}</strong>
                                 <p>
                                     <span>Start: ${sprint.estimatedStartDate}<br></span>
                                     <span>Last name: ${sprint.estimatedEndDate}<br></span>
                                     <span>State: ${getSprintStateByValue(sprint.state)}</span>
                                 </p>
-                                <a href="#!" class="secondary-content" click.trigger="addProjectMember(user)" if.bind="!checkIfUserBelongsToMembers(user)">
+                                <a href="#!" class="secondary-content" click.trigger="activateSprintEdition(sprint)">
                                     <i class="material-icons">edit</i>
                                 </a>
                             </li>
@@ -31,7 +32,7 @@
             </div>
 
 
-            <div class="view-body" if.bind="sprints.length === 0 && !isNewSprintCreating">
+            <div class="view-body" if.bind="sprints.length === 0 && !isActiveSprintViewEnabled">
                 <div class="row">
                     <div class="col s12 text-center">
                         <h4>It's lonely here. Create your first sprint!</h4>
@@ -41,7 +42,7 @@
             </div>
 
 
-            <div class="view-body" if.bind="isNewSprintCreating">
+            <div class="view-body" if.bind="isActiveSprintViewEnabled">
                 <div class="row">
                     <div class="input-field col s12">
                         <h5>Step 1: Name your sprint</h5>
@@ -50,7 +51,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <div>
-                            <input id="project-create-name" value.bind="newSprint.name" type="text">
+                            <input id="project-create-name" value.bind="activeSprint.name" type="text">
                             <label for="project-create-name">Sprint name</label>
                         </div>
                     </div>
@@ -63,13 +64,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <div>
-                            <input id="project-create-name" value.bind="newSprint.estimatedStartDate" type="text">
+                            <input id="project-create-name" value.bind="activeSprint.estimatedStartDate" type="text">
                             <label for="project-create-name">Start</label>
                         </div>
                     </div>
                     <div class="input-field col s6">
                         <div>
-                            <input id="project-create-name" value.bind="newSprint.estimatedEndDate" type="text">
+                            <input id="project-create-name" value.bind="activeSprint.estimatedEndDate" type="text">
                             <label for="project-create-name">End</label>
                         </div>
                     </div>
@@ -82,7 +83,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <div repeat.for="state of sprintStates">
-                            <input name="group1" type="radio" id="sprint-state-${$index}" model.bind="state.value" checked.bind="newSprint.state"/>
+                            <input name="group1" type="radio" id="sprint-state-${$index}" model.bind="state.value" checked.bind="activeSprint.state"/>
                             <label for="sprint-state-${$index}">
                                 ${state.name}
                             </label>
@@ -91,9 +92,10 @@
                 </div>
                 <br/>
                 <div class="row">
-                    <div class="col s4">
-                        <a class="waves-effect waves-light btn" click.trigger="createSprint()">Create</a>
-                    </div>
+                    <a class="waves-effect waves-light btn" click.trigger="createSprint()" if.bind="!activeSprint.id">Create</a>
+                    <a class="waves-effect waves-light btn" click.trigger="updateSprint()" if.bind="activeSprint.id">Edit</a>
+                    <a class="waves-effect waves-light btn red" click.trigger="deleteSprint()" if.bind="activeSprint.id">Delete</a>
+                    <a class="waves-effect waves-light btn" click.trigger="clearActiveSprintView()">Back</a>
                 </div>
             </div>
         </div>

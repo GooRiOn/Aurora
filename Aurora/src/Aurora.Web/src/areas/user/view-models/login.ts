@@ -28,7 +28,7 @@ export class LoginViewModel
             this.getUserSelfInfo().then(() =>
             {
                 Materialize.toast(`welcome ${this.authService.user.userName}`, 4000, 'btn');
-                this.router.navigate('#/');
+                this.router.navigate('#/project/dashboard');
             });
         });
     }

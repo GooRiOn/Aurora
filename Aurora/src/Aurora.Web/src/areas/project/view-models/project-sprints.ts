@@ -1,6 +1,4 @@
-﻿/// <reference path="../../../../typings/materialize.d.ts" />
-
-import models = require('../models/project-models');
+﻿import models = require('../models/project-models');
 import services = require('../services/project-sprints-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service')
@@ -11,8 +9,9 @@ import {inject} from 'aurelia-framework';
 export class ProjectSprintsViewModel
 {
     sprints: models.SprintModel[];
-    newSprint: models.SprintModel;
-    isNewSprintCreating = false;
+    activeSprint: models.SprintModel;
+    isActiveSprintViewEnabled = false;
+
     userDefaultProject: auth.IUserProject;
 
     sprintStates = [
@@ -49,20 +48,55 @@ export class ProjectSprintsViewModel
 
     activateNewSprintCreation()
     {
-        this.isNewSprintCreating = true;
-        this.newSprint = new models.SprintModel();
+        this.isActiveSprintViewEnabled = true;
+        this.activeSprint = new models.SprintModel();
 
-        this.newSprint.projectId = this.userDefaultProject.id;
+        this.activeSprint.projectId = this.userDefaultProject.id;
+    }
+
+    activateSprintEdition(sprint: models.SprintModel)
+    {
+        this.activeSprint = sprint;
+        this.isActiveSprintViewEnabled = true;
     }
 
     createSprint()
     {
-        this.projectSprintsService.createSprint(this.newSprint).then((result: data.IResult) =>
+        this.projectSprintsService.createSprint(this.activeSprint).then((result: data.IResult) =>
         {
             this.getProjectSprints();
-            this.isNewSprintCreating = false;
+            this.isActiveSprintViewEnabled = false;
             Materialize.toast('New sprint added!',4000, 'btn');
         });
+    }
+
+    updateSprint()
+    {
+        this.projectSprintsService.updateSprint(this.activeSprint).then((result: data.IResult) => {
+            this.getProjectSprints();
+            this.isActiveSprintViewEnabled = false;
+            Materialize.toast('Sprint updated!', 4000, 'btn');
+        });
+    }
+
+    deleteSprint()
+    {
+        let confirm = window.confirm('Are you sure?');
+
+        if (!confirm)
+            return;
+
+        this.projectSprintsService.deleteSprint(this.activeSprint.id).then((result: data.IResult) => {
+            this.getProjectSprints();
+            this.isActiveSprintViewEnabled = false;
+            Materialize.toast('Sprint deleted!', 4000, 'btn');
+        });
+    }
+
+    clearActiveSprintView()
+    {
+        this.activeSprint = null;
+        this.isActiveSprintViewEnabled = false;
     }
 
     getSprintStateByValue(value: number)

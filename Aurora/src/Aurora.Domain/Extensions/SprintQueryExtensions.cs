@@ -11,6 +11,7 @@ namespace Aurora.Domain.Extensions
             return that.Select(s => new SprintReadModel
             {
                 Id = s.Id,
+                ProjectId = s.ProjectId,
                 Name = s.Name,
                 EstimatedStartDate = s.EstimatedStartDate,
                 EstimatedEndDate = s.EstimatedEndDate,
