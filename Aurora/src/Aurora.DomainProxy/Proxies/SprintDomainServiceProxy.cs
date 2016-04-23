@@ -34,7 +34,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> CreateSprintAsync(SprintWriteModel sprint)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
                 var sprintEntity = sprint.AsEntity();
@@ -46,7 +46,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> UpdateSprintAsync(SprintWriteModel sprint)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
                 var sprintEntity = sprint.AsEntity();
@@ -58,7 +58,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> DeleteSprintAsync(int sprintId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var sprintDomainService = _sprintDomainServiceFactory.Get(unitOfWork);
                 await sprintDomainService.DeleteSprintAsync(sprintId);

@@ -18,7 +18,7 @@ namespace Aurora.Web.Controllers
             _sprintDomainServiceProxy = sprintDomainServiceProxy;
         }
 
-        [HttpGet("")]
+        [HttpGet("{projectId}")]
         public async Task<IEnumerable<SprintReadModel>> GetProjectSprintsAsync(int projectId)
         {
             return await _sprintDomainServiceProxy.GetProjectSprintsAsync(projectId);

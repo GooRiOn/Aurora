@@ -1,4 +1,6 @@
-﻿import models = require('../models/project-models');
+﻿/// <reference path="../../../../typings/materialize.d.ts" />
+
+import models = require('../models/project-models');
 import services = require('../services/project-sprints-service');
 import data = require('../../../data');
 import auth = require('../../../auth-service')
@@ -11,8 +13,9 @@ export class ProjectSprintsViewModel
     sprints: models.SprintModel[];
     newSprint: models.SprintModel;
     isNewSprintCreating = false;
+    userDefaultProject: auth.IUserProject;
 
-    sprintState = [
+    sprintStates = [
         { name: 'Past', value: models.SprintState.Past },
         { name: 'Current', value: models.SprintState.Currnet },
         { name: 'Future', value: models.SprintState.Future }
@@ -26,16 +29,20 @@ export class ProjectSprintsViewModel
         this.projectSprintsService = projectSprintsService;
         this.authService = authService;
     }
-
+    
     activate()
     {
-        let userDefaultProject = this.authService.getUserDefaultProject();
+        this.userDefaultProject = this.authService.getUserDefaultProject();
 
-        if (!userDefaultProject.id)
+        if (! this.userDefaultProject.id)
             return;
 
-        this.projectSprintsService.getProjectSprints(userDefaultProject.id).then((result: models.SprintModel[]) =>
-        {
+        this.getProjectSprints();
+    }
+
+    getProjectSprints()
+    {
+        this.projectSprintsService.getProjectSprints(this.userDefaultProject.id).then((result: models.SprintModel[]) => {
             this.sprints = result;
         });
     }
@@ -44,5 +51,23 @@ export class ProjectSprintsViewModel
     {
         this.isNewSprintCreating = true;
         this.newSprint = new models.SprintModel();
+
+        this.newSprint.projectId = this.userDefaultProject.id;
+    }
+
+    createSprint()
+    {
+        this.projectSprintsService.createSprint(this.newSprint).then((result: data.IResult) =>
+        {
+            this.getProjectSprints();
+            this.isNewSprintCreating = false;
+            Materialize.toast('New sprint added!',4000, 'btn');
+        });
+    }
+
+    getSprintStateByValue(value: number)
+    {
+        let state = this.sprintStates.firstOrNull(s => s.value === value);
+        return state? state.name : '';
     }
 }

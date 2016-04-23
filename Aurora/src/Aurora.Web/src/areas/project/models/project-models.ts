@@ -22,6 +22,7 @@ export enum SprintState
 export class SprintModel
 {
     id: number;
+    projectId: number;
     name: string;
     estimatedStartDate: Date;
     estimatedEndDate: Date;

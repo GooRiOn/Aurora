@@ -13,7 +13,8 @@ namespace Aurora.Domain.Extensions
                 Id = s.Id,
                 Name = s.Name,
                 EstimatedStartDate = s.EstimatedStartDate,
-                EstimatedEndDate = s.EstimatedEndDate
+                EstimatedEndDate = s.EstimatedEndDate,
+                State = s.State
             });
         } 
     }

@@ -8,18 +8,29 @@
                     </div>
                 </div>
             </div>
+
             <div class="view-body" if.bind="sprints.length > 0 && !isNewSprintCreating">
                 <div class="row">
                     <div class="col s12">
                         <ul class="collection">
-                            <li class="collection-item">Alvin</li>
-                            <li class="collection-item">Alvin</li>
-                            <li class="collection-item">Alvin</li>
-                            <li class="collection-item">Alvin</li>
+                            <li class="collection-item avatar" repeat.for="sprint of sprints">
+                                <strong class="title">${sprint.name}</strong>
+                                <p>
+                                    <span>Start: ${sprint.estimatedStartDate}<br></span>
+                                    <span>Last name: ${sprint.estimatedEndDate}<br></span>
+                                    <span>State: ${getSprintStateByValue(sprint.state)}</span>
+                                </p>
+                                <a href="#!" class="secondary-content" click.trigger="addProjectMember(user)" if.bind="!checkIfUserBelongsToMembers(user)">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
+                <a class="waves-effect waves-light btn" click.trigger="activateNewSprintCreation()">Create</a>
             </div>
+
+
             <div class="view-body" if.bind="sprints.length === 0 && !isNewSprintCreating">
                 <div class="row">
                     <div class="col s12 text-center">
@@ -28,13 +39,25 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="view-body" if.bind="isNewSprintCreating">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h5>Step 1: Name your sprint</h5>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <div>
                             <input id="project-create-name" value.bind="newSprint.name" type="text">
                             <label for="project-create-name">Sprint name</label>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h5>Step 2: Set sprint date range</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -53,13 +76,23 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select class="icons">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="" data-icon="images/sample-1.jpg" class="left circle">example 1</option>
-                            <option value="" data-icon="images/office.jpg" class="left circle">example 2</option>
-                            <option value="" data-icon="images/yuna.jpg" class="left circle">example 3</option>
-                        </select>
-                        <label>Images in select</label>
+                        <h5>Step 3: Set sprint state</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div repeat.for="state of sprintStates">
+                            <input name="group1" type="radio" id="sprint-state-${$index}" model.bind="state.value" checked.bind="newSprint.state"/>
+                            <label for="sprint-state-${$index}">
+                                ${state.name}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col s4">
+                        <a class="waves-effect waves-light btn" click.trigger="createSprint()">Create</a>
                     </div>
                 </div>
             </div>

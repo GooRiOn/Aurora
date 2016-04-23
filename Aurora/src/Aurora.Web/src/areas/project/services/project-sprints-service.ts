@@ -23,7 +23,8 @@ export class ProjectSprintsService extends app.DataService implements IProjectSp
 
     getProjectSprints(projectId: number): Promise<models.SprintModel[]>
     {
-        return super.get('Sprints', true);
+        let url = `Sprints/${projectId}`;
+        return super.get(url, true);
     }
 
     createSprint(sprint: models.SprintModel): Promise<data.IResult>
