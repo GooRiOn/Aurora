@@ -5,7 +5,7 @@ namespace Aurora.Web.Services.Interfaces
 {
     public interface IEmailService
     {
-        Task SendProjectJoinEmail(string projectName, Guid memberToken, string receiverEmail);
-        Task SendResetPaswordEmail(string passwordResetToken, string receiverEmail);
+        Task SendProjectJoinEmailAsync(string projectName, Guid memberToken, string receiverEmail);
+        Task SendResetPaswordEmailAsync(string passwordResetToken, string receiverEmail);
     }
 }

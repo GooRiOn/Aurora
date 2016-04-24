@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Aurora.Infrastructure.Helpers;
 using Aurora.Web.Services;
 using Xunit;
 
-namespace Aurora.Tests.Tests
+namespace Aurora.Tests.LogicTests
 {
     public class GravatarTests
     {

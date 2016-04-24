@@ -8,7 +8,7 @@ namespace Aurora.Web.Services
 {
     public class EmailService : IEmailService
     {
-        public async Task SendProjectJoinEmail(string projectName, Guid memberToken, string receiverEmail)
+        public async Task SendProjectJoinEmailAsync(string projectName, Guid memberToken, string receiverEmail)
         {
             var subject = $"Aurora | You've been invited to {projectName} project!";
             var body = $"http://localhost:49849/#/project/join?memberToken={memberToken}";
@@ -16,7 +16,7 @@ namespace Aurora.Web.Services
             await SendEmailAsync(subject, body, receiverEmail);
         }
 
-        public async Task SendResetPaswordEmail(string passwordResetToken, string receiverEmail)
+        public async Task SendResetPaswordEmailAsync(string passwordResetToken, string receiverEmail)
         {
             var subject = "Aurora | Reset password";
             var body = $"http://localhost:49849/#/user/password-reset?token={passwordResetToken}&email={receiverEmail}";

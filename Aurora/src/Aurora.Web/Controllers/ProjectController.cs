@@ -39,7 +39,7 @@ namespace Aurora.Web.Controllers
             if (result.State == ResultStateEnum.Failed)
                 return result;
 
-            var tasks = project.Members.Select(member => _emailService.SendProjectJoinEmail(project.Name, project.MemberToken, member.Email)).ToArray();
+            var tasks = project.Members.Select(member => _emailService.SendProjectJoinEmailAsync(project.Name, project.MemberToken, member.Email)).ToArray();
 
             Task.WaitAll(tasks);
 
