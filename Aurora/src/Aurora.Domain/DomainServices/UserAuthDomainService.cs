@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.DataAccess.Entities;
@@ -22,7 +23,7 @@ namespace Aurora.Domain.DomainServices
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-
+        
         public async Task<IdentityResult> CreateUserAsync(UserEntity user, string password)
         {
             return await _userManager.CreateAsync(user, password);
