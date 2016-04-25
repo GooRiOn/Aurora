@@ -8,7 +8,7 @@ export class App {
 
   router: Router;
   authService: auth.IAuthService;
-  host = 'http://localhost:49849/api';
+  host = 'http://localhost:9000/api';
 
   
   constructor(authService: auth.AuthService, private logoutStaticViewModel : userAuth.LogoutStaticViewModel)

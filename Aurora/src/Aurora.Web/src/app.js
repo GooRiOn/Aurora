@@ -12,7 +12,7 @@ define(["require", "exports", "auth-service", 'areas/user/static-view-models/log
     var App = (function () {
         function App(authService, logoutStaticViewModel) {
             this.logoutStaticViewModel = logoutStaticViewModel;
-            this.host = 'http://localhost:49849/api';
+            this.host = 'http://localhost:9000/api';
             this.authService = authService;
         }
         App.prototype.logout = function () {

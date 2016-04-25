@@ -17,7 +17,7 @@ export class DataService implements IDataService
 {
     http: HttpClient;
     authService: auth.AuthService;
-    host = 'http://localhost:49849/api/';
+    host = 'http://localhost:9000/api/';
 
     constructor(http: HttpClient, authService: auth.AuthService)
     {

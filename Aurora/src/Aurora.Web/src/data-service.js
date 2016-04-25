@@ -3,7 +3,7 @@ define(["require", "exports", "aurelia-fetch-client"], function (require, export
     var DataService = (function () {
         function DataService(http, authService) {
             var _this = this;
-            this.host = 'http://localhost:49849/api/';
+            this.host = 'http://localhost:9000/api/';
             this.authService = authService;
             this.http = http;
             this.http.configure(function (config) {
