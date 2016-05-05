@@ -1,6 +1,7 @@
 ﻿import models = require('../models/project-models');
 import services = require('../services/project-backlog-service');
 import data = require('../../../data');
+import materialize = require('../../../materialize-helper');
 import auth = require('../../../auth-service')
 import {inject} from 'aurelia-framework';
 
@@ -20,12 +21,7 @@ export class ProjectSprintsViewModel {
 
     attached()
     {
-        //hack as hell. Forgive me...
-        let document;
-
-        $('').ready(() => {
-            $('select').material_select();
-        });
+        materialize.MaterializeHelper.initializeDropdown('select');
     }
 
     activate() {

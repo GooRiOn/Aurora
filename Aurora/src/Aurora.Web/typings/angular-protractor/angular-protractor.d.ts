@@ -702,9 +702,10 @@ declare module protractor {
         * @return {ElementFinder}
         */
 
-        dropdown(elem: any);
-        ready(elem: any);
+        dropdown(config: any);
+        ready(config: any);
         material_select();
+        pickadate(config: any);
 
         element(subLocator: webdriver.Locator): ElementFinder;
 
