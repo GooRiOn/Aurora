@@ -1,0 +1,24 @@
+{
+
+    "version": "0.2.0",
+
+    "configurations": [
+        {
+            "name": "Launch localhost with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:9000",
+            "sourceMaps": true,
+            "webRoot": "C:\\REPO\\Aurora\\Aurora.Repo\\Aurora\\src\\Aurora.Web\\src"
+        },
+
+        {
+            "name": "Attach",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222
+        }
+
+    ]
+
+}
