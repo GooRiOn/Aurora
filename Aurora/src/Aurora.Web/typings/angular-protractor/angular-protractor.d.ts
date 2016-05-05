@@ -701,6 +701,11 @@ declare module protractor {
         * @param {webdriver.Locator} subLocator
         * @return {ElementFinder}
         */
+
+        dropdown(elem: any);
+        ready(elem: any);
+        material_select();
+
         element(subLocator: webdriver.Locator): ElementFinder;
 
         /**

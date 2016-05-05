@@ -17,7 +17,7 @@ export class RegisterViewModel
     }
 
     register()
-    {
+    { 
         if (this.userRegisterDto.password !== this.userRegisterDto.confirmPassword)
         {
             Materialize.toast('Password and confirm password dont match', 4000, 'btn orange');

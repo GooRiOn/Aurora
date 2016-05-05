@@ -13520,10 +13520,10 @@
           "runtimes/win7/lib/DNXCore50/System.Net.Http.dll": {}
         }
       },
-      "runtime.win7.System.Net.NameResolution/4.0.0-beta-23516": {
+      "runtime.win7.System.Net.NameResolution/4.0.0-beta-23409": {
         "type": "package",
         "dependencies": {
-          "System.Private.Networking": "4.0.1-beta-23516"
+          "System.Private.Networking": "4.0.1-beta-23409"
         },
         "compile": {
           "ref/dotnet/_._": {}
@@ -17488,10 +17488,10 @@
           "runtimes/win7/lib/DNXCore50/System.Net.Http.dll": {}
         }
       },
-      "runtime.win7.System.Net.NameResolution/4.0.0-beta-23516": {
+      "runtime.win7.System.Net.NameResolution/4.0.0-beta-23409": {
         "type": "package",
         "dependencies": {
-          "System.Private.Networking": "4.0.1-beta-23516"
+          "System.Private.Networking": "4.0.1-beta-23409"
         },
         "compile": {
           "ref/dotnet/_._": {}
@@ -21186,15 +21186,15 @@
         "runtimes/win7/lib/netcore50/System.Net.Http.dll"
       ]
     },
-    "runtime.win7.System.Net.NameResolution/4.0.0-beta-23516": {
+    "runtime.win7.System.Net.NameResolution/4.0.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sjnMrhRMhiPcZN2VZY0RMTNoBJSwvmdvh1O1ngX7zAUY2zP1R5/5Db+NZcBM+WuoYXSiYoXeE65AR95hchmDlA==",
+      "sha512": "AWBa/n54te5ZOp1aTt4shtjqL4tdMie0LyiP03fphqyY4B9pvnU1XfOzljS1DFZyHhWdlUtNfMHDcGwMYYmggQ==",
       "files": [
         "lib/DNXCore50/System.Net.NameResolution.dll",
         "ref/dotnet/_._",
-        "runtime.win7.System.Net.NameResolution.4.0.0-beta-23516.nupkg",
-        "runtime.win7.System.Net.NameResolution.4.0.0-beta-23516.nupkg.sha512",
+        "runtime.win7.System.Net.NameResolution.4.0.0-beta-23409.nupkg",
+        "runtime.win7.System.Net.NameResolution.4.0.0-beta-23409.nupkg.sha512",
         "runtime.win7.System.Net.NameResolution.nuspec"
       ]
     },
