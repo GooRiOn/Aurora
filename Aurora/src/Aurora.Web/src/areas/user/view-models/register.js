@@ -34,17 +34,6 @@ define(["require", "exports", '../services/user-service', '../models/user-models
                 }
             });
         };
-        RegisterViewModel.prototype.test = function () {
-            $('.dropdown-button').dropdown({
-                inDuration: 300,
-                outDuration: 225,
-                constrain_width: false,
-                hover: true,
-                gutter: 0,
-                belowOrigin: false,
-                alignment: 'left'
-            });
-        };
         RegisterViewModel = __decorate([
             aurelia_framework_1.inject(userServices.UserService, aurelia_router_1.Router), 
             __metadata('design:paramtypes', [userServices.UserService, aurelia_router_1.Router])

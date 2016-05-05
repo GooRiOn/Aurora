@@ -14,6 +14,7 @@ namespace Aurora.DomainProxy.DependencyInjection
             builder.RegisterType<UserDomainServiceProxy>().As<IUserDomainServiceProxy>();
             builder.RegisterType<ProjectDomainServiceProxy>().As<IProjectDomainServiceProxy>();
             builder.RegisterType<SprintDomainServiceProxy>().As<ISprintDomainServiceProxy>();
+            builder.RegisterType<BacklogItemDomainServiceProxy>().As<IBacklogItemDomainServiceProxy>();
         }
     }
 }
