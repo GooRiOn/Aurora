@@ -22,6 +22,24 @@ define(["require", "exports", '../services/project-backlog-service', '../../../m
             if (!this.userDefaultProject.id)
                 return;
         };
+        ProjectSprintsViewModel.prototype.getProjectBacklogItems = function () {
+            var _this = this;
+            this.projectBacklogService.getProjectacklogItems(this.userDefaultProject.id).then(function (result) {
+                _this.backlogItems = result;
+            });
+        };
+        ProjectSprintsViewModel.prototype.addBacklogItem = function () {
+            this.projectBacklogService.addBacklogItem(this.activeBacklogItem).then(function (result) {
+            });
+        };
+        ProjectSprintsViewModel.prototype.updateBacklogItem = function () {
+            this.projectBacklogService.updateBacklogItem(this.activeBacklogItem).then(function (result) {
+            });
+        };
+        ProjectSprintsViewModel.prototype.deleteBacklogItem = function (backlogItemId) {
+            this.projectBacklogService.deleteBacklogItem(backlogItemId).then(function (result) {
+            });
+        };
         ProjectSprintsViewModel = __decorate([
             aurelia_framework_1.inject(services.ProjectBacklogService, auth.AuthService), 
             __metadata('design:paramtypes', [services.ProjectBacklogService, auth.AuthService])

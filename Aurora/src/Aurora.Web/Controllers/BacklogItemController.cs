@@ -24,10 +24,10 @@ namespace Aurora.Web.Controllers
             return await _backlogItemDomainServiceProxy.GetProjectBacklogItemsAsync(projectId);
         }
 
-        [HttpPost("Add")]
-        public async Task<IResult> AddBacklogItemAsync([FromBody] BacklogItemWriteModel backlogItem)
+        [HttpPost("Create")]
+        public async Task<IResult> CreateBacklogItemAsync([FromBody] BacklogItemWriteModel backlogItem)
         {
-            return await _backlogItemDomainServiceProxy.AddBacklogItemAsync(backlogItem);
+            return await _backlogItemDomainServiceProxy.CreateBacklogItemAsync(backlogItem);
         }
 
         [HttpPost("Update")]
@@ -36,7 +36,7 @@ namespace Aurora.Web.Controllers
             return await _backlogItemDomainServiceProxy.UpdateBacklogItem(backlogItem);
         }
 
-        [HttpPost("{backlogItemId/Delete}")]
+        [HttpPost("{backlogItemId}/Delete}")]
         public async Task<IResult> AddBacklogItemAsync(int backlogItemId)
         {
             return await _backlogItemDomainServiceProxy.DeleteBacklogItemAsync(backlogItemId);

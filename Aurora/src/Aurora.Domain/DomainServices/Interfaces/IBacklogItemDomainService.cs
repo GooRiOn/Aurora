@@ -8,7 +8,7 @@ namespace Aurora.Domain.DomainServices.Interfaces
     public interface IBacklogItemDomainService : IEntityService<BacklogItemEntity>
     {
         Task<IEnumerable<BacklogItemReadModel>> GetProjectBacklogItemsAsync(int projectId);
-        void AddBacklogItem(BacklogItemEntity backlogItem);
+        void CreateBacklogItem(BacklogItemEntity backlogItem);
         void UpdateBacklogItem(BacklogItemEntity backlogItemEntity);
         Task DeleteBacklogItemAsync(int backlogItemId);
     }

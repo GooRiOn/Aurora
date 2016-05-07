@@ -17,6 +17,7 @@ namespace Aurora.Domain.DependencyInjection
             builder.RegisterType<ProjectDomainService>().As<IProjectDomainService>();
             builder.RegisterType<SprintDomainService>().As<ISprintDomainService>();
             builder.RegisterType<BacklogItemDomainService>().As<IBacklogItemDomainService>();
+            builder.RegisterType<TaskDomainService>().As<ITaskDomainService>();
         }
     }
 }

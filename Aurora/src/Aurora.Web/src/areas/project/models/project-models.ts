@@ -39,7 +39,7 @@ export class SprintModel
     state: SprintState;
 }
 
-export class ProjectBacklogItem
+export class ProjectBacklogItemModel
 {
     id: number;
     sprintId: number;

@@ -19,6 +19,20 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
         function ProjectBacklogService(httpClient, authService) {
             _super.call(this, httpClient, authService);
         }
+        ProjectBacklogService.prototype.getProjectacklogItems = function (projectId) {
+            var url = "Backlogs/" + projectId;
+            return _super.prototype.get.call(this, url, true);
+        };
+        ProjectBacklogService.prototype.addBacklogItem = function (project) {
+            return _super.prototype.post.call(this, 'Backlogs/Add', project, true);
+        };
+        ProjectBacklogService.prototype.updateBacklogItem = function (project) {
+            return _super.prototype.post.call(this, 'Backlogs/Update', project, true);
+        };
+        ProjectBacklogService.prototype.deleteBacklogItem = function (projectId) {
+            var url = "Backlogs/" + projectId + "/Delete";
+            return _super.prototype.post.call(this, url, null, true);
+        };
         ProjectBacklogService = __decorate([
             aurelia_framework_1.inject(aurelia_fetch_client_1.HttpClient, auth.AuthService), 
             __metadata('design:paramtypes', [aurelia_fetch_client_1.HttpClient, auth.AuthService])

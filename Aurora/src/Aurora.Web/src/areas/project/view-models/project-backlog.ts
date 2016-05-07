@@ -56,7 +56,7 @@ export class ProjectSprintsViewModel {
     }
 
     deleteBacklogItem(backlogItemId: number) {
-        this.projectBacklogService.addBacklogItem(backlogItemId).then((result: data.IResult) => {
+        this.projectBacklogService.deleteBacklogItem(backlogItemId).then((result: data.IResult) => {
 
         });
     }

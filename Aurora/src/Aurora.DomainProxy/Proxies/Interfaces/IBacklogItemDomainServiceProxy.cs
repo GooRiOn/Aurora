@@ -9,7 +9,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
     public interface IBacklogItemDomainServiceProxy : IBaseProxy
     {
         Task<IEnumerable<BacklogItemReadModel>> GetProjectBacklogItemsAsync(int projectId);
-        Task<IResult> AddBacklogItemAsync(BacklogItemWriteModel backlogItem);
+        Task<IResult> CreateBacklogItemAsync(BacklogItemWriteModel backlogItem);
         Task<IResult> UpdateBacklogItem(BacklogItemWriteModel backlogItemEntity);
         Task<IResult> DeleteBacklogItemAsync(int backlogItemId);
     }

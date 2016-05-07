@@ -32,14 +32,14 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IResult> AddBacklogItemAsync(BacklogItemWriteModel backlogItem)
+        public async Task<IResult> CreateBacklogItemAsync(BacklogItemWriteModel backlogItem)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get())
             {
                 var backlogItemDomainService = _backlogDomainServiceFactory.Get(unitOfWork);
 
                 var backlogItemEntity = backlogItem.AsEntity();
-                backlogItemDomainService.AddBacklogItem(backlogItemEntity);
+                backlogItemDomainService.CreateBacklogItem(backlogItemEntity);
 
                 return await CreateResultAsync(unitOfWork);
             }

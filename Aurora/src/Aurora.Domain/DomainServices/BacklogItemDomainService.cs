@@ -7,7 +7,6 @@ using Aurora.Domain.DomainServices.Interfaces;
 using Aurora.Domain.Extensions;
 using Aurora.Infrastructure.Interfaces;
 using Aurora.Infrastructure.Models.ReadModels;
-using Aurora.Infrastructure.Models.WriteModels;
 using Microsoft.Data.Entity;
 
 namespace Aurora.Domain.DomainServices
@@ -24,7 +23,7 @@ namespace Aurora.Domain.DomainServices
             return await ReadRepository.NoTrackedQuery.Where(b => b.IsActive && b.Sprint.ProjectId == projectId).AsReadModel().ToListAsync();
         }
 
-        public void AddBacklogItem(BacklogItemEntity backlogItem)
+        public void CreateBacklogItem(BacklogItemEntity backlogItem)
         {
             WriteRepository.Add(backlogItem);
         }
