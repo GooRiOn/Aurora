@@ -8,7 +8,7 @@ namespace Aurora.DataAccess
 {
     public class RepositoryFactory<TEntity> : IRepositoryFactory<TEntity> where TEntity : class, IInternalEntity
     {
-        private ICustomDependencyResolver _resolver { get; set; }
+        private ICustomDependencyResolver _resolver { get; }
 
         public RepositoryFactory(ICustomDependencyResolver resolver)
         {

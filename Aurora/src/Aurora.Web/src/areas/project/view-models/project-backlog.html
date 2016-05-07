@@ -8,16 +8,77 @@
                     </div>
                 </div>
             </div>
-
-            <div class="view-body">
-                <select>
+            <div class="view-body" if.bind="backlogItems.length > 0 && !isActiveBacklogItemViewEnabled">
+              <table class="bordered">
+                  <thead>
+                      <tr>
+                           <th>Backlog item</th>
+                           <th>Sprint</th>
+                           <th>State</th>
+                           <th>Edit</th>
+                           <th>Delete</th>
+                      </tr>                     
+                  </thead>
+                  <tbody>
+                      <tr repeat.for="item of backlogItems">
+                           <th>${item.title}</th>
+                           <th>${item.sprintName}</th>
+                           <th>${getBacklogItemStateByValue(item.state)}</th>
+                           <th>
+                               <a class="btn-floating btn-large waves-effect waves-light blue" click.trigger="editBackloItem(item)"><i class="material-icons">mode_edit</i></a>                               
+                           </th>
+                           <th>
+                               <a class="btn-floating btn-large waves-effect waves-light red" click.trigger="deleteBacklogItem(item)"><i class="material-icons">delete</i></a>                               
+                           </th>
+                      </tr>                     
+                  </tbody>
+              </table>
+            </div> 
+            <div class="view-body" if.bind="backlogItems.length === 0 && !isActiveBacklogItemViewEnabled">
+                <div class="row">
+                    <div class="col s12 text-center">
+                        <h4>It's lonely here. Create your first item!</h4>
+                        <a class="waves-effect waves-light btn" click.trigger="activateNewBacklogItemCreation()">Create</a>
+                    </div>                    
+                </div>
+            </div>
+            <div class="view-body" if.bind="isActiveBacklogItemViewEnabled">
+                <div class="row">
+                    <div class="input-field col s12 text-center">
+                        <div>
+                            <input id="active-backlog-item-title" value.bind="activeBacklogItem.title" type="text">
+                            <label for="active-backlog-item-title">Title</label>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class=" input-field col s12 text-center">
+                        <div>
+                            <input id="active-backlog-item-description" value.bind="activeBacklogItem.description" type="text">
+                            <label for="active-backlog-item-description">Description</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div repeat.for="state of backlogItemStates">
+                            <input name="sprintStates" type="radio" id="backlogItem-state-${$index}" model.bind="state.value" checked.bind="activeBacklogItem.state"/>
+                            <label for="backlogItem-state-${$index}">
+                                ${state.name}
+                            </label>
+                        </div>
+                    </div>
+                </div>    
+                <div class="row">
+                   <select>
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
                     <option value="3">Option 3</option>
                 </select>
                 <label>Materialize Select</label>
-            </div>
+                </div>
+            </div>                        
         </div>
     </div>
 </template>

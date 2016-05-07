@@ -17,6 +17,8 @@ namespace Aurora.DataAccess.Entities
         public SprintEntity Sprint { get; set; }
 
         public string Title { get; set; }
+
+        public string Description { get; set; }
        
         public BacklogItemState State { get; set; }
 

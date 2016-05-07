@@ -12,6 +12,8 @@ namespace Aurora.Infrastructure.Models.ReadModels
 
         public string Title { get; set; }
 
+        public string Description { get; set; }
+
         public BacklogItemState State { get; set; }
     }
 }

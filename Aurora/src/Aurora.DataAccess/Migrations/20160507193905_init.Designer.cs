@@ -8,8 +8,8 @@ using Aurora.DataAccess;
 namespace Aurora.DataAccess.Migrations
 {
     [DbContext(typeof(AuroraContext))]
-    [Migration("20160306152927_Initial")]
-    partial class Initial
+    [Migration("20160507193905_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,21 +17,124 @@ namespace Aurora.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Aurora.Infrastructure.Entities.InternalEntity", b =>
+            modelBuilder.Entity("Aurora.DataAccess.Entities.BacklogItemEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
+                    b.Property<string>("Description");
+
                     b.Property<bool>("IsActive");
+
+                    b.Property<int>("SprintId");
+
+                    b.Property<int>("State");
+
+                    b.Property<string>("Title");
 
                     b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
                 });
 
-            modelBuilder.Entity("Aurora.Infrastructure.Entities.UserEntity", b =>
+            modelBuilder.Entity("Aurora.DataAccess.Entities.LabelEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Color");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.ProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<Guid>("MemberToken");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.SprintEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("EstimatedEndDate");
+
+                    b.Property<DateTime>("EstimatedStartDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("State");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.TaskEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BacklogItemId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Tite");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<int>("UserProjectId");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.TaskLabelEntity", b =>
+                {
+                    b.Property<int>("TaskId");
+
+                    b.Property<int>("LabelId");
+
+                    b.HasKey("TaskId", "LabelId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id");
 
@@ -45,9 +148,15 @@ namespace Aurora.DataAccess.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<byte[]>("Gravatar");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsLocked");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -83,6 +192,28 @@ namespace Aurora.DataAccess.Migrations
                     b.HasAnnotation("Relational:Schema", "usr");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.UserProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsActivated");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeafult");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -167,6 +298,60 @@ namespace Aurora.DataAccess.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
                 });
 
+            modelBuilder.Entity("Aurora.DataAccess.Entities.BacklogItemEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.SprintEntity")
+                        .WithMany()
+                        .HasForeignKey("SprintId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.LabelEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.ProjectEntity")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.SprintEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.ProjectEntity")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.TaskEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.BacklogItemEntity")
+                        .WithMany()
+                        .HasForeignKey("BacklogItemId");
+
+                    b.HasOne("Aurora.DataAccess.Entities.UserProjectEntity")
+                        .WithMany()
+                        .HasForeignKey("UserProjectId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.TaskLabelEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.LabelEntity")
+                        .WithMany()
+                        .HasForeignKey("LabelId");
+
+                    b.HasOne("Aurora.DataAccess.Entities.TaskEntity")
+                        .WithMany()
+                        .HasForeignKey("TaskId");
+                });
+
+            modelBuilder.Entity("Aurora.DataAccess.Entities.UserProjectEntity", b =>
+                {
+                    b.HasOne("Aurora.DataAccess.Entities.ProjectEntity")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+
+                    b.HasOne("Aurora.DataAccess.Entities.UserEntity")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
@@ -176,14 +361,14 @@ namespace Aurora.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Aurora.Infrastructure.Entities.UserEntity")
+                    b.HasOne("Aurora.DataAccess.Entities.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Aurora.Infrastructure.Entities.UserEntity")
+                    b.HasOne("Aurora.DataAccess.Entities.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
@@ -194,7 +379,7 @@ namespace Aurora.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId");
 
-                    b.HasOne("Aurora.Infrastructure.Entities.UserEntity")
+                    b.HasOne("Aurora.DataAccess.Entities.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

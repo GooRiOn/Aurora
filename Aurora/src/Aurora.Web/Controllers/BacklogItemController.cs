@@ -36,7 +36,7 @@ namespace Aurora.Web.Controllers
             return await _backlogItemDomainServiceProxy.UpdateBacklogItem(backlogItem);
         }
 
-        [HttpPost("{backlogItemId}/Delete}")]
+        [HttpPost("{backlogItemId}/Delete")]
         public async Task<IResult> AddBacklogItemAsync(int backlogItemId)
         {
             return await _backlogItemDomainServiceProxy.DeleteBacklogItemAsync(backlogItemId);

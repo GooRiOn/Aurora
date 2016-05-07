@@ -83,7 +83,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <div repeat.for="state of sprintStates">
-                            <input name="group1" type="radio" id="sprint-state-${$index}" model.bind="state.value" checked.bind="activeSprint.state"/>
+                            <input name="sprintStates" type="radio" id="sprint-state-${$index}" model.bind="state.value" checked.bind="activeSprint.state"/>
                             <label for="sprint-state-${$index}">
                                 ${state.name}
                             </label>

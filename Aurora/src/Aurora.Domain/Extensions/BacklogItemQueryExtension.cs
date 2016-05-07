@@ -14,6 +14,7 @@ namespace Aurora.Domain.Extensions
                 SprintId = b.SprintId,
                 SprintName = b.Sprint.Name,
                 Title = b.Title,
+                Description = b.Description,
                 State = b.State
             });
         } 

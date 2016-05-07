@@ -19,11 +19,11 @@
         </ProjectLoadInfo>
         <ProjectLoadInfo>
           <ProjectGuid>40acad58-ab88-4e8e-a973-591917fe7136</ProjectGuid>
-          <LoadPriority>ExplicitLoadOnly</LoadPriority>
+          <LoadPriority>BackgroundLoad</LoadPriority>
         </ProjectLoadInfo>
         <ProjectLoadInfo>
           <ProjectGuid>6bd8ea5d-71e2-436c-be1b-b2b80bf66a25</ProjectGuid>
-          <LoadPriority>ExplicitLoadOnly</LoadPriority>
+          <LoadPriority>BackgroundLoad</LoadPriority>
         </ProjectLoadInfo>
         <ProjectLoadInfo>
           <ProjectGuid>2223a438-89f5-4d68-90f0-4d125f3394c3</ProjectGuid>
@@ -31,7 +31,7 @@
         </ProjectLoadInfo>
         <ProjectLoadInfo>
           <ProjectGuid>cb149b23-1c2e-4b3a-a44e-17926ba0b2c3</ProjectGuid>
-          <LoadPriority>ExplicitLoadOnly</LoadPriority>
+          <LoadPriority>BackgroundLoad</LoadPriority>
         </ProjectLoadInfo>
         <ProjectLoadInfo>
           <ProjectGuid>b7c5f4ae-7354-4122-89a5-2e1adf8adc10</ProjectGuid>
