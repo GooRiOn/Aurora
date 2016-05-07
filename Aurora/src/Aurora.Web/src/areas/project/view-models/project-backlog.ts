@@ -11,6 +11,9 @@ export class ProjectSprintsViewModel {
 
     userDefaultProject: auth.IUserProject;
 
+    activeBacklogItem: models.ProjectBacklogItemModel;
+    backlogItems: models.ProjectBacklogItemModel[];
+
     private projectBacklogService: services.IProjectBacklogService;
     private authService: auth.IAuthService;
 
@@ -29,5 +32,32 @@ export class ProjectSprintsViewModel {
 
         if (!this.userDefaultProject.id)
             return;
+    }
+
+    getProjectBacklogItems()
+    {
+        this.projectBacklogService.getProjectacklogItems(this.userDefaultProject.id).then((result: models.ProjectBacklogItemModel[]) => {
+            this.backlogItems = result; 
+        });
+    }
+
+    addBacklogItem()
+    {
+        this.projectBacklogService.addBacklogItem(this.activeBacklogItem).then((result: data.IResult) =>
+        {
+
+        });
+    }
+
+    updateBacklogItem() {
+        this.projectBacklogService.updateBacklogItem(this.activeBacklogItem).then((result: data.IResult) => {
+
+        });
+    }
+
+    deleteBacklogItem(backlogItemId: number) {
+        this.projectBacklogService.addBacklogItem(backlogItemId).then((result: data.IResult) => {
+
+        });
     }
 }
