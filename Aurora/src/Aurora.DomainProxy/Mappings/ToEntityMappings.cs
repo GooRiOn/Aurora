@@ -14,6 +14,7 @@ namespace Aurora.DomainProxy.Mappings
             {
                 cfg.CreateMap<UserRegisterWriteModel, UserEntity>();
                 cfg.CreateMap<SprintWriteModel, SprintEntity>();
+                cfg.CreateMap<BacklogItemWriteModel, BacklogItemEntity>();
             });
 
             _mapper = config.CreateMapper();
@@ -27,6 +28,11 @@ namespace Aurora.DomainProxy.Mappings
         public static SprintEntity AsEntity(this SprintWriteModel writeModel)
         {
             return _mapper.Map<SprintEntity>(writeModel);
+        }
+
+        public static BacklogItemEntity AsEntity(this BacklogItemWriteModel writeModel)
+        {
+            return _mapper.Map<BacklogItemEntity>(writeModel);
         }
     }
 }

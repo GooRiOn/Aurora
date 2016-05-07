@@ -30,19 +30,19 @@ namespace Aurora.Web.Controllers
         [HttpPost("Users/{userId}/Lock")]
         public async Task<IResult> LockUserAsync(string userId)
         {
-            return await _userDomainServiceProxy.LockUser(userId);
+            return await _userDomainServiceProxy.LockUserAsync(userId);
         }
 
         [HttpPost("Users/{userId}/Unlock")]
         public async Task<IResult> UnlockUserAsync(string userId)
         {
-            return await _userDomainServiceProxy.UnlockUser(userId);
+            return await _userDomainServiceProxy.UnlockUserAsync(userId);
         }
 
         [HttpPost("Users/{userId}/Delete")]
         public async Task<IResult> DeleteUserAsync(string userId)
         {
-            return await _userDomainServiceProxy.DeleteUser(userId);
+            return await _userDomainServiceProxy.DeleteUserAsync(userId);
         }
 
         [HttpPost("Users/{userId}/Password/{newPassword}/Reset")]

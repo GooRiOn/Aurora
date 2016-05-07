@@ -39,7 +39,7 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IResult> LockUser(string userId)
+        public async Task<IResult> LockUserAsync(string userId)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
@@ -49,7 +49,7 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IResult> UnlockUser(string userId)
+        public async Task<IResult> UnlockUserAsync(string userId)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
@@ -59,7 +59,7 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IResult> DeleteUser(string userId)
+        public async Task<IResult> DeleteUserAsync(string userId)
         {
             using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {

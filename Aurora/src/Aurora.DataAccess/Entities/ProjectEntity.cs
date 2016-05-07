@@ -10,7 +10,6 @@ namespace Aurora.DataAccess.Entities
             this.Members = new HashSet<UserProjectEntity>();
             this.Sprints = new HashSet<SprintEntity>();
             this.Labels = new HashSet<LabelEntity>();
-            this.Stages = new HashSet<StageEntity>();
         }
 
         public string Name { get; set; }
@@ -24,7 +23,5 @@ namespace Aurora.DataAccess.Entities
         public ICollection<SprintEntity> Sprints { get; set; } 
 
         public ICollection<LabelEntity> Labels { get; set; } 
-
-        public ICollection<StageEntity> Stages { get; set; } 
     }
 }

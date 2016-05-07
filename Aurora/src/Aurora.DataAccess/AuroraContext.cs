@@ -16,9 +16,7 @@ namespace Aurora.DataAccess
         public DbSet<BacklogItemEntity> BacklogItems { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
         public DbSet<LabelEntity> Labels { get; set; }  
-        public DbSet<StageEntity> Stages { get; set; } 
-         
-             
+       
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Data Source=DESKTOP-JQOI1KG;database=Aurora;Integrated Security=True");

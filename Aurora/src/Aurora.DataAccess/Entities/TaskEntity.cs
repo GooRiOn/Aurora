@@ -14,12 +14,7 @@ namespace Aurora.DataAccess.Entities
 
         [ForeignKey("BacklogItemId")]
         public BacklogItemEntity BacklogItem { get; set; }
-
-        public int StageId { get; set; }
-
-        [ForeignKey("StageId")]
-        public StageEntity Stage { get; set; }
-        
+       
         public int UserProjectId { get; set; }
 
         [ForeignKey("UserProjectId")]

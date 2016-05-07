@@ -1,7 +1,16 @@
-﻿namespace Aurora.DomainProxy.Proxies.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Aurora.Infrastructure.Data.Interfaces;
+using Aurora.Infrastructure.Models.ReadModels;
+using Aurora.Infrastructure.Models.WriteModels;
+
+namespace Aurora.DomainProxy.Proxies.Interfaces
 {
     public interface IBacklogItemDomainServiceProxy : IBaseProxy
     {
-         
+        Task<IEnumerable<BacklogItemReadModel>> GetProjectBacklogItemsAsync(int projectId);
+        Task<IResult> AddBacklogItemAsync(BacklogItemWriteModel backlogItem);
+        Task<IResult> UpdateBacklogItem(BacklogItemWriteModel backlogItemEntity);
+        Task<IResult> DeleteBacklogItemAsync(int backlogItemId);
     }
 }
