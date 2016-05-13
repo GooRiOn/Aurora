@@ -7,11 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", '../services/project-backlog-service', '../../../materialize-helper', '../../../auth-service', 'aurelia-framework'], function (require, exports, services, materialize, auth, aurelia_framework_1) {
+define(["require", "exports", '../models/project-models', '../services/project-backlog-service', '../services/project-sprints-service', '../../../materialize-helper', '../../../auth-service', 'aurelia-framework'], function (require, exports, models, services, sprintServices, materialize, auth, aurelia_framework_1) {
     "use strict";
     var ProjectSprintsViewModel = (function () {
-        function ProjectSprintsViewModel(projectBacklogService, authService) {
+        function ProjectSprintsViewModel(projectBacklogService, sprintService, authService) {
+            this.backlogItemStates = [
+                { name: "New", value: models.BacklogItemState.New },
+                { name: "Approved", value: models.BacklogItemState.Approved },
+                { name: "Commited", value: models.BacklogItemState.Commited },
+                { name: "Done", value: models.BacklogItemState.Done },
+                { name: "Removed", value: models.BacklogItemState.Removed },
+            ];
             this.projectBacklogService = projectBacklogService;
+            this.sprintService = sprintService;
             this.authService = authService;
         }
         ProjectSprintsViewModel.prototype.attached = function () {
@@ -21,6 +29,8 @@ define(["require", "exports", '../services/project-backlog-service', '../../../m
             this.userDefaultProject = this.authService.getUserDefaultProject();
             if (!this.userDefaultProject.id)
                 return;
+            this.getProjectBacklogItems();
+            this.getProjectSprints();
         };
         ProjectSprintsViewModel.prototype.getProjectBacklogItems = function () {
             var _this = this;
@@ -28,8 +38,14 @@ define(["require", "exports", '../services/project-backlog-service', '../../../m
                 _this.backlogItems = result;
             });
         };
-        ProjectSprintsViewModel.prototype.addBacklogItem = function () {
-            this.projectBacklogService.addBacklogItem(this.activeBacklogItem).then(function (result) {
+        ProjectSprintsViewModel.prototype.getProjectSprints = function () {
+            var _this = this;
+            this.sprintService.getProjectSprints(this.userDefaultProject.id).then(function (result) {
+                _this.sprints = result;
+            });
+        };
+        ProjectSprintsViewModel.prototype.createBacklogItem = function () {
+            this.projectBacklogService.createBacklogItem(this.activeBacklogItem).then(function (result) {
             });
         };
         ProjectSprintsViewModel.prototype.updateBacklogItem = function () {
@@ -40,9 +56,21 @@ define(["require", "exports", '../services/project-backlog-service', '../../../m
             this.projectBacklogService.deleteBacklogItem(backlogItemId).then(function (result) {
             });
         };
+        ProjectSprintsViewModel.prototype.activateNewBacklogItemCreation = function () {
+            this.activeBacklogItem = new models.ProjectBacklogItemModel();
+            this.isActiveBacklogItemViewEnabled = true;
+        };
+        ProjectSprintsViewModel.prototype.clearActiveBacklogItemView = function () {
+            this.activeBacklogItem = null;
+            this.isActiveBacklogItemViewEnabled = false;
+        };
+        ProjectSprintsViewModel.prototype.getBacklogItemStateByValue = function (value) {
+            var state = this.backlogItemStates.firstOrNull(function (i) { return i.value === value; });
+            return state ? state.name : '';
+        };
         ProjectSprintsViewModel = __decorate([
-            aurelia_framework_1.inject(services.ProjectBacklogService, auth.AuthService), 
-            __metadata('design:paramtypes', [services.ProjectBacklogService, auth.AuthService])
+            aurelia_framework_1.inject(services.ProjectBacklogService, sprintServices.ProjectSprintsService, auth.AuthService), 
+            __metadata('design:paramtypes', [services.ProjectBacklogService, sprintServices.ProjectSprintsService, auth.AuthService])
         ], ProjectSprintsViewModel);
         return ProjectSprintsViewModel;
     }());

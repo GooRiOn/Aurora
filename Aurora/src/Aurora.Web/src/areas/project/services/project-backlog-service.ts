@@ -9,7 +9,7 @@ export interface IProjectBacklogService {
 
     getProjectacklogItems(projectId: number): Promise<models.ProjectBacklogItemModel[]>;
     //model
-    addBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>;
+    createBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>;
     updateBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>;
     deleteBacklogItem(projectId: number): Promise<data.IResult>;
 }
@@ -27,9 +27,9 @@ export class ProjectBacklogService extends app.DataService implements IProjectBa
         return super.get(url, true);
     }
 
-    addBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>
+    createBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>
     {
-        return super.post('Backlogs/Add', project, true);
+        return super.post('Backlogs/Create', project, true);
     }
 
     updateBacklogItem(project: models.ProjectBacklogItemModel): Promise<data.IResult>

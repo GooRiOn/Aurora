@@ -23,8 +23,8 @@ define(["require", "exports", '../../../data-service', '../../../auth-service', 
             var url = "Backlogs/" + projectId;
             return _super.prototype.get.call(this, url, true);
         };
-        ProjectBacklogService.prototype.addBacklogItem = function (project) {
-            return _super.prototype.post.call(this, 'Backlogs/Add', project, true);
+        ProjectBacklogService.prototype.createBacklogItem = function (project) {
+            return _super.prototype.post.call(this, 'Backlogs/Create', project, true);
         };
         ProjectBacklogService.prototype.updateBacklogItem = function (project) {
             return _super.prototype.post.call(this, 'Backlogs/Update', project, true);

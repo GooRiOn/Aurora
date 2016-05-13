@@ -10,7 +10,7 @@ namespace Aurora.DomainProxy.Proxies.Interfaces
     {
         Task<IEnumerable<BacklogItemReadModel>> GetProjectBacklogItemsAsync(int projectId);
         Task<IResult> CreateBacklogItemAsync(BacklogItemWriteModel backlogItem);
-        Task<IResult> UpdateBacklogItem(BacklogItemWriteModel backlogItemEntity);
+        Task<IResult> UpdateBacklogItemAsync(BacklogItemWriteModel backlogItemEntity);
         Task<IResult> DeleteBacklogItemAsync(int backlogItemId);
     }
 }

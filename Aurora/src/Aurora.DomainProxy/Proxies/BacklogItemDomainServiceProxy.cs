@@ -34,7 +34,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> CreateBacklogItemAsync(BacklogItemWriteModel backlogItem)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var backlogItemDomainService = _backlogDomainServiceFactory.Get(unitOfWork);
 
@@ -45,9 +45,9 @@ namespace Aurora.DomainProxy.Proxies
             }
         }
 
-        public async Task<IResult> UpdateBacklogItem(BacklogItemWriteModel backlogItem)
+        public async Task<IResult> UpdateBacklogItemAsync(BacklogItemWriteModel backlogItem)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var backlogItemDomainService = _backlogDomainServiceFactory.Get(unitOfWork);
 
@@ -60,7 +60,7 @@ namespace Aurora.DomainProxy.Proxies
 
         public async Task<IResult> DeleteBacklogItemAsync(int backlogItemId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.Get())
+            using (var unitOfWork = _unitOfWorkFactory.Get(false))
             {
                 var backlogItemDomainService = _backlogDomainServiceFactory.Get(unitOfWork);
                 await backlogItemDomainService.DeleteBacklogItemAsync(backlogItemId);

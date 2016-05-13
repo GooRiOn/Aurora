@@ -67,9 +67,9 @@ export class ProjectSprintsViewModel {
         });
     }
 
-    addBacklogItem()
+    createBacklogItem()
     {
-        this.projectBacklogService.addBacklogItem(this.activeBacklogItem).then((result: data.IResult) =>
+        this.projectBacklogService.createBacklogItem(this.activeBacklogItem).then((result: data.IResult) =>
         {
 
         });
@@ -91,6 +91,12 @@ export class ProjectSprintsViewModel {
     {
         this.activeBacklogItem = new models.ProjectBacklogItemModel();
         this.isActiveBacklogItemViewEnabled = true;       
+    }
+
+    clearActiveBacklogItemView()
+    {
+        this.activeBacklogItem = null;
+        this.isActiveBacklogItemViewEnabled = false;
     }
     
     getBacklogItemStateByValue(value: number)

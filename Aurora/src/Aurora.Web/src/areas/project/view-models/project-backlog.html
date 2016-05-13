@@ -8,7 +8,7 @@
                     </div>
                 </div>
             </div>
-            <div class="view-body" if.bind="backlogItems.length > 0 && !isActiveBacklogItemViewEnabled">
+            <div class="view-body" show.bind="backlogItems.length > 0 && !isActiveBacklogItemViewEnabled">
               <table class="bordered">
                   <thead>
                       <tr>
@@ -34,7 +34,7 @@
                   </tbody>
               </table>
             </div> 
-            <div class="view-body" if.bind="backlogItems.length === 0 && !isActiveBacklogItemViewEnabled">
+            <div class="view-body" show.bind="backlogItems.length === 0 && !isActiveBacklogItemViewEnabled">
                 <div class="row">
                     <div class="col s12 text-center">
                         <h4>It's lonely here. Create your first item!</h4>
@@ -42,7 +42,7 @@
                     </div>                    
                 </div>
             </div>
-            <div class="view-body" if.bind="isActiveBacklogItemViewEnabled">
+            <div class="view-body" show.bind="isActiveBacklogItemViewEnabled">
                 <div class="row">
                     <div class="input-field col s12 text-center">
                         <div>
@@ -70,13 +70,15 @@
                     </div>
                 </div>    
                 <div class="row">
-                   <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
-                <label>Materialize Select</label>
+                    <div class="input-field col s6">
+                        <select class="browser-default" value.bind="activeBacklogItem.sprintId">                          
+                            <option model.bind="sprint.id" repeat.for="sprint of sprints">${sprint.name}</option>                           
+                        </select>                       
+                    </div>                   
+                </div>
+                <div class="row">                   
+                    <a class="waves-effect waves-light btn" click.trigger="createBacklogItem()">Create</a>                   
+                    <a class="waves-effect waves-light btn" click.trigger="clearActiveBacklogItemView()">Back</a>                  
                 </div>
             </div>                        
         </div>

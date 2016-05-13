@@ -45,6 +45,7 @@ export class ProjectBacklogItemModel
     sprintId: number;
     sprintName: string;
     title: string;
+    description: string;
     state: BacklogItemState;
 }
 
