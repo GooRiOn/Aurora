@@ -71,19 +71,28 @@ export class ProjectSprintsViewModel {
     {
         this.projectBacklogService.createBacklogItem(this.activeBacklogItem).then((result: data.IResult) =>
         {
-
+            this.clearActiveBacklogItemView();           
+            Materialize.toast('Backlog item has been created', 4000, 'btn');
         });
     }
 
     updateBacklogItem() {
         this.projectBacklogService.updateBacklogItem(this.activeBacklogItem).then((result: data.IResult) => {
-
+            this.clearActiveBacklogItemView();
+            Materialize.toast('Backlog item has been updated', 4000, 'btn');
         });
     }
 
-    deleteBacklogItem(backlogItemId: number) {
-        this.projectBacklogService.deleteBacklogItem(backlogItemId).then((result: data.IResult) => {
+    deleteBacklogItem(backlogItem: models.ProjectBacklogItemModel) {
 
+        let confitm = window.confirm('Do you want to remove this backlog item?');
+
+        if (!confirm)
+            return;
+
+        this.projectBacklogService.deleteBacklogItem(backlogItem.id).then((result: data.IResult) => {
+            this.backlogItems.remove(backlogItem);
+            Materialize.toast('Backlog item has been deleted', 4000, 'btn');
         });
     }
     
@@ -93,10 +102,17 @@ export class ProjectSprintsViewModel {
         this.isActiveBacklogItemViewEnabled = true;       
     }
 
+    activateBacklogItemEdition(backlogItem: models.ProjectBacklogItemModel)
+    {
+        this.activeBacklogItem = backlogItem;
+        this.isActiveBacklogItemViewEnabled = true;
+    }
+
     clearActiveBacklogItemView()
     {
         this.activeBacklogItem = null;
         this.isActiveBacklogItemViewEnabled = false;
+        this.getProjectBacklogItems();
     }
     
     getBacklogItemStateByValue(value: number)

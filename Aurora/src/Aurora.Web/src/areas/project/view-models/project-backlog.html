@@ -25,7 +25,7 @@
                            <th>${item.sprintName}</th>
                            <th>${getBacklogItemStateByValue(item.state)}</th>
                            <th>
-                               <a class="btn-floating btn-large waves-effect waves-light blue" click.trigger="editBackloItem(item)"><i class="material-icons">mode_edit</i></a>                               
+                               <a class="btn-floating btn-large waves-effect waves-light blue" click.trigger="activateBacklogItemEdition(item)"><i class="material-icons">mode_edit</i></a>                               
                            </th>
                            <th>
                                <a class="btn-floating btn-large waves-effect waves-light red" click.trigger="deleteBacklogItem(item)"><i class="material-icons">delete</i></a>                               
@@ -33,6 +33,7 @@
                       </tr>                     
                   </tbody>
               </table>
+              <a class="waves-effect waves-light btn" click.trigger="activateNewBacklogItemCreation()">Create</a>
             </div> 
             <div class="view-body" show.bind="backlogItems.length === 0 && !isActiveBacklogItemViewEnabled">
                 <div class="row">
@@ -77,7 +78,8 @@
                     </div>                   
                 </div>
                 <div class="row">                   
-                    <a class="waves-effect waves-light btn" click.trigger="createBacklogItem()">Create</a>                   
+                    <a class="waves-effect waves-light btn" click.trigger="createBacklogItem()" if.bind="!activeBacklogItem.id">Create</a>
+                    <a class="waves-effect waves-light btn" click.trigger="updateBacklogItem()" if.bind="activeBacklogItem.id">Update</a>                      
                     <a class="waves-effect waves-light btn" click.trigger="clearActiveBacklogItemView()">Back</a>                  
                 </div>
             </div>                        
